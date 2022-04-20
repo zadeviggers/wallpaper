@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.viggers.zade.wallpaper">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="net.viggers.zade.wallpaper"
+    android:versionCode="1"
+    android:versionName="Version 1 (IT WORKS!!!)">
 
     <application
         android:allowBackup="true"
@@ -47,7 +50,7 @@
 
     </application>
 
-    <uses-sdk android:maxSdkVersion="10" />
+<!--    <uses-sdk android:maxSdkVersion="31" />-->
 
     <uses-feature
         android:name="android.software.live_wallpaper"
