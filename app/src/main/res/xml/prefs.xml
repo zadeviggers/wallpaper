@@ -2,5 +2,5 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <EditTextPreference
         android:key="numberOfCircles"
-        android:title="Number of Circles" />
+        android:title="@string/number_of_circles_preference_title" />
 </PreferenceScreen>

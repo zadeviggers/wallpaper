@@ -51,38 +51,32 @@ class WallpaperService : WallpaperService() {
         override fun onTouchEvent(event: MotionEvent) {
             val x = event.x.toInt()
             val y = event.y.toInt()
-            val holder = surfaceHolder
-            var canvas: Canvas? = null
-            try {
-                canvas = holder.lockCanvas()
-                if (canvas != null) {
-                    canvas.drawColor(Color.BLACK)
-                    circles.add(Point(nextCircleId, x, y))
-                    drawCircles(canvas, circles)
-                }
-            } finally {
-                if (canvas != null) holder.unlockCanvasAndPost(canvas)
-            }
+            addCircle(x, y)
             super.onTouchEvent(event)
         }
 
-        private fun draw() {
-            val holder = surfaceHolder
+        private fun addCircle(x: Int, y: Int) {
             var canvas: Canvas? = null
+            val holder = surfaceHolder
             try {
                 canvas = holder.lockCanvas()
                 if (canvas != null) {
                     if (circles.size >= maxCount) {
                         circles.removeAt(0)
                     }
-                    val x = (width * Math.random()).toInt()
-                    val y = (height * Math.random()).toInt()
                     circles.add(Point(nextCircleId, x, y))
                     drawCircles(canvas, circles)
                 }
             } finally {
                 if (canvas != null) holder.unlockCanvasAndPost(canvas)
             }
+        }
+
+        private fun draw() {
+            val x = (width * Math.random()).toInt()
+            val y = (height * Math.random()).toInt()
+            addCircle(x, y)
+
             handler.removeCallbacks(drawRunner)
             if (visible) {
                 handler.postDelayed(drawRunner, 500)

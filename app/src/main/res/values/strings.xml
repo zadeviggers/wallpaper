@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">Wallpaper</string>
+    <string name="app_name">Zade\'s Wallpaper</string>
     <string name="wallpaper_service_label">Zade\'s cool wallpaper</string>
     <string name="invalid_number_input_toast">Invalid input - please enter a number.</string>
     <string name="wallpaper_description">Zade\'s very cool live wallpaper</string>
+    <string name="number_of_circles_preference_title">Number of Circles</string>
 </resources>
