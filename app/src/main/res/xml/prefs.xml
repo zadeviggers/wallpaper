@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+        android:key="touchEnabled"
+        android:title="Enable Touch" />
+
+    <EditTextPreference
+        android:key="numberOfCircles"
+        android:title="Number of Circles" />
+</PreferenceScreen>
