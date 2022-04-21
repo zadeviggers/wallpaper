@@ -11,7 +11,7 @@ class PreferencesActivity : PreferenceActivity() {
     override fun onCreate(savedInstance: Bundle?) {
         super.onCreate(savedInstance)
         addPreferencesFromResource(R.xml.prefs)
-        val circlePreference = preferenceScreen.findPreference("numberOfCircles")
+        val circlePreference = preferenceScreen.findPreference("numberOfShapes")
         circlePreference.onPreferenceChangeListener = numberCheckListener
     }
 

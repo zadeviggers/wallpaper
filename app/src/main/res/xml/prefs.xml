@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <EditTextPreference
-        android:key="numberOfCircles"
-        android:title="@string/number_of_circles_preference_title" />
+        android:key="numberOfShapes"
+        android:title="@string/number_of_shapes_preference_title"
+        android:defaultValue="4"/>
+    <SwitchPreference
+        android:key="enableRandomShapes"
+        android:title="@string/enable_random_shapes_preference_title"
+        android:defaultValue="true"/>
 </PreferenceScreen>

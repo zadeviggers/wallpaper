@@ -1,5 +1,6 @@
 package net.viggers.zade.wallpaper
 
+import android.content.SharedPreferences
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
@@ -16,13 +17,14 @@ class WallpaperService : WallpaperService() {
 
     private inner class WallpaperEngine : Engine() {
         private val handler = Handler()
-        private val drawRunner = Runnable { draw() }
+        private val drawRunner = Runnable { drawTick() }
         private val circles: MutableList<Point>
         private val paint = Paint()
         private var width = 0
         private var height = 0
         private var visible = true
         private val maxCount: Int
+        private val prefs: SharedPreferences
 
         override fun onVisibilityChanged(isVisible: Boolean) {
             visible = isVisible
@@ -72,10 +74,12 @@ class WallpaperService : WallpaperService() {
             }
         }
 
-        private fun draw() {
-            val x = (width * Math.random()).toInt()
-            val y = (height * Math.random()).toInt()
-            addCircle(x, y)
+        private fun drawTick() {
+            if (prefs.getBoolean("enableRandomShapes", true)) {
+                val x = (width * Math.random()).toInt()
+                val y = (height * Math.random()).toInt()
+                addCircle(x, y)
+            }
 
             handler.removeCallbacks(drawRunner)
             if (visible) {
@@ -97,10 +101,11 @@ class WallpaperService : WallpaperService() {
             } else 0
 
         init {
-            val prefs = PreferenceManager.getDefaultSharedPreferences(this@WallpaperService)
+            prefs = PreferenceManager.getDefaultSharedPreferences(this@WallpaperService)
 
             // TODO: Don't store this as a string!
             maxCount = Integer.valueOf(prefs.getString("numberOfCircles", "4"))
+
             circles = ArrayList()
             paint.isAntiAlias = true
             paint.color = Color.RED
@@ -108,7 +113,9 @@ class WallpaperService : WallpaperService() {
             paint.strokeJoin = Paint.Join.ROUND
             paint.strokeCap = Paint.Cap.ROUND
             paint.strokeWidth = 10f
+
             handler.post(drawRunner)
+
         }
     }
 }
