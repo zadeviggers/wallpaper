@@ -1,12 +1,13 @@
 package net.viggers.zade.wallpaper
 
 import android.content.SharedPreferences
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.os.Handler
-import android.preference.PreferenceManager
 import android.service.wallpaper.WallpaperService
+import android.util.Log
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 
@@ -25,9 +26,54 @@ class WallpaperService : WallpaperService() {
         private var visible = true
 
         // Preferences
-        private val maxCount: Int
-        private val randomShapesEnabled: Boolean
-        private val randomShapeSpawnDelay: Int
+        val prefChangeListener: OnSharedPreferenceChangeListener =
+            OnSharedPreferenceChangeListener { newPrefs, _ ->
+                loadPreferences(newPrefs)
+                Log.d("ZV-Wallpaper", "Preferences changed")
+            }
+
+        val defaultMaxCount: Int = 4
+        val defaultRandomShapesEnabled: Boolean = true
+        val defaultRandomShapeDelay: Int = 500
+        val defaultShapeColour: Int = Color.RED
+
+        private var maxCount: Int = defaultMaxCount
+        private var randomShapesEnabled: Boolean = defaultRandomShapesEnabled
+        private var randomShapeSpawnDelay: Int = defaultRandomShapeDelay
+
+        val nextShapeId: Int
+            get() = if (shapes.size > 0) {
+                shapes[shapes.size - 1].num + 1
+            } else 0
+
+        init {
+            val prefs = androidx.preference.PreferenceManager.getDefaultSharedPreferences(this@WallpaperService)
+
+            prefs.registerOnSharedPreferenceChangeListener(prefChangeListener)
+            loadPreferences(prefs)
+
+            Log.d("ZV-Wallpaper", "Loaded wallpaper service")
+
+            shapes = ArrayList()
+            paint.isAntiAlias = true
+            paint.style = Paint.Style.STROKE
+            paint.strokeJoin = Paint.Join.ROUND
+            paint.strokeCap = Paint.Cap.ROUND
+            paint.strokeWidth = 10f
+
+            handler.post(drawRunner)
+        }
+
+        private fun loadPreferences(prefs: SharedPreferences) {
+            randomShapesEnabled = prefs.getBoolean("enableRandomShapes", defaultRandomShapesEnabled)
+            maxCount = Integer.valueOf(prefs.getString("numberOfShapes", defaultMaxCount.toString()))
+            randomShapeSpawnDelay = Integer.valueOf(prefs.getString("randomShapeSpawnDelay", defaultRandomShapeDelay.toString()))
+            paint.color = prefs.getInt("shapeColour", defaultShapeColour)
+        }
+
+        private fun onSharedPreferenceChanged(prefs: SharedPreferences, key: String) {
+            loadPreferences(prefs)
+        }
 
         override fun onVisibilityChanged(isVisible: Boolean) {
             visible = isVisible
@@ -96,31 +142,6 @@ class WallpaperService : WallpaperService() {
             for (point in shapes) {
                 canvas.drawCircle(point.x.toFloat(), point.y.toFloat(), 20.0f, paint)
             }
-        }
-
-        val nextShapeId: Int
-            get() = if (shapes.size > 0) {
-                shapes[shapes.size - 1].num + 1
-            } else 0
-
-        init {
-            val prefs = PreferenceManager.getDefaultSharedPreferences(this@WallpaperService)
-
-            randomShapesEnabled = prefs.getBoolean("enableRandomShapes", true)
-            maxCount = Integer.valueOf(prefs.getString("numberOfShapes", "4"))
-            randomShapeSpawnDelay = Integer.valueOf(prefs.getString("randomShapeSpawnDelay", "500"))
-
-
-            shapes = ArrayList()
-            paint.isAntiAlias = true
-            paint.color = Color.RED
-            paint.style = Paint.Style.STROKE
-            paint.strokeJoin = Paint.Join.ROUND
-            paint.strokeCap = Paint.Cap.ROUND
-            paint.strokeWidth = 10f
-
-            handler.post(drawRunner)
-
         }
     }
 }

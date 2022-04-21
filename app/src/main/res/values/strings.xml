@@ -7,6 +7,10 @@
     <string name="install_wallpaper_button_text">Install wallpaper</string>
     <string name="install_wallpaper_instruction_text">Press that button to install the live wallpaper.</string>
     <string name="install_wallpaper_settings_info_text">To change the settings, press the cog icon in the top right in the screen that appears after you tap the install button.</string>
-    <string name="enable_random_shapes_preference_title">Enable spawning random shapes</string>
-    <string name="random_shape_spawn_delay_preference_title">Random shape spawn delay (ms)</string>
+    <string name="enable_random_shapes_preference_title">Spawn random shapes</string>
+    <string name="random_shape_spawn_delay_preference_title">Random spawn delay (ms)</string>
+    <string name="shape_colour_preference_title">Shape colour</string>
+    <string name="enable_random_shapes_preference_summary">Enables shapes to be spawned in random places on the screen.</string>
+    <string name="random_shape_spawn_delay_preference_summary">The delay between spawning new shapes randomly. Less than 500ms might drain your battery.</string>
+    <string name="number_of_shapes_preference_summary">Once there are this many shapes on the screen, old shapes will be removed.</string>
 </resources>

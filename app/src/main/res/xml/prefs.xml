@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:theme="@style/Theme.Wallpaper">
     <EditTextPreference
         android:key="numberOfShapes"
         android:title="@string/number_of_shapes_preference_title"
+        android:summary="@string/number_of_shapes_preference_summary"
         android:defaultValue="4" />
-    <SwitchPreference
+    <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
+        android:key="shapeColour"
+        android:title="@string/shape_colour_preference_title" />
+    <SwitchPreferenceCompat
         android:key="enableRandomShapes"
         android:title="@string/enable_random_shapes_preference_title"
+        android:summary="@string/enable_random_shapes_preference_summary"
         android:defaultValue="true" />
     <EditTextPreference
         android:key="randomShapeSpawnDelay"
         android:title="@string/random_shape_spawn_delay_preference_title"
-        android:defaultValue="500" />
+        android:defaultValue="500"
+        android:summary="@string/random_shape_spawn_delay_preference_summary" />
 </PreferenceScreen>

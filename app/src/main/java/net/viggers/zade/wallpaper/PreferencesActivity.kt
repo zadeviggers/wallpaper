@@ -1,34 +1,45 @@
 package net.viggers.zade.wallpaper
 
-import android.preference.PreferenceActivity
 import android.os.Bundle
-import net.viggers.zade.wallpaper.R
-import android.preference.Preference
-import android.preference.Preference.OnPreferenceChangeListener
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.EditTextPreference
+import androidx.preference.PreferenceFragmentCompat
 
-class PreferencesActivity : PreferenceActivity() {
+
+class PreferencesActivity : AppCompatActivity() {
     override fun onCreate(savedInstance: Bundle?) {
         super.onCreate(savedInstance)
-        addPreferencesFromResource(R.xml.prefs)
 
-        val maxShapeNumberPreference = preferenceScreen.findPreference("numberOfShapes")
-        maxShapeNumberPreference.onPreferenceChangeListener = numberCheckListener
-
-        val shapeSpawnDelayPreference = preferenceScreen.findPreference("randomShapeSpawnDelay")
-        shapeSpawnDelayPreference.onPreferenceChangeListener = numberCheckListener
+        if (savedInstance == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(android.R.id.content, PreferencesFragment())
+                .commit()
+        }
     }
 
-    private var numberCheckListener = OnPreferenceChangeListener { _, o ->
-        if (o != null && o.toString().isNotEmpty() && o.toString().matches(Regex("\\d*"))) {
-            return@OnPreferenceChangeListener true
+    class PreferencesFragment : PreferenceFragmentCompat() {
+        override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+            setPreferencesFromResource(R.xml.prefs, rootKey)
+
+            val maxShapeNumberPreference = preferenceScreen.findPreference<EditTextPreference>("numberOfShapes")
+            maxShapeNumberPreference?.onPreferenceChangeListener = numberCheckListener
+
+            val shapeSpawnDelayPreference = preferenceScreen.findPreference<EditTextPreference>("randomShapeSpawnDelay")
+            shapeSpawnDelayPreference?.onPreferenceChangeListener = numberCheckListener
         }
-        Toast.makeText(
-            this@PreferencesActivity,
-            R.string.invalid_number_input_toast,
-            Toast.LENGTH_SHORT
-        )
-            .show()
-        false
+
+        private var numberCheckListener = androidx.preference.Preference.OnPreferenceChangeListener { _, o ->
+            if (o != null && o.toString().isNotEmpty() && o.toString().matches(Regex("\\d*"))) {
+                return@OnPreferenceChangeListener true
+            }
+            Toast.makeText(
+                activity,
+                R.string.invalid_number_input_toast,
+                Toast.LENGTH_SHORT
+            )
+                .show()
+            false
+        }
     }
 }
