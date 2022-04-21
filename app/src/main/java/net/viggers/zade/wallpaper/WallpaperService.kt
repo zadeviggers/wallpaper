@@ -18,13 +18,16 @@ class WallpaperService : WallpaperService() {
     private inner class WallpaperEngine : Engine() {
         private val handler = Handler()
         private val drawRunner = Runnable { drawTick() }
-        private val circles: MutableList<Point>
+        private val shapes: MutableList<Point>
         private val paint = Paint()
         private var width = 0
         private var height = 0
         private var visible = true
+
+        // Preferences
         private val maxCount: Int
-        private val prefs: SharedPreferences
+        private val randomShapesEnabled: Boolean
+        private val randomShapeSpawnDelay: Int
 
         override fun onVisibilityChanged(isVisible: Boolean) {
             visible = isVisible
@@ -53,21 +56,21 @@ class WallpaperService : WallpaperService() {
         override fun onTouchEvent(event: MotionEvent) {
             val x = event.x.toInt()
             val y = event.y.toInt()
-            addCircle(x, y)
+            addShape(x, y)
             super.onTouchEvent(event)
         }
 
-        private fun addCircle(x: Int, y: Int) {
+        private fun addShape(x: Int, y: Int) {
             var canvas: Canvas? = null
             val holder = surfaceHolder
             try {
                 canvas = holder.lockCanvas()
                 if (canvas != null) {
-                    if (circles.size >= maxCount) {
-                        circles.removeAt(0)
+                    if (shapes.size >= maxCount) {
+                        shapes.removeAt(0)
                     }
-                    circles.add(Point(nextCircleId, x, y))
-                    drawCircles(canvas, circles)
+                    shapes.add(Point(nextShapeId, x, y))
+                    drawShapes(canvas, shapes)
                 }
             } finally {
                 if (canvas != null) holder.unlockCanvasAndPost(canvas)
@@ -75,38 +78,40 @@ class WallpaperService : WallpaperService() {
         }
 
         private fun drawTick() {
-            if (prefs.getBoolean("enableRandomShapes", true)) {
+            if (randomShapesEnabled) {
                 val x = (width * Math.random()).toInt()
                 val y = (height * Math.random()).toInt()
-                addCircle(x, y)
+                addShape(x, y)
             }
 
             handler.removeCallbacks(drawRunner)
             if (visible) {
-                handler.postDelayed(drawRunner, 500)
+                handler.postDelayed(drawRunner, randomShapeSpawnDelay.toLong())
             }
         }
 
         // Surface view requires that all elements are drawn completely
-        private fun drawCircles(canvas: Canvas, circles: List<Point>) {
+        private fun drawShapes(canvas: Canvas, shapes: List<Point>) {
             canvas.drawColor(Color.BLACK)
-            for (point in circles) {
+            for (point in shapes) {
                 canvas.drawCircle(point.x.toFloat(), point.y.toFloat(), 20.0f, paint)
             }
         }
 
-        val nextCircleId: Int
-            get() = if (circles.size > 0) {
-                circles[circles.size - 1].num + 1
+        val nextShapeId: Int
+            get() = if (shapes.size > 0) {
+                shapes[shapes.size - 1].num + 1
             } else 0
 
         init {
-            prefs = PreferenceManager.getDefaultSharedPreferences(this@WallpaperService)
+            val prefs = PreferenceManager.getDefaultSharedPreferences(this@WallpaperService)
 
-            // TODO: Don't store this as a string!
-            maxCount = Integer.valueOf(prefs.getString("numberOfCircles", "4"))
+            randomShapesEnabled = prefs.getBoolean("enableRandomShapes", true)
+            maxCount = Integer.valueOf(prefs.getString("numberOfShapes", "4"))
+            randomShapeSpawnDelay = Integer.valueOf(prefs.getString("randomShapeSpawnDelay", "500"))
 
-            circles = ArrayList()
+
+            shapes = ArrayList()
             paint.isAntiAlias = true
             paint.color = Color.RED
             paint.style = Paint.Style.STROKE

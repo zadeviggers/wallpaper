@@ -3,9 +3,13 @@
     <EditTextPreference
         android:key="numberOfShapes"
         android:title="@string/number_of_shapes_preference_title"
-        android:defaultValue="4"/>
+        android:defaultValue="4" />
     <SwitchPreference
         android:key="enableRandomShapes"
         android:title="@string/enable_random_shapes_preference_title"
-        android:defaultValue="true"/>
+        android:defaultValue="true" />
+    <EditTextPreference
+        android:key="randomShapeSpawnDelay"
+        android:title="@string/random_shape_spawn_delay_preference_title"
+        android:defaultValue="500" />
 </PreferenceScreen>
