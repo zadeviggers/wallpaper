@@ -4,8 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:theme="@style/Theme.Wallpaper">
     <PreferenceCategory
-        app:key="switches_category"
-        app:title="@string/switches_category_title">
+        app:key="general_category"
+        app:title="@string/general_category_title">
         <ListPreference
             android:key="shapeType"
             android:title="@string/shape_type_preference_title"

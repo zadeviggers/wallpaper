@@ -18,7 +18,7 @@
     <string name="background_colour_preference_summary">If you have an AMOLED screen, setting this to black will help preserve battery life.</string>
     <string name="colours_category_title">Colours</string>
     <string name="numbers_category_title">Numbers</string>
-    <string name="switches_category_title">Switches</string>
+    <string name="general_category_title">General</string>
     <string name="shape_type_preference_title">Shape</string>
     <string name="shape_option_label_square">Square</string>
     <string name="shape_option_label_triangle">Triangle</string>
