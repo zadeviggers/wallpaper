@@ -2,8 +2,8 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.viggers.zade.wallpaper"
-    android:versionCode="3"
-    android:versionName="Version 3 (Lots of new preferences)">
+    android:versionCode="4"
+    android:versionName="Version 4 (Visual improvements and new preferences   )">
 
     <application
         android:allowBackup="true"
