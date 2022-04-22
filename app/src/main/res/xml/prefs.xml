@@ -2,7 +2,7 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:theme="@style/Theme.Wallpaper">
+    android:theme="@style/Theme.Material3.DayNight">
     <PreferenceCategory
         app:key="general_category"
         app:title="@string/general_category_title">
@@ -11,7 +11,7 @@
             android:title="@string/shape_type_preference_title"
             app:defaultValue="circle"
             app:entries="@array/shape_type_options_labels"
-            app:entryValues="@array/shape_type_options_values"/>
+            app:entryValues="@array/shape_type_options_values" />
         <SwitchPreferenceCompat
             android:key="enableRandomShapes"
             android:title="@string/enable_random_shapes_preference_title"

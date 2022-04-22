@@ -2,16 +2,18 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.viggers.zade.wallpaper"
-    android:versionCode="4"
-    android:versionName="Version 4 (Visual improvements and new preferences   )">
-
+    android:versionCode="5"
+    android:versionName="Version 5 (Upgrade to Material 3)">
+    <uses-feature
+        android:name="android.software.live_wallpaper"
+        android:required="true" />
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_launcher"
+        android:roundIcon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Wallpaper">
+        android:theme="@style/Theme.Material3.DayNight">
         <service
             android:name="WallpaperService"
             android:enabled="true"
@@ -21,38 +23,20 @@
             <intent-filter>
                 <action android:name="android.service.wallpaper.WallpaperService" />
             </intent-filter>
-
             <meta-data
                 android:name="android.service.wallpaper"
                 android:resource="@xml/wallpaper" />
         </service>
-        
         <activity
             android:name=".PreferencesActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.Wallpaper" />
-
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.Wallpaper"
-            android:exported="true"
-            >
+            android:exported="true" >
             <intent-filter>
-
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
-
             </intent-filter>
         </activity>
-
     </application>
-
-<!--    <uses-sdk android:maxSdkVersion="31" />-->
-
-    <uses-feature
-        android:name="android.software.live_wallpaper"
-        android:required="true" />
 </manifest>

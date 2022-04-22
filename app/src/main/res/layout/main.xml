@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    >
+    android:orientation="vertical"
+    android:padding="18dp">
 
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/install_wallpaper_button_text"
-        android:onClick="onInstallClick"/>
+        android:onClick="onInstallClick"
+        android:text="@string/install_wallpaper_button_text" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/change_prefs_button_text"
-        android:onClick="onPrefsClick"/>
+        android:onClick="onPrefsClick"
+        android:text="@string/change_prefs_button_text" />
 
     <TextView
         android:id="@+id/textView1"
