@@ -15,7 +15,15 @@ class PreferencesActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction()
                 .replace(android.R.id.content, PreferencesFragment())
                 .commit()
+
+            supportActionBar?.setDisplayShowHomeEnabled(true);
+            supportActionBar?.setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 
     class PreferencesFragment : PreferenceFragmentCompat() {
