@@ -5,8 +5,6 @@
     <string name="wallpaper_description">Zade\'s very cool live wallpaper</string>
     <string name="number_of_shapes_preference_title">Maximum number of shapes</string>
     <string name="install_wallpaper_button_text">Install wallpaper</string>
-    <string name="install_wallpaper_instruction_text">Press that button to install the live wallpaper.</string>
-    <string name="install_wallpaper_settings_info_text">To change the settings, press the cog icon in the top right in the screen that appears after you tap the install button.</string>
     <string name="enable_random_shapes_preference_title">Spawn random shapes</string>
     <string name="random_shape_spawn_delay_preference_title">Random spawn delay (ms)</string>
     <string name="shape_colour_preference_title">Shape colour</string>
