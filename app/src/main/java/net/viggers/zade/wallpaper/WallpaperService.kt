@@ -36,6 +36,7 @@ class WallpaperService : WallpaperService() {
         val defaultShapeColour: Int = Color.RED
         val defaultBackgroundColour: Int = Color.BLACK
         val defaultShapeType: String = "circle"
+        val defaultPauseRandomShapesWhenDragging: Boolean = false
 
         private var maxCount: Int = defaultMaxCount
         private var randomShapesEnabled: Boolean = defaultRandomShapesEnabled
@@ -43,6 +44,9 @@ class WallpaperService : WallpaperService() {
         private var shapeColour: Int = defaultShapeColour
         private var backgroundColour: Int = defaultBackgroundColour
         private var shapeType: String = defaultShapeType
+        private var pauseRandomShapesWhenDragging: Boolean = defaultPauseRandomShapesWhenDragging
+
+        private var randomShapesDraggingCooldown: Int = 5
 
         private val size = 40.0f
 
@@ -77,6 +81,7 @@ class WallpaperService : WallpaperService() {
             shapeColour = prefs.getInt("shapeColour", defaultShapeColour)
             backgroundColour = prefs.getInt("backgroundColour", defaultBackgroundColour)
             shapeType = prefs.getString("shapeType", defaultShapeType).toString()
+            pauseRandomShapesWhenDragging = prefs.getBoolean("pauseRandomShapesWhenDragging", defaultPauseRandomShapesWhenDragging)
         }
 
         override fun onVisibilityChanged(isVisible: Boolean) {
@@ -107,6 +112,9 @@ class WallpaperService : WallpaperService() {
             val x = event.x.toInt()
             val y = event.y.toInt()
             addShape(x, y)
+            if (pauseRandomShapesWhenDragging) {
+                randomShapesDraggingCooldown = 5
+            }
             super.onTouchEvent(event)
         }
 
@@ -132,7 +140,15 @@ class WallpaperService : WallpaperService() {
             if (randomShapesEnabled) {
                 val x = (width * Math.random()).toInt()
                 val y = (height * Math.random()).toInt()
-                addShape(x, y)
+                if (pauseRandomShapesWhenDragging) {
+                    if (randomShapesDraggingCooldown == 0) {
+                        addShape(x, y)
+                    } else if (randomShapesDraggingCooldown > 0) {
+                        randomShapesDraggingCooldown -= 1
+                    }
+                } else {
+                    addShape(x, y)
+                }
             }
 
             handler.removeCallbacks(drawRunner)

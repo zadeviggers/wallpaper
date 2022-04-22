@@ -17,6 +17,11 @@
             android:title="@string/enable_random_shapes_preference_title"
             android:summary="@string/enable_random_shapes_preference_summary"
             android:defaultValue="true" />
+        <SwitchPreferenceCompat
+            android:key="pauseRandomShapesWhenDragging"
+            android:title="@string/pause_random_shapes_when_dragging_preference_title"
+            android:summary="@string/pause_random_shapes_when_dragging_preference_summary"
+            android:defaultValue="false" />
     </PreferenceCategory>
     <PreferenceCategory
         app:key="colours_category"

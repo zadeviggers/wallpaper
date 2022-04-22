@@ -2,6 +2,7 @@ package net.viggers.zade.wallpaper
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -38,11 +39,10 @@ class PreferencesActivity : AppCompatActivity() {
 
         override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String) {
             val pref = findPreference<Preference>(key)
-            if (null != pref) {
+            if (null != pref && pref is ListPreference) {
                 val value = sharedPreferences?.getString(pref.key, "")
                 setPreferenceSummary(pref, value)
             }
-
         }
 
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -72,7 +72,6 @@ class PreferencesActivity : AppCompatActivity() {
                     listPreference.summary = listPreference.entries[prefIndex]
                 }
             }
-
         }
 
         private var numberCheckListener = androidx.preference.Preference.OnPreferenceChangeListener { _, o ->
