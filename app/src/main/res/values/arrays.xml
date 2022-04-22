@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="shape_type_options_labels">
+        <item>@string/shape_option_label_circle</item>
+        <item>@string/shape_option_label_square</item>
+        <item>@string/shape_option_label_triangle</item>
+    </array>
+
+    <array name="shape_type_options_values">
+        <item>circle</item>
+        <item>square</item>
+        <item>triangle</item>
+    </array>
+</resources>

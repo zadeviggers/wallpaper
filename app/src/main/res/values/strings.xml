@@ -19,4 +19,9 @@
     <string name="colours_category_title">Colours</string>
     <string name="numbers_category_title">Numbers</string>
     <string name="switches_category_title">Switches</string>
+    <string name="shape_type_preference_title">Shape</string>
+    <string name="shape_option_label_square">Square</string>
+    <string name="shape_option_label_triangle">Triangle</string>
+    <string name="shape_option_label_circle">Circle</string>
+
 </resources>

@@ -2,9 +2,7 @@ package net.viggers.zade.wallpaper
 
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
+import android.graphics.*
 import android.os.Handler
 import android.service.wallpaper.WallpaperService
 import android.util.Log
@@ -32,17 +30,22 @@ class WallpaperService : WallpaperService() {
                 Log.d("ZV-Wallpaper", "Preferences changed")
             }
 
-        val defaultMaxCount: Int = 4
+        val defaultMaxCount: Int = 40
         val defaultRandomShapesEnabled: Boolean = true
         val defaultRandomShapeDelay: Int = 500
         val defaultShapeColour: Int = Color.RED
         val defaultBackgroundColour: Int = Color.BLACK
+        val defaultShapeType: String = "circle"
 
         private var maxCount: Int = defaultMaxCount
         private var randomShapesEnabled: Boolean = defaultRandomShapesEnabled
         private var randomShapeSpawnDelay: Int = defaultRandomShapeDelay
         private var shapeColour: Int = defaultShapeColour
         private var backgroundColour: Int = defaultBackgroundColour
+        private var shapeType: String = defaultShapeType
+
+        private val size = 40.0f
+
 
         val nextShapeId: Int
             get() = if (shapes.size > 0) {
@@ -73,6 +76,7 @@ class WallpaperService : WallpaperService() {
             randomShapeSpawnDelay = Integer.valueOf(prefs.getString("randomShapeSpawnDelay", defaultRandomShapeDelay.toString()))
             shapeColour = prefs.getInt("shapeColour", defaultShapeColour)
             backgroundColour = prefs.getInt("backgroundColour", defaultBackgroundColour)
+            shapeType = prefs.getString("shapeType", defaultShapeType).toString()
         }
 
         override fun onVisibilityChanged(isVisible: Boolean) {
@@ -142,8 +146,47 @@ class WallpaperService : WallpaperService() {
             canvas.drawColor(backgroundColour)
             for (point in shapes) {
                 paint.color = point.colour
-                canvas.drawCircle(point.x.toFloat(), point.y.toFloat(), 20.0f, paint)
+
+                val x = point.x.toFloat()
+                val y = point.y.toFloat()
+
+                when (shapeType) {
+                    "circle" -> canvas.drawCircle(x, y, size / 2, paint)
+                    "square" -> {
+                        // Android graphics rectangles are really weird - they take top, left, top+height, and left+width distances,
+                        // rather than being normal and having x, y, width, and height
+                        val rect = RectF(x, y, x + size, y + size)
+                        canvas.drawRect(rect, paint)
+                    }
+                    "triangle" -> drawTriangle(x, y, size, size, false, paint, canvas)
+                    else -> canvas.drawCircle(x, y, size, paint)
+                }
+
             }
+        }
+
+        // From https://stackoverflow.com/a/35873562
+        private fun drawTriangle(
+            x: Float,
+            y: Float,
+            width: Float,
+            height: Float,
+            inverted: Boolean,
+            paint: Paint,
+            canvas: Canvas
+        ) {
+            val p1 = android.graphics.Point(x.toInt(), y.toInt())
+            val pointX = x + width / 2
+            val pointY = if (inverted) y + height else y - height
+            val p2 = android.graphics.Point(pointX.toInt(), pointY.toInt())
+            val p3 = android.graphics.Point((x + width).toInt(), y.toInt())
+            val path = Path()
+            path.fillType = Path.FillType.EVEN_ODD
+            path.moveTo(p1.x.toFloat(), p1.y.toFloat())
+            path.lineTo(p2.x.toFloat(), p2.y.toFloat())
+            path.lineTo(p3.x.toFloat(), p3.y.toFloat())
+            path.close()
+            canvas.drawPath(path, paint)
         }
     }
 }

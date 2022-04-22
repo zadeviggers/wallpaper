@@ -4,18 +4,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:theme="@style/Theme.Wallpaper">
     <PreferenceCategory
-        app:key="numbers_category"
-        app:title="@string/numbers_category_title">
-        <EditTextPreference
-            android:key="numberOfShapes"
-            android:title="@string/number_of_shapes_preference_title"
-            android:summary="@string/number_of_shapes_preference_summary"
-            android:defaultValue="4" />
-        <EditTextPreference
-            android:key="randomShapeSpawnDelay"
-            android:title="@string/random_shape_spawn_delay_preference_title"
-            android:defaultValue="500"
-            android:summary="@string/random_shape_spawn_delay_preference_summary" />
+        app:key="switches_category"
+        app:title="@string/switches_category_title">
+        <ListPreference
+            android:key="shapeType"
+            android:title="@string/shape_type_preference_title"
+            app:defaultValue="circle"
+            app:entries="@array/shape_type_options_labels"
+            app:entryValues="@array/shape_type_options_values"/>
+        <SwitchPreferenceCompat
+            android:key="enableRandomShapes"
+            android:title="@string/enable_random_shapes_preference_title"
+            android:summary="@string/enable_random_shapes_preference_summary"
+            android:defaultValue="true" />
     </PreferenceCategory>
     <PreferenceCategory
         app:key="colours_category"
@@ -31,12 +32,17 @@
             app:colorChoices="@array/pickerColours" />
     </PreferenceCategory>
     <PreferenceCategory
-        app:key="switches_category"
-        app:title="@string/switches_category_title">
-        <SwitchPreferenceCompat
-            android:key="enableRandomShapes"
-            android:title="@string/enable_random_shapes_preference_title"
-            android:summary="@string/enable_random_shapes_preference_summary"
-            android:defaultValue="true" />
+        app:key="numbers_category"
+        app:title="@string/numbers_category_title">
+        <EditTextPreference
+            android:key="numberOfShapes"
+            android:title="@string/number_of_shapes_preference_title"
+            android:summary="@string/number_of_shapes_preference_summary"
+            android:defaultValue="40" />
+        <EditTextPreference
+            android:key="randomShapeSpawnDelay"
+            android:title="@string/random_shape_spawn_delay_preference_title"
+            android:defaultValue="500"
+            android:summary="@string/random_shape_spawn_delay_preference_summary" />
     </PreferenceCategory>
 </PreferenceScreen>
