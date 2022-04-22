@@ -16,4 +16,7 @@
     <string name="background_colour_preference_title">Background colour</string>
     <string name="change_prefs_button_text">Change preferences</string>
     <string name="background_colour_preference_summary">If you have an AMOLED screen, setting this to black will help preserve battery life.</string>
+    <string name="colours_category_title">Colours</string>
+    <string name="numbers_category_title">Numbers</string>
+    <string name="switches_category_title">Switches</string>
 </resources>

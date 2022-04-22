@@ -3,28 +3,40 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:theme="@style/Theme.Wallpaper">
-    <EditTextPreference
-        android:key="numberOfShapes"
-        android:title="@string/number_of_shapes_preference_title"
-        android:summary="@string/number_of_shapes_preference_summary"
-        android:defaultValue="4" />
-    <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
-        android:key="shapeColour"
-        android:title="@string/shape_colour_preference_title"
-        app:colorChoices="@array/pickerColours" />
-    <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
-        android:key="backgroundColour"
-        android:title="@string/background_colour_preference_title"
-        android:summary="@string/background_colour_preference_summary"
-        app:colorChoices="@array/pickerColours" />
-    <SwitchPreferenceCompat
-        android:key="enableRandomShapes"
-        android:title="@string/enable_random_shapes_preference_title"
-        android:summary="@string/enable_random_shapes_preference_summary"
-        android:defaultValue="true" />
-    <EditTextPreference
-        android:key="randomShapeSpawnDelay"
-        android:title="@string/random_shape_spawn_delay_preference_title"
-        android:defaultValue="500"
-        android:summary="@string/random_shape_spawn_delay_preference_summary" />
+    <PreferenceCategory
+        app:key="numbers_category"
+        app:title="@string/numbers_category_title">
+        <EditTextPreference
+            android:key="numberOfShapes"
+            android:title="@string/number_of_shapes_preference_title"
+            android:summary="@string/number_of_shapes_preference_summary"
+            android:defaultValue="4" />
+        <EditTextPreference
+            android:key="randomShapeSpawnDelay"
+            android:title="@string/random_shape_spawn_delay_preference_title"
+            android:defaultValue="500"
+            android:summary="@string/random_shape_spawn_delay_preference_summary" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        app:key="colours_category"
+        app:title="@string/colours_category_title">
+        <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
+            android:key="shapeColour"
+            android:title="@string/shape_colour_preference_title"
+            app:colorChoices="@array/pickerColours" />
+        <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
+            android:key="backgroundColour"
+            android:title="@string/background_colour_preference_title"
+            android:summary="@string/background_colour_preference_summary"
+            app:colorChoices="@array/pickerColours" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        app:key="switches_category"
+        app:title="@string/switches_category_title">
+        <SwitchPreferenceCompat
+            android:key="enableRandomShapes"
+            android:title="@string/enable_random_shapes_preference_title"
+            android:summary="@string/enable_random_shapes_preference_summary"
+            android:defaultValue="true" />
+    </PreferenceCategory>
 </PreferenceScreen>
