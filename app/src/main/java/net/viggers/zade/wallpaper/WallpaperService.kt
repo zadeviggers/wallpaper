@@ -112,7 +112,8 @@ class WallpaperService : WallpaperService() {
             try {
                 canvas = holder.lockCanvas()
                 if (canvas != null) {
-                    if (shapes.size >= maxCount) {
+                    // Need to do this so that if the users lowers their shape limit, there aren't too many shapes on screen
+                    while (shapes.size >= maxCount) {
                         shapes.removeAt(0)
                     }
                     shapes.add(Point(nextShapeId, x, y, shapeColour))
