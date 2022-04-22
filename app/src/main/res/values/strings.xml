@@ -13,4 +13,7 @@
     <string name="enable_random_shapes_preference_summary">Enables shapes to be spawned in random places on the screen.</string>
     <string name="random_shape_spawn_delay_preference_summary">The delay between spawning new shapes randomly. Less than 500ms might drain your battery.</string>
     <string name="number_of_shapes_preference_summary">Once there are this many shapes on the screen, old shapes will be removed.</string>
+    <string name="background_colour_preference_title">Background colour</string>
+    <string name="change_prefs_button_text">Change preferences</string>
+    <string name="background_colour_preference_summary">If you have an AMOLED screen, setting this to black will help preserve battery life.</string>
 </resources>

@@ -10,7 +10,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/install_wallpaper_button_text"
-        android:onClick="onClick"/>
+        android:onClick="onInstallClick"/>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/change_prefs_button_text"
+        android:onClick="onPrefsClick"/>
 
     <TextView
         android:id="@+id/textView1"

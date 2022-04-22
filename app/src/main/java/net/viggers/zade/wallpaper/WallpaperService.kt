@@ -26,7 +26,7 @@ class WallpaperService : WallpaperService() {
         private var visible = true
 
         // Preferences
-        val prefChangeListener: OnSharedPreferenceChangeListener =
+        val onSharedPreferenceChanged: OnSharedPreferenceChangeListener =
             OnSharedPreferenceChangeListener { newPrefs, _ ->
                 loadPreferences(newPrefs)
                 Log.d("ZV-Wallpaper", "Preferences changed")
@@ -36,10 +36,13 @@ class WallpaperService : WallpaperService() {
         val defaultRandomShapesEnabled: Boolean = true
         val defaultRandomShapeDelay: Int = 500
         val defaultShapeColour: Int = Color.RED
+        val defaultBackgroundColour: Int = Color.BLACK
 
         private var maxCount: Int = defaultMaxCount
         private var randomShapesEnabled: Boolean = defaultRandomShapesEnabled
         private var randomShapeSpawnDelay: Int = defaultRandomShapeDelay
+        private var shapeColour: Int = defaultShapeColour
+        private var backgroundColour: Int = defaultBackgroundColour
 
         val nextShapeId: Int
             get() = if (shapes.size > 0) {
@@ -49,7 +52,7 @@ class WallpaperService : WallpaperService() {
         init {
             val prefs = androidx.preference.PreferenceManager.getDefaultSharedPreferences(this@WallpaperService)
 
-            prefs.registerOnSharedPreferenceChangeListener(prefChangeListener)
+            prefs.registerOnSharedPreferenceChangeListener(onSharedPreferenceChanged)
             loadPreferences(prefs)
 
             Log.d("ZV-Wallpaper", "Loaded wallpaper service")
@@ -68,11 +71,8 @@ class WallpaperService : WallpaperService() {
             randomShapesEnabled = prefs.getBoolean("enableRandomShapes", defaultRandomShapesEnabled)
             maxCount = Integer.valueOf(prefs.getString("numberOfShapes", defaultMaxCount.toString()))
             randomShapeSpawnDelay = Integer.valueOf(prefs.getString("randomShapeSpawnDelay", defaultRandomShapeDelay.toString()))
-            paint.color = prefs.getInt("shapeColour", defaultShapeColour)
-        }
-
-        private fun onSharedPreferenceChanged(prefs: SharedPreferences, key: String) {
-            loadPreferences(prefs)
+            shapeColour = prefs.getInt("shapeColour", defaultShapeColour)
+            backgroundColour = prefs.getInt("backgroundColour", defaultBackgroundColour)
         }
 
         override fun onVisibilityChanged(isVisible: Boolean) {
@@ -115,7 +115,7 @@ class WallpaperService : WallpaperService() {
                     if (shapes.size >= maxCount) {
                         shapes.removeAt(0)
                     }
-                    shapes.add(Point(nextShapeId, x, y))
+                    shapes.add(Point(nextShapeId, x, y, shapeColour))
                     drawShapes(canvas, shapes)
                 }
             } finally {
@@ -138,8 +138,9 @@ class WallpaperService : WallpaperService() {
 
         // Surface view requires that all elements are drawn completely
         private fun drawShapes(canvas: Canvas, shapes: List<Point>) {
-            canvas.drawColor(Color.BLACK)
+            canvas.drawColor(backgroundColour)
             for (point in shapes) {
+                paint.color = point.colour
                 canvas.drawCircle(point.x.toFloat(), point.y.toFloat(), 20.0f, paint)
             }
         }

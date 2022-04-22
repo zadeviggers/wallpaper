@@ -1,3 +1,3 @@
 package net.viggers.zade.wallpaper
 
-class Point(var num: Int, var x: Int, var y: Int)
+class Point(val num: Int, val x: Int, val y: Int, val colour: Int)

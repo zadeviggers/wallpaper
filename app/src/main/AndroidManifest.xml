@@ -34,7 +34,7 @@
             android:theme="@style/Theme.Wallpaper" />
 
         <activity
-            android:name=".SetWallpaperActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.Wallpaper"
             android:exported="true"
