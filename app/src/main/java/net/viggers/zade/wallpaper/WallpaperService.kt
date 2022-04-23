@@ -27,7 +27,7 @@ class WallpaperService : WallpaperService() {
         val onSharedPreferenceChanged: OnSharedPreferenceChangeListener =
             OnSharedPreferenceChangeListener { newPrefs, _ ->
                 loadPreferences(newPrefs)
-                Log.d("ZV-Wallpaper", "Preferences changed")
+                Log.v("ZV-Wallpaper", "Preferences changed")
             }
 
         val defaultMaxCount: Int = 40
@@ -37,7 +37,7 @@ class WallpaperService : WallpaperService() {
         val defaultBackgroundColour: Int = Color.BLACK
         val defaultShapeType: String = "circle"
         val defaultPauseRandomShapesWhenDragging: Boolean = false
-        val defaultSmoothDrawingEnabled: Boolean = true
+        val defaultSmoothDrawingEnabled: Boolean = false
 
         private var maxCount: Int = defaultMaxCount
         private var randomShapesEnabled: Boolean = defaultRandomShapesEnabled
@@ -69,7 +69,7 @@ class WallpaperService : WallpaperService() {
             prefs.registerOnSharedPreferenceChangeListener(onSharedPreferenceChanged)
             loadPreferences(prefs)
 
-            Log.d("ZV-Wallpaper", "Loaded wallpaper service")
+            Log.v("ZV-Wallpaper", "Loaded wallpaper service")
 
             shapes = ArrayList()
             paint.isAntiAlias = true
