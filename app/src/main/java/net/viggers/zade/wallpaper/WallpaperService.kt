@@ -8,7 +8,6 @@ import android.service.wallpaper.WallpaperService
 import android.util.Log
 import android.view.MotionEvent
 import android.view.SurfaceHolder
-import java.lang.StrictMath.abs
 
 class WallpaperService : WallpaperService() {
     override fun onCreateEngine(): Engine {
@@ -56,7 +55,11 @@ class WallpaperService : WallpaperService() {
 
         val nextShapeId: Int
             get() = if (shapes.size > 0) {
-                shapes[shapes.size - 1].num + 1
+                if (shapes[shapes.size - 1].num > 100000) {
+                    0
+                } else {
+                    shapes[shapes.size - 1].num + 1
+                }
             } else 0
 
         init {
@@ -132,6 +135,7 @@ class WallpaperService : WallpaperService() {
             if (smoothDrawingEnabled) {
 
                 val last = shapes.last()
+                Log.d("ZV-Wallpaper", "Last num: " + last.num)
 
                 if (last.spawnedByTouch) {
                     val lastX = last.x
@@ -141,7 +145,7 @@ class WallpaperService : WallpaperService() {
                     val differenceY = y - lastY
 
                     val x1 = lastX + (differenceX / 3)
-                    val y1 = (lastY + (differenceY) / 3)
+                    val y1 = lastY + (differenceY / 3)
                     addShape(x1, y1, true)
 
                     val x2 = lastX + (differenceX * 2 / 3)

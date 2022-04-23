@@ -76,15 +76,25 @@ class PreferencesActivity : AppCompatActivity() {
 
         private var numberCheckListener = androidx.preference.Preference.OnPreferenceChangeListener { _, o ->
             if (o != null && o.toString().isNotEmpty() && o.toString().matches(Regex("\\d*"))) {
+                val num = Integer.valueOf(o.toString())
+                if (num >= 1000000) {
+                    Toast.makeText(
+                        activity,
+                        R.string.number_too_big_input_toast,
+                        Toast.LENGTH_LONG
+                    )
+                        .show()
+                    return@OnPreferenceChangeListener false
+                }
                 return@OnPreferenceChangeListener true
             }
             Toast.makeText(
                 activity,
                 R.string.invalid_number_input_toast,
-                Toast.LENGTH_SHORT
+                Toast.LENGTH_LONG
             )
                 .show()
-            false
+            return@OnPreferenceChangeListener false
         }
     }
 }
