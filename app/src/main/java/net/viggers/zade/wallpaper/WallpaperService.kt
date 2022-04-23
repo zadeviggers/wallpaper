@@ -142,10 +142,10 @@ class WallpaperService : WallpaperService() {
 
                     val x1 = lastX + (differenceX / 3)
                     val y1 = (lastY + (differenceY) / 3)
-                    val x2 = lastX + (differenceX * 2 / 3)
-                    val y2 = lastY + (differenceY / 3)
-
                     addShape(x1, y1, true)
+
+                    val x2 = lastX + (differenceX * 2 / 3)
+                    val y2 = lastY + (differenceY * 2 / 3)
                     addShape(x2, y2, true)
                 }
             }
