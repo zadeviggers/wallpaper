@@ -17,7 +17,7 @@ class WallpaperService : WallpaperService() {
     private inner class WallpaperEngine : Engine() {
         private val handler = Handler()
         private val drawRunner = Runnable { drawTick() }
-        private val shapes: MutableList<Point>
+        private val shapes: MutableList<Shape>
         private val paint = Paint()
         private var width = 0
         private var height = 0
@@ -128,7 +128,7 @@ class WallpaperService : WallpaperService() {
                     while (shapes.size >= maxCount) {
                         shapes.removeAt(0)
                     }
-                    shapes.add(Point(nextShapeId, x, y, shapeColour))
+                    shapes.add(Shape(nextShapeId, x, y, shapeColour))
                     drawShapes(canvas, shapes)
                 }
             } finally {
@@ -158,7 +158,7 @@ class WallpaperService : WallpaperService() {
         }
 
         // Surface view requires that all elements are drawn completely
-        private fun drawShapes(canvas: Canvas, shapes: List<Point>) {
+        private fun drawShapes(canvas: Canvas, shapes: List<Shape>) {
             canvas.drawColor(backgroundColour)
             for (point in shapes) {
                 paint.color = point.colour
