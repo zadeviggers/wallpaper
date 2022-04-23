@@ -1,3 +1,3 @@
 package net.viggers.zade.wallpaper
 
-class Shape(val num: Int, val x: Int, val y: Int, val colour: Int)
+class Shape(val num: Int, val x: Float, val y: Float, val colour: Int, val spawnedByTouch: Boolean)

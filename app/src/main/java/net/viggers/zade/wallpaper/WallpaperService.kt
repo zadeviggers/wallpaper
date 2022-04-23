@@ -8,6 +8,7 @@ import android.service.wallpaper.WallpaperService
 import android.util.Log
 import android.view.MotionEvent
 import android.view.SurfaceHolder
+import java.lang.StrictMath.abs
 
 class WallpaperService : WallpaperService() {
     override fun onCreateEngine(): Engine {
@@ -37,6 +38,7 @@ class WallpaperService : WallpaperService() {
         val defaultBackgroundColour: Int = Color.BLACK
         val defaultShapeType: String = "circle"
         val defaultPauseRandomShapesWhenDragging: Boolean = false
+        val defaultSmoothDrawingEnabled: Boolean = true
 
         private var maxCount: Int = defaultMaxCount
         private var randomShapesEnabled: Boolean = defaultRandomShapesEnabled
@@ -45,6 +47,7 @@ class WallpaperService : WallpaperService() {
         private var backgroundColour: Int = defaultBackgroundColour
         private var shapeType: String = defaultShapeType
         private var pauseRandomShapesWhenDragging: Boolean = defaultPauseRandomShapesWhenDragging
+        private var smoothDrawingEnabled: Boolean = defaultSmoothDrawingEnabled
 
         private var randomShapesDraggingCooldown: Int = 5
 
@@ -82,6 +85,7 @@ class WallpaperService : WallpaperService() {
             backgroundColour = prefs.getInt("backgroundColour", defaultBackgroundColour)
             shapeType = prefs.getString("shapeType", defaultShapeType).toString()
             pauseRandomShapesWhenDragging = prefs.getBoolean("pauseRandomShapesWhenDragging", defaultPauseRandomShapesWhenDragging)
+            smoothDrawingEnabled = prefs.getBoolean("smoothDrawingEnabled", defaultSmoothDrawingEnabled)
         }
 
         override fun onVisibilityChanged(isVisible: Boolean) {
@@ -109,16 +113,41 @@ class WallpaperService : WallpaperService() {
         }
 
         override fun onTouchEvent(event: MotionEvent) {
-            val x = event.x.toInt()
-            val y = event.y.toInt()
-            addShape(x, y)
+            val x = event.x
+            val y = event.y
+            // Add shape at touch location
+            addShape(x, y, true)
+
+            if (smoothDrawingEnabled) {
+
+                val last = shapes.last()
+
+                if (last.spawnedByTouch) {
+                    val lastX = last.x
+                    val lastY = last.y
+
+                    // If the distance between this point and the last point was larger than the size of a shape,
+                    // spawn a shape in between them.
+                    val distanceThreshold = size
+                    if (abs(x - lastX) > distanceThreshold || abs(y - lastY) > distanceThreshold) {
+                        val averageX1 = ((x + lastX) / 1.5).toFloat()
+                        val averageY1 = ((y + lastY) / 1.5).toFloat()
+                        val averageX2 = (x + lastX) / 3
+                        val averageY2 = (y + lastY) / 3
+
+                        addShape(averageX1, averageY1, true)
+                        addShape(averageX2, averageY2, true)
+                    }
+                }
+            }
+
             if (pauseRandomShapesWhenDragging) {
                 randomShapesDraggingCooldown = 5
             }
             super.onTouchEvent(event)
         }
 
-        private fun addShape(x: Int, y: Int) {
+        private fun addShape(x: Float, y: Float, spawnedByTouch: Boolean) {
             var canvas: Canvas? = null
             val holder = surfaceHolder
             try {
@@ -128,7 +157,7 @@ class WallpaperService : WallpaperService() {
                     while (shapes.size >= maxCount) {
                         shapes.removeAt(0)
                     }
-                    shapes.add(Shape(nextShapeId, x, y, shapeColour))
+                    shapes.add(Shape(nextShapeId, x, y, shapeColour, spawnedByTouch))
                     drawShapes(canvas, shapes)
                 }
             } finally {
@@ -138,16 +167,16 @@ class WallpaperService : WallpaperService() {
 
         private fun drawTick() {
             if (randomShapesEnabled) {
-                val x = (width * Math.random()).toInt()
-                val y = (height * Math.random()).toInt()
+                val x = (width * Math.random()).toFloat()
+                val y = (height * Math.random()).toFloat()
                 if (pauseRandomShapesWhenDragging) {
                     if (randomShapesDraggingCooldown == 0) {
-                        addShape(x, y)
+                        addShape(x, y, false)
                     } else if (randomShapesDraggingCooldown > 0) {
                         randomShapesDraggingCooldown -= 1
                     }
                 } else {
-                    addShape(x, y)
+                    addShape(x, y, false)
                 }
             }
 
@@ -163,8 +192,8 @@ class WallpaperService : WallpaperService() {
             for (point in shapes) {
                 paint.color = point.colour
 
-                val x = point.x.toFloat()
-                val y = point.y.toFloat()
+                val x = point.x
+                val y = point.y
 
                 when (shapeType) {
                     "circle" -> canvas.drawCircle(x, y, size / 2, paint)

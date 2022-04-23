@@ -22,6 +22,11 @@
             android:title="@string/pause_random_shapes_when_dragging_preference_title"
             android:summary="@string/pause_random_shapes_when_dragging_preference_summary"
             android:defaultValue="false" />
+        <SwitchPreferenceCompat
+            android:key="smoothDrawing"
+            android:title="@string/enable_smooth_drawing_preference_title"
+            android:summary="@string/enable_smooth_drawing_preference_summary"
+            android:defaultValue="true" />
     </PreferenceCategory>
     <PreferenceCategory
         app:key="colours_category"
