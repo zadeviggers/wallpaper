@@ -137,18 +137,16 @@ class WallpaperService : WallpaperService() {
                     val lastX = last.x
                     val lastY = last.y
 
-                    // If the distance between this point and the last point was larger than the size of a shape,
-                    // spawn a shape in between them.
-                    val distanceThreshold = size
-                    if (abs(x - lastX) > distanceThreshold || abs(y - lastY) > distanceThreshold) {
-                        val averageX1 = ((x + lastX) / 1.5).toFloat()
-                        val averageY1 = ((y + lastY) / 1.5).toFloat()
-                        val averageX2 = (x + lastX) / 3
-                        val averageY2 = (y + lastY) / 3
+                    val differenceX = x - lastX
+                    val differenceY = y - lastY
 
-                        addShape(averageX1, averageY1, true)
-                        addShape(averageX2, averageY2, true)
-                    }
+                    val x1 = lastX + (differenceX / 3)
+                    val y1 = (lastY + (differenceY) / 3)
+                    val x2 = lastX + (differenceX * 2 / 3)
+                    val y2 = lastY + (differenceY / 3)
+
+                    addShape(x1, y1, true)
+                    addShape(x2, y2, true)
                 }
             }
 

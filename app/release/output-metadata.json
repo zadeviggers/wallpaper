@@ -11,8 +11,8 @@
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 5,
-      "versionName": "Version 5 (Upgrade to Material 3)",
+      "versionCode": 6,
+      "versionName": "Version 6 (Added smooth drawing mode)",
       "outputFile": "app-release.apk"
     }
   ],
