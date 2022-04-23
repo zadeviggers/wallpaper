@@ -60,7 +60,8 @@ class WallpaperService : WallpaperService() {
             } else 0
 
         init {
-            val prefs = androidx.preference.PreferenceManager.getDefaultSharedPreferences(this@WallpaperService)
+            val prefs =
+                androidx.preference.PreferenceManager.getDefaultSharedPreferences(this@WallpaperService)
 
             prefs.registerOnSharedPreferenceChangeListener(onSharedPreferenceChanged)
             loadPreferences(prefs)
@@ -79,13 +80,23 @@ class WallpaperService : WallpaperService() {
 
         private fun loadPreferences(prefs: SharedPreferences) {
             randomShapesEnabled = prefs.getBoolean("enableRandomShapes", defaultRandomShapesEnabled)
-            maxCount = Integer.valueOf(prefs.getString("numberOfShapes", defaultMaxCount.toString()))
-            randomShapeSpawnDelay = Integer.valueOf(prefs.getString("randomShapeSpawnDelay", defaultRandomShapeDelay.toString()))
+            maxCount =
+                Integer.valueOf(prefs.getString("numberOfShapes", defaultMaxCount.toString()))
+            randomShapeSpawnDelay = Integer.valueOf(
+                prefs.getString(
+                    "randomShapeSpawnDelay",
+                    defaultRandomShapeDelay.toString()
+                )
+            )
             shapeColour = prefs.getInt("shapeColour", defaultShapeColour)
             backgroundColour = prefs.getInt("backgroundColour", defaultBackgroundColour)
             shapeType = prefs.getString("shapeType", defaultShapeType).toString()
-            pauseRandomShapesWhenDragging = prefs.getBoolean("pauseRandomShapesWhenDragging", defaultPauseRandomShapesWhenDragging)
-            smoothDrawingEnabled = prefs.getBoolean("smoothDrawingEnabled", defaultSmoothDrawingEnabled)
+            pauseRandomShapesWhenDragging = prefs.getBoolean(
+                "pauseRandomShapesWhenDragging",
+                defaultPauseRandomShapesWhenDragging
+            )
+            smoothDrawingEnabled =
+                prefs.getBoolean("smoothDrawingEnabled", defaultSmoothDrawingEnabled)
         }
 
         override fun onVisibilityChanged(isVisible: Boolean) {
@@ -152,10 +163,10 @@ class WallpaperService : WallpaperService() {
             val holder = surfaceHolder
             try {
                 canvas = holder.lockCanvas()
-                if (canvas != null) {
+                if (canvas != null && maxCount != 0) {
                     // Need to do this so that if the users lowers their shape limit, there aren't too many shapes on screen
-                    while (shapes.size >= maxCount) {
-                        shapes.removeAt(0)
+                    while ((shapes.size >= maxCount)) {
+                        shapes.removeFirst()
                     }
                     shapes.add(Shape(nextShapeId, x, y, shapeColour, spawnedByTouch))
                     drawShapes(canvas, shapes)

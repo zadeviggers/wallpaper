@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Zade\'s Wallpaper</string>
     <string name="wallpaper_service_label">Zade\'s cool wallpaper</string>
-    <string name="invalid_number_input_toast">Invalid input - please enter a number.</string>
+    <string name="invalid_number_input_toast">Invalid input. Please enter a real positive integer.</string>
     <string name="wallpaper_description">Zade\'s very cool live wallpaper</string>
     <string name="number_of_shapes_preference_title">Maximum number of shapes</string>
     <string name="install_wallpaper_button_text">Install wallpaper</string>
