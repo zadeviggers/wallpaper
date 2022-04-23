@@ -2,8 +2,8 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.viggers.zade.wallpaper"
-    android:versionCode="5"
-    android:versionName="Version 5 (Upgrade to Material 3)">
+    android:versionCode="6"
+    android:versionName="Version 6 (Added smooth drawing mode)">
     <uses-feature
         android:name="android.software.live_wallpaper"
         android:required="true" />
