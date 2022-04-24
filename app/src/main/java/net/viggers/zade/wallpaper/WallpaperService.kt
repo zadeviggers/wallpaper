@@ -129,13 +129,14 @@ class WallpaperService : WallpaperService() {
         override fun onTouchEvent(event: MotionEvent) {
             val x = event.x
             val y = event.y
+
+            var shapesToAdd = ArrayList<Shape>()
+
             // Add shape at touch location
-            addShape(x, y, true)
+            shapesToAdd.add(Shape(nextShapeId, x, y, shapeColour, true))
 
             if (smoothDrawingEnabled) {
-
                 val last = shapes.last()
-                Log.d("ZV-Wallpaper", "Last num: " + last.num)
 
                 if (last.spawnedByTouch) {
                     val lastX = last.x
@@ -146,13 +147,15 @@ class WallpaperService : WallpaperService() {
 
                     val x1 = lastX + (differenceX / 3)
                     val y1 = lastY + (differenceY / 3)
-                    addShape(x1, y1, true)
+                    shapesToAdd.add(Shape(nextShapeId, x1, y1, shapeColour, true))
 
                     val x2 = lastX + (differenceX * 2 / 3)
                     val y2 = lastY + (differenceY * 2 / 3)
-                    addShape(x2, y2, true)
+                    shapesToAdd.add(Shape(nextShapeId, x2, y2, shapeColour, true))
                 }
             }
+
+            addShapes(shapesToAdd.toTypedArray())
 
             if (pauseRandomShapesWhenDragging) {
                 randomShapesDraggingCooldown = 5
@@ -160,7 +163,7 @@ class WallpaperService : WallpaperService() {
             super.onTouchEvent(event)
         }
 
-        private fun addShape(x: Float, y: Float, spawnedByTouch: Boolean) {
+        private fun addShapes(shapesToAdd: Array<Shape>) {
             var canvas: Canvas? = null
             val holder = surfaceHolder
             try {
@@ -170,7 +173,9 @@ class WallpaperService : WallpaperService() {
                     while ((shapes.size >= maxCount)) {
                         shapes.removeFirst()
                     }
-                    shapes.add(Shape(nextShapeId, x, y, shapeColour, spawnedByTouch))
+                    for (shape in shapesToAdd) {
+                        shapes.add(shape)
+                    }
                     drawShapes(canvas, shapes)
                 }
             } finally {
@@ -184,12 +189,12 @@ class WallpaperService : WallpaperService() {
                 val y = (height * Math.random()).toFloat()
                 if (pauseRandomShapesWhenDragging) {
                     if (randomShapesDraggingCooldown == 0) {
-                        addShape(x, y, false)
+                        addShapes(arrayOf(Shape(nextShapeId, x, y, shapeColour, false)))
                     } else if (randomShapesDraggingCooldown > 0) {
                         randomShapesDraggingCooldown -= 1
                     }
                 } else {
-                    addShape(x, y, false)
+                    addShapes(arrayOf(Shape(nextShapeId, x, y, shapeColour, false)))
                 }
             }
 

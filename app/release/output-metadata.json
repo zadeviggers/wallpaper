@@ -11,8 +11,8 @@
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 6,
-      "versionName": "Version 6 (Added smooth drawing mode)",
+      "versionCode": 7,
+      "versionName": "Version 7 (Fix issues from Version 6)",
       "outputFile": "app-release.apk"
     }
   ],
