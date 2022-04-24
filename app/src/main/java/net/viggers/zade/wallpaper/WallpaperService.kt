@@ -244,10 +244,10 @@ class WallpaperService : WallpaperService() {
                     "square" -> {
                         // Android graphics rectangles are really weird - they take top, left, top+height, and left+width distances,
                         // rather than being normal and having x, y, width, and height
-                        val rect = RectF(x, y, x + size, y + size)
+                        val rect = RectF(x - size / 2, y - size / 2, x + size / 2, y + size / 2)
                         canvas.drawRect(rect, paint)
                     }
-                    "triangle" -> drawTriangle(x, y, size, size, false, paint, canvas)
+                    "triangle" -> drawTriangle(x - size / 2, y + size / 2, size, size, false, paint, canvas)
                     else -> canvas.drawCircle(x, y, size, paint)
                 }
 
