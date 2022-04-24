@@ -2,8 +2,8 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.viggers.zade.wallpaper"
-    android:versionCode="8"
-    android:versionName="Version 8 (Smooth drawing works now + random colour shapes)">
+    android:versionCode="9"
+    android:versionName="Version 9 (Random shape type spawning!)">
     <uses-feature
         android:name="android.software.live_wallpaper"
         android:required="true" />
