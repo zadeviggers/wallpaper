@@ -22,11 +22,13 @@
     <string name="shape_option_label_triangle">Triangle</string>
     <string name="shape_option_label_circle">Circle</string>
     <string name="pause_random_shapes_when_dragging_preference_title">Pause random shapes when dragging</string>
-    <string name="pause_random_shapes_when_dragging_preference_summary">Stops random shapes from appearing for a little while after you tocuh the screen.</string>
+    <string name="pause_random_shapes_when_dragging_preference_summary">Stops random shapes from appearing for a little while after you touch the screen.</string>
     <string name="enable_smooth_drawing_preference_title">Smooth drawing</string>
     <string name="enable_smooth_drawing_preference_summary">Spawn extra shapes when drawing to smooth out path. Might use more battery.</string>
     <string name="number_too_big_input_toast">Please enter a number that is less than one million</string>
     <string name="enable_random_shape_colours_preference_title">Random coloured shapes</string>
-    <string name="enable_random_shape_colours_preference_summary">Use a random colour for each shape, rather than the colour set below</string>
-
+    <string name="enable_random_shape_colours_preference_summary">Use a random colour for each shape, rather than the colour set above.</string>
+    <string name="enable_random_shape_types_preference_title">Random shape types</string>
+    <string name="enable_random_shape_types_preference_summary">Use a random type for each shape, rather than the type set above.</string>
+    <string name="shape_types_category_title">Shape types</string>
 </resources>

@@ -6,12 +6,6 @@
     <PreferenceCategory
         app:key="general_category"
         app:title="@string/general_category_title">
-        <ListPreference
-            android:key="shapeType"
-            android:title="@string/shape_type_preference_title"
-            app:defaultValue="circle"
-            app:entries="@array/shape_type_options_labels"
-            app:entryValues="@array/shape_type_options_values" />
         <SwitchPreferenceCompat
             android:key="enableRandomShapes"
             android:title="@string/enable_random_shapes_preference_title"
@@ -29,17 +23,32 @@
             android:defaultValue="false" />
     </PreferenceCategory>
     <PreferenceCategory
+        app:key="shape_types_category"
+        app:title="@string/shape_types_category_title">
+        <ListPreference
+            android:key="shapeType"
+            android:title="@string/shape_type_preference_title"
+            app:defaultValue="circle"
+            app:entries="@array/shape_type_options_labels"
+            app:entryValues="@array/shape_type_options_values" />
+        <SwitchPreferenceCompat
+            android:key="randomShapeTypeEnabled"
+            android:title="@string/enable_random_shape_types_preference_title"
+            android:summary="@string/enable_random_shape_types_preference_summary"
+            android:defaultValue="@bool/randomShapeTypesEnabledDefault" />
+    </PreferenceCategory>
+    <PreferenceCategory
         app:key="colours_category"
         app:title="@string/colours_category_title">
+        <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
+            android:key="shapeColour"
+            android:title="@string/shape_colour_preference_title"
+            app:colorChoices="@array/pickerColours" />
         <SwitchPreferenceCompat
             android:key="randomShapeColoursEnabled"
             android:title="@string/enable_random_shape_colours_preference_title"
             android:summary="@string/enable_random_shape_colours_preference_summary"
             android:defaultValue="@bool/randomShapeColoursEnabledDefault" />
-        <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
-            android:key="shapeColour"
-            android:title="@string/shape_colour_preference_title"
-            app:colorChoices="@array/pickerColours" />
         <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
             android:key="backgroundColour"
             android:title="@string/background_colour_preference_title"

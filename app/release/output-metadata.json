@@ -11,8 +11,8 @@
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 7,
-      "versionName": "Version 7 (Fix issues from Version 6)",
+      "versionCode": 8,
+      "versionName": "Version 8 (Smooth drawing works now + random colour shapes)",
       "outputFile": "app-release.apk"
     }
   ],
