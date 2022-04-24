@@ -38,6 +38,7 @@ class WallpaperService : WallpaperService() {
         val defaultShapeType: String = "circle"
         val defaultPauseRandomShapesWhenDragging: Boolean = false
         val defaultSmoothDrawingEnabled: Boolean = false
+        val defaultRandomShapeColoursEnabled: Boolean = R.bool.randomShapeColoursEnabledDefault == 1
 
         private var maxCount: Int = defaultMaxCount
         private var randomShapesEnabled: Boolean = defaultRandomShapesEnabled
@@ -47,6 +48,7 @@ class WallpaperService : WallpaperService() {
         private var shapeType: String = defaultShapeType
         private var pauseRandomShapesWhenDragging: Boolean = defaultPauseRandomShapesWhenDragging
         private var smoothDrawingEnabled: Boolean = defaultSmoothDrawingEnabled
+        private var randomShapeColoursEnabled: Boolean = defaultRandomShapeColoursEnabled
 
         private var randomShapesDraggingCooldown: Int = 5
 
@@ -61,6 +63,15 @@ class WallpaperService : WallpaperService() {
                     shapes[shapes.size - 1].num + 1
                 }
             } else 0
+
+        val nextShapeColour: Int
+            get() {
+                if (!randomShapeColoursEnabled) {
+                    return shapeColour
+                }
+                val chosenColourString = resources.getStringArray(R.array.pickerColours).random()
+                return Color.parseColor(chosenColourString)
+            }
 
         init {
             val prefs =
@@ -100,6 +111,8 @@ class WallpaperService : WallpaperService() {
             )
             smoothDrawingEnabled =
                 prefs.getBoolean("smoothDrawingEnabled", defaultSmoothDrawingEnabled)
+            randomShapeColoursEnabled =
+                prefs.getBoolean("randomShapeColoursEnabled", defaultRandomShapeColoursEnabled)
         }
 
         override fun onVisibilityChanged(isVisible: Boolean) {
@@ -133,7 +146,7 @@ class WallpaperService : WallpaperService() {
             var shapesToAdd = ArrayList<Shape>()
 
             // Add shape at touch location
-            shapesToAdd.add(Shape(nextShapeId, x, y, shapeColour, true))
+            shapesToAdd.add(Shape(nextShapeId, x, y, nextShapeColour, true))
 
             if (smoothDrawingEnabled) {
                 val last = shapes.last()
@@ -147,11 +160,11 @@ class WallpaperService : WallpaperService() {
 
                     val x1 = lastX + (differenceX / 3)
                     val y1 = lastY + (differenceY / 3)
-                    shapesToAdd.add(Shape(nextShapeId, x1, y1, shapeColour, true))
+                    shapesToAdd.add(Shape(nextShapeId, x1, y1, nextShapeColour, true))
 
                     val x2 = lastX + (differenceX * 2 / 3)
                     val y2 = lastY + (differenceY * 2 / 3)
-                    shapesToAdd.add(Shape(nextShapeId, x2, y2, shapeColour, true))
+                    shapesToAdd.add(Shape(nextShapeId, x2, y2, nextShapeColour, true))
                 }
             }
 
@@ -189,12 +202,12 @@ class WallpaperService : WallpaperService() {
                 val y = (height * Math.random()).toFloat()
                 if (pauseRandomShapesWhenDragging) {
                     if (randomShapesDraggingCooldown == 0) {
-                        addShapes(arrayOf(Shape(nextShapeId, x, y, shapeColour, false)))
+                        addShapes(arrayOf(Shape(nextShapeId, x, y, nextShapeColour, false)))
                     } else if (randomShapesDraggingCooldown > 0) {
                         randomShapesDraggingCooldown -= 1
                     }
                 } else {
-                    addShapes(arrayOf(Shape(nextShapeId, x, y, shapeColour, false)))
+                    addShapes(arrayOf(Shape(nextShapeId, x, y, nextShapeColour, false)))
                 }
             }
 

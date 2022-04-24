@@ -31,6 +31,11 @@
     <PreferenceCategory
         app:key="colours_category"
         app:title="@string/colours_category_title">
+        <SwitchPreferenceCompat
+            android:key="randomShapeColoursEnabled"
+            android:title="@string/enable_random_shape_colours_preference_title"
+            android:summary="@string/enable_random_shape_colours_preference_summary"
+            android:defaultValue="@bool/randomShapeColoursEnabledDefault" />
         <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
             android:key="shapeColour"
             android:title="@string/shape_colour_preference_title"
