@@ -1,33 +1,37 @@
 package net.viggers.zade.wallpaper
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.content.Intent
 import android.app.WallpaperManager
+import android.content.BroadcastReceiver
 import android.content.ComponentName
-import android.view.View
+import android.content.Intent
+import android.content.IntentFilter
+import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main)
-    }
 
-    // DO NOT REMOVE THIS PARAMETER, EVEN THOUGH IT'S NOT USED
-    // Removing it makes the app crash when the button is clicked
-    fun onInstallClick(view: View?) {
-        val intent = Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER)
-        intent.putExtra(
-            WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
-            ComponentName(this, WallpaperService::class.java)
-        )
-        startActivity(intent)
-    }
+        val installButton = findViewById<Button>(R.id.installButton)
+        val prefsButton = findViewById<Button>(R.id.prefsButton)
+        val installationStatusText = findViewById<TextView>(R.id.installationStatusText)
 
-    // DO NOT REMOVE THIS PARAMETER, EVEN THOUGH IT'S NOT USED
-    // Removing it makes the app crash when the button is clicked
-    fun onPrefsClick(view: View?) {
-        val intent = Intent(this, PreferencesActivity::class.java)
-        startActivity(intent)
+        val context = this
+        installButton.setOnClickListener {
+            val intent = Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER)
+            intent.putExtra(
+                WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
+                ComponentName(context, WallpaperService::class.java)
+            )
+            startActivity(intent)
+        }
+        prefsButton.setOnClickListener {
+            val intent = Intent(context, PreferencesActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
