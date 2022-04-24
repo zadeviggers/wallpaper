@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
 
         val installButton = findViewById<Button>(R.id.installButton)
         val prefsButton = findViewById<Button>(R.id.prefsButton)
-        val installationStatusText = findViewById<TextView>(R.id.installationStatusText)
 
         val context = this
         installButton.setOnClickListener {

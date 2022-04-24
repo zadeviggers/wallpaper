@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.graphics.*
 import android.os.Handler
+import android.os.Looper
 import android.service.wallpaper.WallpaperService
 import android.util.Log
 import android.view.MotionEvent
@@ -15,7 +16,7 @@ class WallpaperService : WallpaperService() {
     }
 
     private inner class WallpaperEngine : Engine() {
-        private val handler = Handler()
+        private val handler = Handler(Looper.getMainLooper())
         private val drawRunner = Runnable { drawTick() }
         private val shapes: MutableList<Shape>
         private val paint = Paint()
