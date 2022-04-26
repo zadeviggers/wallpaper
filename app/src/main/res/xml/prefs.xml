@@ -12,6 +12,11 @@
             android:summary="@string/enable_random_shapes_preference_summary"
             android:defaultValue="true" />
         <SwitchPreferenceCompat
+            android:key="enableTouchInteraction"
+            android:title="@string/enable_touch_interaction_preference_title"
+            android:summary="@string/enable_touch_interaction_preference_summary"
+            android:defaultValue="@bool/enableTouchInteractionDefault" />
+        <SwitchPreferenceCompat
             android:key="pauseRandomShapesWhenDragging"
             android:title="@string/pause_random_shapes_when_dragging_preference_title"
             android:summary="@string/pause_random_shapes_when_dragging_preference_summary"

@@ -31,4 +31,6 @@
     <string name="enable_random_shape_types_preference_title">Random shape types</string>
     <string name="enable_random_shape_types_preference_summary">Use a random type for each shape, rather than the type set above.</string>
     <string name="shape_types_category_title">Shape types</string>
+    <string name="enable_touch_interaction_preference_title">Enable touch interaction</string>
+    <string name="enable_touch_interaction_preference_summary">When enabled, shapes will be spawned where you touch the screen</string>
 </resources>

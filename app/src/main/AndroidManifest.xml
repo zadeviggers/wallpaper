@@ -2,8 +2,8 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.viggers.zade.wallpaper"
-    android:versionCode="9"
-    android:versionName="Version 9 (Random shape type spawning!)">
+    android:versionCode="10"
+    android:versionName="10 (Add option to disable touch interaction)">
     <uses-feature
         android:name="android.software.live_wallpaper"
         android:required="true" />

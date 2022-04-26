@@ -11,8 +11,8 @@
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 8,
-      "versionName": "Version 8 (Smooth drawing works now + random colour shapes)",
+      "versionCode": 9,
+      "versionName": "Version 9 (Random shape type spawning!)",
       "outputFile": "app-release.apk"
     }
   ],

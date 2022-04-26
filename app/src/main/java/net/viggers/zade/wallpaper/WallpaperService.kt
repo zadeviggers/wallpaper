@@ -41,6 +41,7 @@ class WallpaperService : WallpaperService() {
         val defaultSmoothDrawingEnabled: Boolean = false
         val defaultRandomShapeColoursEnabled: Boolean = R.bool.randomShapeColoursEnabledDefault == 1
         val defaultRandomShapeTypesEnabled: Boolean = R.bool.randomShapeTypesEnabledDefault == 1
+        val enableTouchInteractionDefault: Boolean = R.bool.enableTouchInteractionDefault == 1
 
         private var maxCount: Int = defaultMaxCount
         private var randomShapesEnabled: Boolean = defaultRandomShapesEnabled
@@ -52,6 +53,7 @@ class WallpaperService : WallpaperService() {
         private var smoothDrawingEnabled: Boolean = defaultSmoothDrawingEnabled
         private var randomShapeColoursEnabled: Boolean = defaultRandomShapeColoursEnabled
         private var randomShapeTypesEnabled: Boolean = defaultRandomShapeTypesEnabled
+        private var enableTouchInteraction: Boolean = enableTouchInteractionDefault
 
         private var randomShapesDraggingCooldown: Int = 5
 
@@ -126,6 +128,7 @@ class WallpaperService : WallpaperService() {
             randomShapeColoursEnabled =
                 prefs.getBoolean("randomShapeColoursEnabled", defaultRandomShapeColoursEnabled)
             randomShapeTypesEnabled = prefs.getBoolean("randomShapeTypeEnabled", defaultRandomShapeTypesEnabled)
+            enableTouchInteraction = prefs.getBoolean("enableTouchInteraction", enableTouchInteractionDefault)
         }
 
         override fun onVisibilityChanged(isVisible: Boolean) {
@@ -153,39 +156,60 @@ class WallpaperService : WallpaperService() {
         }
 
         override fun onTouchEvent(event: MotionEvent) {
-            val x = event.x
-            val y = event.y
+            if (enableTouchInteraction) {
+                val x = event.x
+                val y = event.y
 
-            var shapesToAdd = ArrayList<Shape>()
+                var shapesToAdd = ArrayList<Shape>()
 
-            // Add shape at touch location
-            shapesToAdd.add(Shape(nextShapeId, x, y, nextShapeColour, nextShapeType, true))
+                // Add shape at touch location
+                shapesToAdd.add(Shape(nextShapeId, x, y, nextShapeColour, nextShapeType, true))
 
-            if (smoothDrawingEnabled && shapes.size > 0) {
-                val last = shapes.last()
+                if (smoothDrawingEnabled && shapes.size > 0) {
+                    val last = shapes.last()
 
-                if (last.spawnedByTouch) {
-                    val lastX = last.x
-                    val lastY = last.y
+                    if (last.spawnedByTouch) {
+                        val lastX = last.x
+                        val lastY = last.y
 
-                    val differenceX = x - lastX
-                    val differenceY = y - lastY
+                        val differenceX = x - lastX
+                        val differenceY = y - lastY
 
-                    val x1 = lastX + (differenceX / 3)
-                    val y1 = lastY + (differenceY / 3)
-                    shapesToAdd.add(Shape(nextShapeId, x1, y1, nextShapeColour, nextShapeType, true))
+                        val x1 = lastX + (differenceX / 3)
+                        val y1 = lastY + (differenceY / 3)
+                        shapesToAdd.add(
+                            Shape(
+                                nextShapeId,
+                                x1,
+                                y1,
+                                nextShapeColour,
+                                nextShapeType,
+                                true
+                            )
+                        )
 
-                    val x2 = lastX + (differenceX * 2 / 3)
-                    val y2 = lastY + (differenceY * 2 / 3)
-                    shapesToAdd.add(Shape(nextShapeId, x2, y2, nextShapeColour, nextShapeType, true))
+                        val x2 = lastX + (differenceX * 2 / 3)
+                        val y2 = lastY + (differenceY * 2 / 3)
+                        shapesToAdd.add(
+                            Shape(
+                                nextShapeId,
+                                x2,
+                                y2,
+                                nextShapeColour,
+                                nextShapeType,
+                                true
+                            )
+                        )
+                    }
+                }
+
+                addShapes(shapesToAdd.toTypedArray())
+
+                if (pauseRandomShapesWhenDragging) {
+                    randomShapesDraggingCooldown = 5
                 }
             }
 
-            addShapes(shapesToAdd.toTypedArray())
-
-            if (pauseRandomShapesWhenDragging) {
-                randomShapesDraggingCooldown = 5
-            }
             super.onTouchEvent(event)
         }
 
