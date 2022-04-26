@@ -11,8 +11,8 @@
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 9,
-      "versionName": "Version 9 (Random shape type spawning!)",
+      "versionCode": 10,
+      "versionName": "10 (Add option to disable touch interaction)",
       "outputFile": "app-release.apk"
     }
   ],
