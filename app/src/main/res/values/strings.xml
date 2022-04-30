@@ -28,9 +28,12 @@
     <string name="number_too_big_input_toast">Please enter a number that is less than one million</string>
     <string name="enable_random_shape_colours_preference_title">Random coloured shapes</string>
     <string name="enable_random_shape_colours_preference_summary">Use a random colour for each shape, rather than the colour set above.</string>
-    <string name="enable_random_shape_types_preference_title">Random shape types</string>
+    <string name="enable_random_shape_types_preference_title">Random types</string>
     <string name="enable_random_shape_types_preference_summary">Use a random type for each shape, rather than the type set above.</string>
-    <string name="shape_types_category_title">Shape types</string>
+    <string name="shape_types_category_title">Shape and size</string>
     <string name="enable_touch_interaction_preference_title">Enable touch interaction</string>
     <string name="enable_touch_interaction_preference_summary">When enabled, shapes will be spawned where you touch the screen</string>
+    <string name="enable_random_shape_sizes_preference_title">Random sizes</string>
+    <string name="enable_random_shape_sizes_preference_summary">Use a random size for each shape, rather than the size set above.</string>
+    <string name="shape_size_preference_title">Shape size</string>
 </resources>

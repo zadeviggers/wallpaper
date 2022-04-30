@@ -41,6 +41,15 @@
             android:title="@string/enable_random_shape_types_preference_title"
             android:summary="@string/enable_random_shape_types_preference_summary"
             android:defaultValue="@bool/randomShapeTypesEnabledDefault" />
+        <EditTextPreference
+            android:key="shapeSize"
+            android:title="@string/shape_size_preference_title"
+            android:defaultValue="@integer/defaultShapeSize" />
+        <SwitchPreferenceCompat
+            android:key="randomShapeSizesEnabled"
+            android:title="@string/enable_random_shape_sizes_preference_title"
+            android:summary="@string/enable_random_shape_sizes_preference_summary"
+            android:defaultValue="@bool/enableRandomShapeSizesDefault" />
     </PreferenceCategory>
     <PreferenceCategory
         app:key="colours_category"

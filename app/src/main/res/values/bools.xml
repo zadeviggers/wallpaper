@@ -3,4 +3,5 @@
     <bool name="randomShapeColoursEnabledDefault">false</bool>
     <bool name="randomShapeTypesEnabledDefault">false</bool>
     <bool name="enableTouchInteractionDefault">true</bool>
+    <bool name="enableRandomShapeSizesDefault">false</bool>
 </resources>
