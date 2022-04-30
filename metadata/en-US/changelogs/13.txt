@@ -1,0 +1,3 @@
+- Fix issue with shape size preference accepting invalid values
+
+Note: Your shape size preference will be reset by this update. This is done in order to remove any possibly invalid values.

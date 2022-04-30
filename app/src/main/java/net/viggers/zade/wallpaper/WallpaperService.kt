@@ -165,7 +165,7 @@ class WallpaperService : WallpaperService() {
                 prefs.getBoolean("enableTouchInteraction", enableTouchInteractionDefault)
             shapeSize =
                 Integer.valueOf(
-                    prefs.getString("shapeSize", defaultShapeSize.toString()).toString()
+                    prefs.getString("shapeSize1", defaultShapeSize.toString()).toString()
                 ).toFloat()
             randomShapeSizesEnabled =
                 prefs.getBoolean("randomShapeSizesEnabled", defaultRandomShapeSizesEnabled)

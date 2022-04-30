@@ -55,6 +55,10 @@ class PreferencesActivity : AppCompatActivity() {
                 preferenceScreen.findPreference<EditTextPreference>("randomShapeSpawnDelay")
             shapeSpawnDelayPreference?.onPreferenceChangeListener = numberCheckListener
 
+            val shapeSizePreference =
+                preferenceScreen.findPreference<EditTextPreference>("shapeSize1")
+            shapeSizePreference?.onPreferenceChangeListener = numberCheckListener
+
             for (i in 0 until preferenceScreen.preferenceCount) {
                 val pref = preferenceScreen.getPreference(i)
                 val value = preferenceScreen.sharedPreferences?.getString(pref.key, "")
@@ -76,7 +80,7 @@ class PreferencesActivity : AppCompatActivity() {
         }
 
         private var numberCheckListener =
-            androidx.preference.Preference.OnPreferenceChangeListener { _, o ->
+            Preference.OnPreferenceChangeListener { _, o ->
                 if (o != null && o.toString().isNotEmpty() && o.toString().matches(Regex("\\d*"))) {
                     val num = Integer.valueOf(o.toString())
                     if (num >= 1000000) {

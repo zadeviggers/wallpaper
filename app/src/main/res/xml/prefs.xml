@@ -42,7 +42,7 @@
             android:summary="@string/enable_random_shape_types_preference_summary"
             android:defaultValue="@bool/randomShapeTypesEnabledDefault" />
         <EditTextPreference
-            android:key="shapeSize"
+            android:key="shapeSize1"
             android:title="@string/shape_size_preference_title"
             android:defaultValue="@integer/defaultShapeSize" />
         <SwitchPreferenceCompat
