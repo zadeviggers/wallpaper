@@ -3,7 +3,6 @@ package net.viggers.zade.wallpaper
 import android.content.*
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.graphics.*
-import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.service.wallpaper.WallpaperService
