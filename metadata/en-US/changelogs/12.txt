@@ -1,0 +1,3 @@
+- Added option to choose shape size
+- Added option to randomise shape size
+- Added button to remove all shapes from the canvas
