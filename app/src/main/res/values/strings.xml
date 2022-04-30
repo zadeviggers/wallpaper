@@ -36,4 +36,7 @@
     <string name="enable_random_shape_sizes_preference_title">Random sizes</string>
     <string name="enable_random_shape_sizes_preference_summary">Use a random size for each shape, rather than the size set above.</string>
     <string name="shape_size_preference_title">Shape size</string>
+    <string name="action_remove_all_shapes">net.viggers.zade.wallpaper.remove-all-shapes</string>
+    <string name="clear_shapes_button_text">Clear all shapes</string>
+    <string name="shapes_cleared_toast">Shapes cleared</string>
 </resources>

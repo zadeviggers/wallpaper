@@ -29,7 +29,8 @@ class PreferencesActivity : AppCompatActivity() {
         return true
     }
 
-    class PreferencesFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener {
+    class PreferencesFragment : PreferenceFragmentCompat(),
+        SharedPreferences.OnSharedPreferenceChangeListener {
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             preferenceScreen.sharedPreferences?.registerOnSharedPreferenceChangeListener(this)
@@ -46,10 +47,12 @@ class PreferencesActivity : AppCompatActivity() {
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.prefs, rootKey)
 
-            val maxShapeNumberPreference = preferenceScreen.findPreference<EditTextPreference>("numberOfShapes")
+            val maxShapeNumberPreference =
+                preferenceScreen.findPreference<EditTextPreference>("numberOfShapes")
             maxShapeNumberPreference?.onPreferenceChangeListener = numberCheckListener
 
-            val shapeSpawnDelayPreference = preferenceScreen.findPreference<EditTextPreference>("randomShapeSpawnDelay")
+            val shapeSpawnDelayPreference =
+                preferenceScreen.findPreference<EditTextPreference>("randomShapeSpawnDelay")
             shapeSpawnDelayPreference?.onPreferenceChangeListener = numberCheckListener
 
             for (i in 0 until preferenceScreen.preferenceCount) {
@@ -66,33 +69,34 @@ class PreferencesActivity : AppCompatActivity() {
             if (pref is ListPreference) {
                 val listPreference: ListPreference = pref
                 val prefIndex = listPreference.findIndexOfValue(value)
-                if (prefIndex >=0) {
+                if (prefIndex >= 0) {
                     listPreference.summary = listPreference.entries[prefIndex]
                 }
             }
         }
 
-        private var numberCheckListener = androidx.preference.Preference.OnPreferenceChangeListener { _, o ->
-            if (o != null && o.toString().isNotEmpty() && o.toString().matches(Regex("\\d*"))) {
-                val num = Integer.valueOf(o.toString())
-                if (num >= 1000000) {
-                    Toast.makeText(
-                        activity,
-                        R.string.number_too_big_input_toast,
-                        Toast.LENGTH_LONG
-                    )
-                        .show()
-                    return@OnPreferenceChangeListener false
+        private var numberCheckListener =
+            androidx.preference.Preference.OnPreferenceChangeListener { _, o ->
+                if (o != null && o.toString().isNotEmpty() && o.toString().matches(Regex("\\d*"))) {
+                    val num = Integer.valueOf(o.toString())
+                    if (num >= 1000000) {
+                        Toast.makeText(
+                            activity,
+                            R.string.number_too_big_input_toast,
+                            Toast.LENGTH_LONG
+                        )
+                            .show()
+                        return@OnPreferenceChangeListener false
+                    }
+                    return@OnPreferenceChangeListener true
                 }
-                return@OnPreferenceChangeListener true
+                Toast.makeText(
+                    activity,
+                    R.string.invalid_number_input_toast,
+                    Toast.LENGTH_LONG
+                )
+                    .show()
+                return@OnPreferenceChangeListener false
             }
-            Toast.makeText(
-                activity,
-                R.string.invalid_number_input_toast,
-                Toast.LENGTH_LONG
-            )
-                .show()
-            return@OnPreferenceChangeListener false
-        }
     }
 }
