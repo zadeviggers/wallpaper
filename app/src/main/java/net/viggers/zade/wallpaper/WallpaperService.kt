@@ -109,12 +109,12 @@ class WallpaperService : WallpaperService() {
         private fun loadPreferences(prefs: SharedPreferences) {
             randomShapesEnabled = prefs.getBoolean("enableRandomShapes", defaultRandomShapesEnabled)
             maxCount =
-                Integer.valueOf(prefs.getString("numberOfShapes", defaultMaxCount.toString()))
+                Integer.valueOf(prefs.getString("numberOfShapes", defaultMaxCount.toString()).toString())
             randomShapeSpawnDelay = Integer.valueOf(
                 prefs.getString(
                     "randomShapeSpawnDelay",
                     defaultRandomShapeDelay.toString()
-                )
+                ).toString()
             )
             shapeColour = prefs.getInt("shapeColour", defaultShapeColour)
             backgroundColour = prefs.getInt("backgroundColour", defaultBackgroundColour)

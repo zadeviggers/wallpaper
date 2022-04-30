@@ -11,8 +11,8 @@
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 10,
-      "versionName": "10 (Add option to disable touch interaction)",
+      "versionCode": 11,
+      "versionName": "11",
       "outputFile": "app-release.apk"
     }
   ],
