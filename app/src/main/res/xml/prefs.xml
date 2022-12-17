@@ -6,8 +6,8 @@
         app:key="general_category"
         app:title="@string/general_category_title">
         <SwitchPreferenceCompat
-            android:defaultValue="true"
-            android:key="enableRandomShapes"
+            android:defaultValue="@bool/enableRandomShapeSpawningDefault"
+            android:key="enableRandomShapeSpawning"
             android:summary="@string/enable_random_shapes_preference_summary"
             android:title="@string/enable_random_shapes_preference_title" />
         <SwitchPreferenceCompat
@@ -16,12 +16,12 @@
             android:summary="@string/enable_touch_interaction_preference_summary"
             android:title="@string/enable_touch_interaction_preference_title" />
         <SwitchPreferenceCompat
-            android:defaultValue="false"
+            android:defaultValue="@bool/pauseRandomShapesWhenDraggingDefault"
             android:key="pauseRandomShapesWhenDragging"
             android:summary="@string/pause_random_shapes_when_dragging_preference_summary"
             android:title="@string/pause_random_shapes_when_dragging_preference_title" />
         <SwitchPreferenceCompat
-            android:defaultValue="false"
+            android:defaultValue="@bool/smoothDrawingEnabledDefault"
             android:key="smoothDrawingEnabled"
             android:summary="@string/enable_smooth_drawing_preference_summary"
             android:title="@string/enable_smooth_drawing_preference_title" />
@@ -32,7 +32,7 @@
         <ListPreference
             android:key="shapeType"
             android:title="@string/shape_type_preference_title"
-            app:defaultValue="circle"
+            app:defaultValue="@string/shapeTypeDefault"
             app:entries="@array/shape_type_options_labels"
             app:entryValues="@array/shape_type_options_values" />
         <SwitchPreferenceCompat
@@ -72,12 +72,12 @@
         app:key="numbers_category"
         app:title="@string/numbers_category_title">
         <EditTextPreference
-            android:defaultValue="40"
+            android:defaultValue="@integer/numberOfShapesDefault"
             android:key="numberOfShapes"
             android:summary="@string/number_of_shapes_preference_summary"
             android:title="@string/number_of_shapes_preference_title" />
         <EditTextPreference
-            android:defaultValue="500"
+            android:defaultValue="@integer/randomShapeSpawnDelayDefault"
             android:key="randomShapeSpawnDelay"
             android:summary="@string/random_shape_spawn_delay_preference_summary"
             android:title="@string/random_shape_spawn_delay_preference_title" />

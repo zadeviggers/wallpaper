@@ -33,14 +33,14 @@ class WallpaperService : WallpaperService() {
                     Log.v("ZV-Wallpaper", "Preferences changed")
                 }
 
-        private val defaultMaxCount: Int = 40
-        private val defaultRandomShapesEnabled: Boolean = true
-        private val defaultRandomShapeDelay: Int = 500
+        private val defaultMaxCount: Int = R.integer.numberOfShapesDefault
+        private val defaultRandomShapeSpawningEnabled: Boolean = R.bool.enableRandomShapeSpawningDefault == 1
+        private val defaultRandomShapeDelay: Int = R.integer.randomShapeSpawnDelayDefault
         private val defaultShapeColour: Int = Color.RED
         private val defaultBackgroundColour: Int = Color.BLACK
-        private val defaultShapeType: String = "circle"
-        private val defaultPauseRandomShapesWhenDragging: Boolean = false
-        private val defaultSmoothDrawingEnabled: Boolean = false
+        private val defaultShapeType: String = getString(R.string.shapeTypeDefault)
+        private val defaultPauseRandomShapesWhenDragging: Boolean = R.bool.pauseRandomShapesWhenDraggingDefault == 1
+        private val defaultSmoothDrawingEnabled: Boolean = R.bool.smoothDrawingEnabledDefault == 1
         private val defaultRandomShapeColoursEnabled: Boolean = R.bool.randomShapeColoursEnabledDefault == 1
         private val defaultRandomShapeTypesEnabled: Boolean = R.bool.randomShapeTypesEnabledDefault == 1
         private val enableTouchInteractionDefault: Boolean = R.bool.enableTouchInteractionDefault == 1
@@ -48,7 +48,7 @@ class WallpaperService : WallpaperService() {
         private val defaultRandomShapeSizesEnabled: Boolean = R.bool.enableRandomShapeSizesDefault == 1
 
         private var maxCount: Int = defaultMaxCount
-        private var randomShapesEnabled: Boolean = defaultRandomShapesEnabled
+        private var randomShapeSpawningEnabled: Boolean = defaultRandomShapeSpawningEnabled
         private var randomShapeSpawnDelay: Int = defaultRandomShapeDelay
         private var shapeColour: Int = defaultShapeColour
         private var backgroundColour: Int = defaultBackgroundColour
@@ -137,7 +137,7 @@ class WallpaperService : WallpaperService() {
         }
 
         private fun loadPreferences(prefs: SharedPreferences) {
-            randomShapesEnabled = prefs.getBoolean("enableRandomShapes", defaultRandomShapesEnabled)
+            randomShapeSpawningEnabled = prefs.getBoolean("enableRandomShapeSpawning", defaultRandomShapeSpawningEnabled)
             maxCount =
                     Integer.valueOf(
                             prefs.getString("numberOfShapes", defaultMaxCount.toString()).toString()
@@ -278,7 +278,7 @@ class WallpaperService : WallpaperService() {
         }
 
         private fun drawTick() {
-            if (randomShapesEnabled) {
+            if (randomShapeSpawningEnabled) {
                 val x = (width * Math.random()).toFloat()
                 val y = (height * Math.random()).toFloat()
                 if (pauseRandomShapesWhenDragging) {

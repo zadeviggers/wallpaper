@@ -5,7 +5,7 @@
     <string name="wallpaper_description">Zade\'s custom live wallpaper</string>
     <string name="number_of_shapes_preference_title">Maximum number of shapes</string>
     <string name="install_wallpaper_button_text">Install wallpaper</string>
-    <string name="enable_random_shapes_preference_title">Spawn random shapes</string>
+    <string name="enable_random_shapes_preference_title">Spawn shapes randomly</string>
     <string name="random_shape_spawn_delay_preference_title">Random spawn delay (ms)</string>
     <string name="shape_colour_preference_title">Shape colour</string>
     <string name="enable_random_shapes_preference_summary">Enables shapes to be spawned in random places on the screen.</string>
@@ -39,4 +39,5 @@
     <string name="action_remove_all_shapes">net.viggers.zade.wallpaper.remove-all-shapes</string>
     <string name="clear_shapes_button_text">Clear all shapes</string>
     <string name="shapes_cleared_toast">Shapes cleared</string>
+    <string name="shapeTypeDefault">circle</string>
 </resources>
