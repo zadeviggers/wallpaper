@@ -1,3 +1,16 @@
+<a name="Version14"></a>
+# [Version 14 (Version14)](https://github.com/zadeviggers/wallpaper/releases/tag/Version14) - 17 Dec 2022
+
+- Now targets Android 13
+- Minimum SDK version is now 26
+- Supports dynamic theme colours within the app
+- Supports dynamic icon theming
+- New logo!
+- Improves some internal code to be more maintainable
+
+[Changes][Version14]
+
+
 <a name="Version13"></a>
 # [Version 13 (Version13)](https://github.com/zadeviggers/wallpaper/releases/tag/Version13) - 30 Apr 2022
 
@@ -149,6 +162,7 @@ It works!
 [Changes][Version1]
 
 
+[Version14]: https://github.com/zadeviggers/wallpaper/compare/Version13...Version14
 [Version13]: https://github.com/zadeviggers/wallpaper/compare/Version12...Version13
 [Version12]: https://github.com/zadeviggers/wallpaper/compare/Version11.1...Version12
 [Version11.1]: https://github.com/zadeviggers/wallpaper/compare/Version10...Version11.1
