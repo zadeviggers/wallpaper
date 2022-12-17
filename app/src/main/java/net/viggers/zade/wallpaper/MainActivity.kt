@@ -5,17 +5,11 @@ import android.content.ComponentName
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.color.DynamicColors
-
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // Android theming thing
-//        DynamicColors.applyToActivitiesIfAvailable(this)
 
         setContentView(R.layout.main)
 
