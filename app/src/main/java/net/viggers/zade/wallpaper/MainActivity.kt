@@ -6,7 +6,10 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+
+import net.viggers.zade.wallpaper.BuildConfig
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,6 +21,9 @@ class MainActivity : AppCompatActivity() {
         val prefsButton = findViewById<Button>(R.id.prefsButton)
         val clearShapesButton = findViewById<Button>(R.id.clearShapesButton)
         val downloadsPageButton = findViewById<Button>(R.id.downloadsPageButton)
+        val versionText = findViewById<TextView>(R.id.app_version_text)
+
+        versionText.text = "Version ${BuildConfig.VERSION_NAME}"
 
         val context = this
         installButton.setOnClickListener {
@@ -41,6 +47,7 @@ class MainActivity : AppCompatActivity() {
             goToUrl("https://github.com/zadeviggers/wallpaper/releases")
         }
     }
+
     private fun goToUrl(url: String) {
         val uriUrl: Uri = Uri.parse(url)
         val launchBrowser = Intent(Intent.ACTION_VIEW, uriUrl)

@@ -30,4 +30,10 @@
         android:layout_height="wrap_content"
         android:text="@string/downloads_page_button_text"
         app:icon="@drawable/ic_baseline_open_in_new_24" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/app_version_text"
+        />
 </LinearLayout>
