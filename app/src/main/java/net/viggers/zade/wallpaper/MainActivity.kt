@@ -3,13 +3,14 @@ package net.viggers.zade.wallpaper
 import android.app.WallpaperManager
 import android.content.ComponentName
 import android.content.Intent
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
-import net.viggers.zade.wallpaper.BuildConfig
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +24,10 @@ class MainActivity : AppCompatActivity() {
         val downloadsPageButton = findViewById<Button>(R.id.downloadsPageButton)
         val versionText = findViewById<TextView>(R.id.app_version_text)
 
-        versionText.text = "Version ${BuildConfig.VERSION_NAME}"
+        val pInfo =
+            this.packageManager.getPackageInfo(this.packageName, PackageManager.GET_ACTIVITIES)
+        val version = pInfo.versionName
+        versionText.text = "Version $version"
 
         val context = this
         installButton.setOnClickListener {
