@@ -29,6 +29,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    namespace 'net.viggers.zade.wallpaper'
 }
 
 dependencies {
