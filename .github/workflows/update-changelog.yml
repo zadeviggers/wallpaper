@@ -15,5 +15,5 @@ jobs:
       - uses: rhysd/changelog-from-release/action@v3
         with:
           file: CHANGELOG.md
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.CHANGELOG_GITHUB_TOKEN }}
           commit_summary_template: 'update changelog for %s changes'
