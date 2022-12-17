@@ -16,8 +16,8 @@ class PreferencesActivity : AppCompatActivity() {
 
         if (savedInstance == null) {
             supportFragmentManager.beginTransaction()
-                .replace(android.R.id.content, PreferencesFragment())
-                .commit()
+                    .replace(android.R.id.content, PreferencesFragment())
+                    .commit()
 
             supportActionBar?.setDisplayShowHomeEnabled(true);
             supportActionBar?.setDisplayHomeAsUpEnabled(true);
@@ -30,7 +30,7 @@ class PreferencesActivity : AppCompatActivity() {
     }
 
     class PreferencesFragment : PreferenceFragmentCompat(),
-        SharedPreferences.OnSharedPreferenceChangeListener {
+            SharedPreferences.OnSharedPreferenceChangeListener {
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             preferenceScreen.sharedPreferences?.registerOnSharedPreferenceChangeListener(this)
@@ -48,15 +48,15 @@ class PreferencesActivity : AppCompatActivity() {
             setPreferencesFromResource(R.xml.prefs, rootKey)
 
             val maxShapeNumberPreference =
-                preferenceScreen.findPreference<EditTextPreference>("numberOfShapes")
+                    preferenceScreen.findPreference<EditTextPreference>("numberOfShapes")
             maxShapeNumberPreference?.onPreferenceChangeListener = numberCheckListener
 
             val shapeSpawnDelayPreference =
-                preferenceScreen.findPreference<EditTextPreference>("randomShapeSpawnDelay")
+                    preferenceScreen.findPreference<EditTextPreference>("randomShapeSpawnDelay")
             shapeSpawnDelayPreference?.onPreferenceChangeListener = numberCheckListener
 
             val shapeSizePreference =
-                preferenceScreen.findPreference<EditTextPreference>("shapeSize1")
+                    preferenceScreen.findPreference<EditTextPreference>("shapeSize1")
             shapeSizePreference?.onPreferenceChangeListener = numberCheckListener
 
             for (i in 0 until preferenceScreen.preferenceCount) {
@@ -80,27 +80,27 @@ class PreferencesActivity : AppCompatActivity() {
         }
 
         private var numberCheckListener =
-            Preference.OnPreferenceChangeListener { _, o ->
-                if (o != null && o.toString().isNotEmpty() && o.toString().matches(Regex("\\d*"))) {
-                    val num = Integer.valueOf(o.toString())
-                    if (num >= 1000000) {
-                        Toast.makeText(
-                            activity,
-                            R.string.number_too_big_input_toast,
-                            Toast.LENGTH_LONG
-                        )
-                            .show()
-                        return@OnPreferenceChangeListener false
+                Preference.OnPreferenceChangeListener { _, o ->
+                    if (o != null && o.toString().isNotEmpty() && o.toString().matches(Regex("\\d*"))) {
+                        val num = Integer.valueOf(o.toString())
+                        if (num >= 1000000) {
+                            Toast.makeText(
+                                    activity,
+                                    R.string.number_too_big_input_toast,
+                                    Toast.LENGTH_LONG
+                            )
+                                    .show()
+                            return@OnPreferenceChangeListener false
+                        }
+                        return@OnPreferenceChangeListener true
                     }
-                    return@OnPreferenceChangeListener true
+                    Toast.makeText(
+                            activity,
+                            R.string.invalid_number_input_toast,
+                            Toast.LENGTH_LONG
+                    )
+                            .show()
+                    return@OnPreferenceChangeListener false
                 }
-                Toast.makeText(
-                    activity,
-                    R.string.invalid_number_input_toast,
-                    Toast.LENGTH_LONG
-                )
-                    .show()
-                return@OnPreferenceChangeListener false
-            }
     }
 }

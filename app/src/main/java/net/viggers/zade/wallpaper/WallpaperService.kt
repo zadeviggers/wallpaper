@@ -28,10 +28,10 @@ class WallpaperService : WallpaperService() {
 
         // Preferences
         private val onSharedPreferenceChanged: OnSharedPreferenceChangeListener =
-            OnSharedPreferenceChangeListener { newPrefs, _ ->
-                loadPreferences(newPrefs)
-                Log.v("ZV-Wallpaper", "Preferences changed")
-            }
+                OnSharedPreferenceChangeListener { newPrefs, _ ->
+                    loadPreferences(newPrefs)
+                    Log.v("ZV-Wallpaper", "Preferences changed")
+                }
 
         private val defaultMaxCount: Int = 40
         private val defaultRandomShapesEnabled: Boolean = true
@@ -102,7 +102,7 @@ class WallpaperService : WallpaperService() {
         init {
             // Load preferences
             val prefs =
-                androidx.preference.PreferenceManager.getDefaultSharedPreferences(this@WallpaperService)
+                    androidx.preference.PreferenceManager.getDefaultSharedPreferences(this@WallpaperService)
 
             prefs.registerOnSharedPreferenceChangeListener(onSharedPreferenceChanged)
             loadPreferences(prefs)
@@ -130,7 +130,7 @@ class WallpaperService : WallpaperService() {
             registerReceiver(clearShapesReceiver, IntentFilter(getString(R.string.action_remove_all_shapes)))
         }
 
-        fun clearAllShapes(){
+        fun clearAllShapes() {
             shapes.clear()
             drawShapes()
             Toast.makeText(this@WallpaperService, R.string.shapes_cleared_toast, Toast.LENGTH_SHORT).show()
@@ -139,36 +139,36 @@ class WallpaperService : WallpaperService() {
         private fun loadPreferences(prefs: SharedPreferences) {
             randomShapesEnabled = prefs.getBoolean("enableRandomShapes", defaultRandomShapesEnabled)
             maxCount =
-                Integer.valueOf(
-                    prefs.getString("numberOfShapes", defaultMaxCount.toString()).toString()
-                )
+                    Integer.valueOf(
+                            prefs.getString("numberOfShapes", defaultMaxCount.toString()).toString()
+                    )
             randomShapeSpawnDelay = Integer.valueOf(
-                prefs.getString(
-                    "randomShapeSpawnDelay",
-                    defaultRandomShapeDelay.toString()
-                ).toString()
+                    prefs.getString(
+                            "randomShapeSpawnDelay",
+                            defaultRandomShapeDelay.toString()
+                    ).toString()
             )
             shapeColour = prefs.getInt("shapeColour", defaultShapeColour)
             backgroundColour = prefs.getInt("backgroundColour", defaultBackgroundColour)
             shapeType = prefs.getString("shapeType", defaultShapeType).toString()
             pauseRandomShapesWhenDragging = prefs.getBoolean(
-                "pauseRandomShapesWhenDragging",
-                defaultPauseRandomShapesWhenDragging
+                    "pauseRandomShapesWhenDragging",
+                    defaultPauseRandomShapesWhenDragging
             )
             smoothDrawingEnabled =
-                prefs.getBoolean("smoothDrawingEnabled", defaultSmoothDrawingEnabled)
+                    prefs.getBoolean("smoothDrawingEnabled", defaultSmoothDrawingEnabled)
             randomShapeColoursEnabled =
-                prefs.getBoolean("randomShapeColoursEnabled", defaultRandomShapeColoursEnabled)
+                    prefs.getBoolean("randomShapeColoursEnabled", defaultRandomShapeColoursEnabled)
             randomShapeTypesEnabled =
-                prefs.getBoolean("randomShapeTypeEnabled", defaultRandomShapeTypesEnabled)
+                    prefs.getBoolean("randomShapeTypeEnabled", defaultRandomShapeTypesEnabled)
             enableTouchInteraction =
-                prefs.getBoolean("enableTouchInteraction", enableTouchInteractionDefault)
+                    prefs.getBoolean("enableTouchInteraction", enableTouchInteractionDefault)
             shapeSize =
-                Integer.valueOf(
-                    prefs.getString("shapeSize1", defaultShapeSize.toString()).toString()
-                ).toFloat()
+                    Integer.valueOf(
+                            prefs.getString("shapeSize1", defaultShapeSize.toString()).toString()
+                    ).toFloat()
             randomShapeSizesEnabled =
-                prefs.getBoolean("randomShapeSizesEnabled", defaultRandomShapeSizesEnabled)
+                    prefs.getBoolean("randomShapeSizesEnabled", defaultRandomShapeSizesEnabled)
         }
 
         override fun onVisibilityChanged(isVisible: Boolean) {
@@ -187,8 +187,8 @@ class WallpaperService : WallpaperService() {
         }
 
         override fun onSurfaceChanged(
-            holder: SurfaceHolder, format: Int,
-            width: Int, height: Int
+                holder: SurfaceHolder, format: Int,
+                width: Int, height: Int
         ) {
             this.width = width
             this.height = height
@@ -204,15 +204,15 @@ class WallpaperService : WallpaperService() {
 
                 // Add shape at touch location
                 shapesToAdd.add(
-                    Shape(
-                        nextShapeId,
-                        x,
-                        y,
-                        nextShapeSize,
-                        nextShapeColour,
-                        nextShapeType,
-                        true
-                    )
+                        Shape(
+                                nextShapeId,
+                                x,
+                                y,
+                                nextShapeSize,
+                                nextShapeColour,
+                                nextShapeType,
+                                true
+                        )
                 )
 
                 if (smoothDrawingEnabled && shapes.size > 0) {
@@ -228,29 +228,29 @@ class WallpaperService : WallpaperService() {
                         val x1 = lastX + (differenceX / 3)
                         val y1 = lastY + (differenceY / 3)
                         shapesToAdd.add(
-                            Shape(
-                                nextShapeId,
-                                x1,
-                                y1,
-                                nextShapeSize,
-                                nextShapeColour,
-                                nextShapeType,
-                                true
-                            )
+                                Shape(
+                                        nextShapeId,
+                                        x1,
+                                        y1,
+                                        nextShapeSize,
+                                        nextShapeColour,
+                                        nextShapeType,
+                                        true
+                                )
                         )
 
                         val x2 = lastX + (differenceX * 2 / 3)
                         val y2 = lastY + (differenceY * 2 / 3)
                         shapesToAdd.add(
-                            Shape(
-                                nextShapeId,
-                                x2,
-                                y2,
-                                nextShapeSize,
-                                nextShapeColour,
-                                nextShapeType,
-                                true
-                            )
+                                Shape(
+                                        nextShapeId,
+                                        x2,
+                                        y2,
+                                        nextShapeSize,
+                                        nextShapeColour,
+                                        nextShapeType,
+                                        true
+                                )
                         )
                     }
                 }
@@ -284,34 +284,34 @@ class WallpaperService : WallpaperService() {
                 if (pauseRandomShapesWhenDragging) {
                     if (randomShapesDraggingCooldown == 0) {
                         addShapes(
-                            arrayOf(
-                                Shape(
-                                    nextShapeId,
-                                    x,
-                                    y,
-                                    nextShapeSize,
-                                    nextShapeColour,
-                                    nextShapeType,
-                                    false
+                                arrayOf(
+                                        Shape(
+                                                nextShapeId,
+                                                x,
+                                                y,
+                                                nextShapeSize,
+                                                nextShapeColour,
+                                                nextShapeType,
+                                                false
+                                        )
                                 )
-                            )
                         )
                     } else if (randomShapesDraggingCooldown > 0) {
                         randomShapesDraggingCooldown -= 1
                     }
                 } else {
                     addShapes(
-                        arrayOf(
-                            Shape(
-                                nextShapeId,
-                                x,
-                                y,
-                                nextShapeSize,
-                                nextShapeColour,
-                                nextShapeType,
-                                false
+                            arrayOf(
+                                    Shape(
+                                            nextShapeId,
+                                            x,
+                                            y,
+                                            nextShapeSize,
+                                            nextShapeColour,
+                                            nextShapeType,
+                                            false
+                                    )
                             )
-                        )
                     )
                 }
             }
@@ -344,17 +344,17 @@ class WallpaperService : WallpaperService() {
                                 // Android graphics rectangles are really weird - they take top, left, top+height, and left+width distances,
                                 // rather than being normal and having x, y, width, and height
                                 val rect =
-                                    RectF(x - size / 2, y - size / 2, x + size / 2, y + size / 2)
+                                        RectF(x - size / 2, y - size / 2, x + size / 2, y + size / 2)
                                 canvas.drawRect(rect, paint)
                             }
                             "triangle" -> drawTriangle(
-                                x - size / 2,
-                                y + size / 2,
-                                size,
-                                size,
-                                false,
-                                paint,
-                                canvas
+                                    x - size / 2,
+                                    y + size / 2,
+                                    size,
+                                    size,
+                                    false,
+                                    paint,
+                                    canvas
                             )
                             else -> canvas.drawCircle(x, y, size, paint)
                         }
@@ -367,13 +367,13 @@ class WallpaperService : WallpaperService() {
 
         // From https://stackoverflow.com/a/35873562
         private fun drawTriangle(
-            x: Float,
-            y: Float,
-            width: Float,
-            height: Float,
-            inverted: Boolean,
-            paint: Paint,
-            canvas: Canvas
+                x: Float,
+                y: Float,
+                width: Float,
+                height: Float,
+                inverted: Boolean,
+                paint: Paint,
+                canvas: Canvas
         ) {
             val p1 = Point(x.toInt(), y.toInt())
             val pointX = x + width / 2
