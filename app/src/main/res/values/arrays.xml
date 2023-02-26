@@ -4,12 +4,16 @@
         <item>@string/shape_option_label_circle</item>
         <item>@string/shape_option_label_square</item>
         <item>@string/shape_option_label_triangle</item>
+        <item>@string/shape_option_label_pentagon</item>
+        <item>@string/shape_option_label_hexagon</item>
     </array>
 
-    <array name="shape_type_options_values">
+    <array name="shape_types">
         <item>circle</item>
         <item>square</item>
         <item>triangle</item>
+        <item>pentagon</item>
+        <item>hexagon</item>
     </array>
 
     <string-array name="colourPalette" translatable="false">

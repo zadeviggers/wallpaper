@@ -20,7 +20,7 @@
                 android:summary="@string/shape_type_preference_summary"
                 app:defaultValue="@string/shapeTypeDefault"
                 app:entries="@array/shape_type_options_labels"
-                app:entryValues="@array/shape_type_options_values" />
+                app:entryValues="@array/shape_types" />
             <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
                 android:key="backgroundColour"
                 android:summary="@string/background_colour_preference_summary"

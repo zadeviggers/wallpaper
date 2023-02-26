@@ -22,6 +22,8 @@
     <string name="shape_option_label_square">Square</string>
     <string name="shape_option_label_triangle">Triangle</string>
     <string name="shape_option_label_circle">Circle</string>
+    <string name="shape_option_label_pentagon">Pentagon</string>
+    <string name="shape_option_label_hexagon">Hexagon</string>
     <string name="pause_random_shapes_when_dragging_preference_title">Pause random shapes when dragging</string>
     <string name="pause_random_shapes_when_dragging_preference_summary">Stops random shapes from appearing for a little while after you touch the screen.</string>
     <string name="enable_smooth_drawing_preference_title">Smooth drawing</string>
