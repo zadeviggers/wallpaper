@@ -432,30 +432,6 @@ class WallpaperService : WallpaperService() {
             mCanvas.drawPath(path, paint)
             mCanvas.restore()
         }
-
-        private fun drawTriangle(
-            x: Float,
-            y: Float,
-            width: Float,
-            height: Float,
-            inverted: Boolean,
-            paint: Paint,
-            canvas: Canvas
-        ) {
-            // From https://stackoverflow.com/a/35873562
-            val p1 = Point(x.toInt(), y.toInt())
-            val pointX = x + width / 2
-            val pointY = if (inverted) y + height else y - height
-            val p2 = Point(pointX.toInt(), pointY.toInt())
-            val p3 = Point((x + width).toInt(), y.toInt())
-            val path = Path()
-            path.fillType = Path.FillType.EVEN_ODD
-            path.moveTo(p1.x.toFloat(), p1.y.toFloat())
-            path.lineTo(p2.x.toFloat(), p2.y.toFloat())
-            path.lineTo(p3.x.toFloat(), p3.y.toFloat())
-            path.close()
-            canvas.drawPath(path, paint)
-        }
     }
 
 }
