@@ -14,10 +14,11 @@
     <string name="background_colour_preference_title">Background colour</string>
     <string name="change_prefs_button_text">Change preferences</string>
     <string name="background_colour_preference_summary">If you have an AMOLED screen, setting this to black will help preserve battery life.</string>
-    <string name="colours_category_title">Colours</string>
-    <string name="numbers_category_title">Numbers</string>
-    <string name="general_category_title">General</string>
-    <string name="shape_type_preference_title">Shape</string>
+    <string name="default_values_category_title">Shape Defaults</string>
+    <string name="shape_spawning_category_title">Spawning Options</string>
+    <string name="touch_category_title">Touch Options</string>
+    <string name="shape_type_preference_title">Shape type</string>
+    <string name="shape_type_preference_summary">Triangle, circle, square, etc</string>
     <string name="shape_option_label_square">Square</string>
     <string name="shape_option_label_triangle">Triangle</string>
     <string name="shape_option_label_circle">Circle</string>
@@ -30,7 +31,6 @@
     <string name="enable_random_shape_colours_preference_summary">Use a random colour for each shape, rather than the colour set above.</string>
     <string name="enable_random_shape_types_preference_title">Random types</string>
     <string name="enable_random_shape_types_preference_summary">Use a random type for each shape, rather than the type set above.</string>
-    <string name="shape_types_category_title">Shape and size</string>
     <string name="enable_touch_interaction_preference_title">Enable touch interaction</string>
     <string name="enable_touch_interaction_preference_summary">When enabled, shapes will be spawned where you touch the screen</string>
     <string name="enable_random_shape_sizes_preference_title">Random sizes</string>
