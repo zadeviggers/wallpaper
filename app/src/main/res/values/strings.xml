@@ -48,5 +48,5 @@
     <string name="reset_prefs_confirm_button_text">Reset</string>
     <string name="reset_prefs_cancel_button_text">Cancel</string>
     <string name="reset_prefs_completed_toast_text">Preferences have been reset</string>
-
+    <string name="version_number_display">Version %%version</string>
 </resources>

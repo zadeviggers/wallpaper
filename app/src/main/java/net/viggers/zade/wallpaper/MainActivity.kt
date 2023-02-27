@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         val pInfo =
             this.packageManager.getPackageInfo(this.packageName, PackageManager.GET_ACTIVITIES)
         val version = pInfo.versionName
-        versionText.text = "Version $version"
+        versionText.text = getString(R.string.version_number_display).replace("%%version", version)
 
         val context = this
         installButton.setOnClickListener {
@@ -49,12 +49,18 @@ class MainActivity : AppCompatActivity() {
                 .setTitle(R.string.reset_prefs_confirm_dialog_title_text)
                 .setMessage(R.string.reset_prefs_confirm_dialog_body_text)
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .setPositiveButton(R.string.reset_prefs_confirm_button_text
+                .setPositiveButton(
+                    R.string.reset_prefs_confirm_button_text
                 ) { dialog, whichButton ->
                     // Reset the preferences
-                    val preferences = androidx.preference.PreferenceManager.getDefaultSharedPreferences(this)
+                    val preferences =
+                        androidx.preference.PreferenceManager.getDefaultSharedPreferences(this)
                     preferences.edit().clear().apply()
-                    Toast.makeText(this, R.string.reset_prefs_completed_toast_text, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(
+                        this,
+                        R.string.reset_prefs_completed_toast_text,
+                        Toast.LENGTH_SHORT
+                    ).show();
                 }
                 .setNegativeButton(R.string.reset_prefs_cancel_button_text, null)
                 .show()
