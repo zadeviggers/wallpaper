@@ -1,5 +1,6 @@
 package net.viggers.zade.wallpaper
 
+import android.app.WallpaperColors
 import android.content.*
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.graphics.*
@@ -139,6 +140,10 @@ class WallpaperService : WallpaperService() {
             )
         }
 
+        override fun onComputeColors(): WallpaperColors? {
+            return WallpaperColors(Color.valueOf(nextShapeColour), Color.valueOf(nextShapeColour), Color.valueOf(backgroundColour))
+        }
+
         fun clearAllShapes() {
             shapes.clear()
             drawShapes()
@@ -147,6 +152,16 @@ class WallpaperService : WallpaperService() {
         }
 
         private fun loadPreferences(prefs: SharedPreferences) {
+            // Check if colours have changed. If they have, notify Android system.
+            val newShapeColour = prefs.getInt("shapeColour", defaultShapeColour)
+            val newBackgroundColour = prefs.getInt("backgroundColour", defaultBackgroundColour)
+            if ((newShapeColour != shapeColour) or (newBackgroundColour != backgroundColour)) {
+                notifyColorsChanged()
+            }
+            shapeColour = newShapeColour
+            backgroundColour = newBackgroundColour
+
+
             randomShapeSpawningEnabled =
                 prefs.getBoolean("enableRandomShapeSpawning", defaultRandomShapeSpawningEnabled)
             maxCount =
@@ -159,8 +174,6 @@ class WallpaperService : WallpaperService() {
                     defaultRandomShapeDelay.toString()
                 ).toString()
             )
-            shapeColour = prefs.getInt("shapeColour", defaultShapeColour)
-            backgroundColour = prefs.getInt("backgroundColour", defaultBackgroundColour)
             shapeType = prefs.getString("shapeType", defaultShapeType).toString()
             pauseRandomShapesWhenDragging = prefs.getBoolean(
                 "pauseRandomShapesWhenDragging",

@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "net.viggers.zade.wallpaper"
-        minSdk 26
+        minSdk 27
         targetSdk 33
         versionCode 14
         versionName "14.0"
