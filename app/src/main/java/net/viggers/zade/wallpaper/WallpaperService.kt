@@ -141,7 +141,7 @@ class WallpaperService : WallpaperService() {
         }
 
         override fun onComputeColors(): WallpaperColors? {
-            return WallpaperColors(Color.valueOf(nextShapeColour), Color.valueOf(nextShapeColour), Color.valueOf(backgroundColour))
+            return WallpaperColors(Color.valueOf(backgroundColour), Color.valueOf(nextShapeColour), Color.valueOf(nextShapeColour))
         }
 
         fun clearAllShapes() {
