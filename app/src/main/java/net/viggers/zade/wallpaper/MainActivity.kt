@@ -63,6 +63,8 @@ class MainActivity : AppCompatActivity() {
             // Send a broadcast to clear the shapes
             val intent = Intent(getString(R.string.action_remove_all_shapes))
             sendBroadcast(intent)
+            Toast.makeText(this, R.string.shapes_cleared_toast, Toast.LENGTH_SHORT)
+                .show()
         }
         downloadsPageButton.setOnClickListener {
             goToUrl("https://github.com/zadeviggers/wallpaper/releases")

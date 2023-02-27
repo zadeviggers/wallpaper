@@ -147,8 +147,6 @@ class WallpaperService : WallpaperService() {
         fun clearAllShapes() {
             shapes.clear()
             drawShapes()
-            Toast.makeText(this@WallpaperService, R.string.shapes_cleared_toast, Toast.LENGTH_SHORT)
-                .show()
         }
 
         private fun loadPreferences(prefs: SharedPreferences) {
