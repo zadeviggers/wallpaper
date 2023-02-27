@@ -258,62 +258,20 @@ class WallpaperService : WallpaperService() {
                 val x = event.x
                 val y = event.y
 
-                val shapesToAdd = ArrayList<Shape>()
+                val type = nextShapeType
 
-                // Add shape at touch location
-                shapesToAdd.add(
+                addShape(
                     Shape(
                         nextShapeId,
                         x,
                         y,
+                        getAngle(if (type == "square") 45f else null),
                         nextShapeSize,
                         nextShapeColour,
-                        nextShapeType,
+                        type,
                         true
                     )
                 )
-
-                if (smoothDrawingEnabled && shapes.size > 0) {
-                    val last = shapes.last()
-
-                    if (last.spawnedByTouch) {
-                        val lastX = last.x
-                        val lastY = last.y
-
-                        val differenceX = x - lastX
-                        val differenceY = y - lastY
-
-                        val x1 = lastX + (differenceX / 3)
-                        val y1 = lastY + (differenceY / 3)
-                        shapesToAdd.add(
-                            Shape(
-                                nextShapeId,
-                                x1,
-                                y1,
-                                nextShapeSize,
-                                nextShapeColour,
-                                nextShapeType,
-                                true
-                            )
-                        )
-
-                        val x2 = lastX + (differenceX * 2 / 3)
-                        val y2 = lastY + (differenceY * 2 / 3)
-                        shapesToAdd.add(
-                            Shape(
-                                nextShapeId,
-                                x2,
-                                y2,
-                                nextShapeSize,
-                                nextShapeColour,
-                                nextShapeType,
-                                true
-                            )
-                        )
-                    }
-                }
-
-                addShapes(shapesToAdd.toTypedArray())
 
                 if (pauseRandomShapesWhenDragging) {
                     randomShapesDraggingCooldown = 5
@@ -323,52 +281,40 @@ class WallpaperService : WallpaperService() {
             super.onTouchEvent(event)
         }
 
-        private fun addShapes(shapesToAdd: Array<Shape>) {
+        private fun addShape(shape: Shape) {
 
             // Need to do this so that if the users lowers their shape limit, there aren't too many shapes on screen
             while ((shapes.size >= maxCount)) {
                 shapes.removeFirst()
             }
-            for (shape in shapesToAdd) {
-                shapes.add(shape)
-            }
+            shapes.add(shape)
+
             drawShapes()
         }
 
         private fun drawTick() {
             if (randomShapeSpawningEnabled) {
-                val x = (width * Math.random()).toFloat()
-                val y = (height * Math.random()).toFloat()
-                if (pauseRandomShapesWhenDragging) {
-                    if (randomShapesDraggingCooldown == 0) {
-                        addShapes(
-                            arrayOf(
-                                Shape(
-                                    nextShapeId,
-                                    x,
-                                    y,
-                                    nextShapeSize,
-                                    nextShapeColour,
-                                    nextShapeType,
-                                    false
-                                )
-                            )
-                        )
-                    } else if (randomShapesDraggingCooldown > 0) {
-                        randomShapesDraggingCooldown -= 1
-                    }
-                } else {
-                    addShapes(
-                        arrayOf(
-                            Shape(
-                                nextShapeId,
-                                x,
-                                y,
-                                nextShapeSize,
-                                nextShapeColour,
-                                nextShapeType,
-                                false
-                            )
+                var shouldAddShape = true
+
+                if (pauseRandomShapesWhenDragging and (randomShapesDraggingCooldown > 0)) {
+                    shouldAddShape = false
+                    randomShapesDraggingCooldown -= 1
+                }
+
+                if (shouldAddShape) {
+                    val x = (width * Math.random()).toFloat()
+                    val y = (height * Math.random()).toFloat()
+                    val type = nextShapeType
+                    addShape(
+                        Shape(
+                            nextShapeId,
+                            x,
+                            y,
+                            getAngle(if (type == "square") 45f else null), // Square needs 45deg angle to point up
+                            nextShapeSize,
+                            nextShapeColour,
+                            type,
+                            false,
                         )
                     )
                 }
@@ -378,6 +324,16 @@ class WallpaperService : WallpaperService() {
             if (visible) {
                 handler.postDelayed(drawRunner, randomShapeSpawnDelay.toLong())
             }
+        }
+
+        private fun getAngle(
+            defaultAngle: Float?
+        ): Float {
+            if (randomShapeRotationEnabled) {
+                return (0..360).random().toFloat()
+            }
+            return defaultAngle ?: 270f // This makes most shapes point up.
+
         }
 
         // Surface view requires that all elements are drawn completely
@@ -394,10 +350,21 @@ class WallpaperService : WallpaperService() {
                         val x = shape.x
                         val y = shape.y
 
+                        val angle = shape.angle
+
                         val size = shape.size
 
                         when (shape.type) {
                             "circle" -> canvas.drawCircle(x, y, size / 2, paint)
+                            "triangle" -> drawPolygon(
+                                canvas,
+                                paint,
+                                x,
+                                y,
+                                size,
+                                3f,
+                                angle
+                            )
                             "square" ->
                                 drawPolygon(
                                     canvas,
@@ -406,16 +373,8 @@ class WallpaperService : WallpaperService() {
                                     y,
                                     size,
                                     4f,
-                                    45f, // Square needs 45deg angle to point up
+                                    angle
                                 )
-                            "triangle" -> drawPolygon(
-                                canvas,
-                                paint,
-                                x,
-                                y,
-                                size,
-                                3f,
-                            )
                             "pentagon" -> drawPolygon(
                                 canvas,
                                 paint,
@@ -423,6 +382,7 @@ class WallpaperService : WallpaperService() {
                                 y,
                                 size,
                                 5f,
+                                angle
                             )
                             "hexagon" -> drawPolygon(
                                 canvas,
@@ -431,6 +391,7 @@ class WallpaperService : WallpaperService() {
                                 y,
                                 size,
                                 6f,
+                                angle
                             )
                             else -> canvas.drawCircle(x, y, size, paint)
                         }
@@ -448,7 +409,7 @@ class WallpaperService : WallpaperService() {
             y: Float,
             radius: Float,
             sides: Float,
-            startAngle: Float = 270f, // This makes most things point up by default
+            startAngle: Float,
         ) {
             // From https://stackoverflow.com/a/36792553
             if (sides < 3) {
