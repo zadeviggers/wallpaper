@@ -36,7 +36,9 @@ class PreferencesActivity : AppCompatActivity() {
             preferenceScreen.sharedPreferences?.registerOnSharedPreferenceChangeListener(this)
         }
 
-        override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String) {
+        override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+            if (key == null) return
+
             val pref = findPreference<Preference>(key)
             if (null != pref && pref is ListPreference) {
                 val value = sharedPreferences?.getString(pref.key, "")

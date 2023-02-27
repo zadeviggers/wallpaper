@@ -3,12 +3,13 @@ package net.viggers.zade.wallpaper
 import android.app.WallpaperManager
 import android.content.ComponentName
 import android.content.Intent
-import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
         val installButton = findViewById<Button>(R.id.installButton)
         val prefsButton = findViewById<Button>(R.id.prefsButton)
+        val resetPrefsButton = findViewById<Button>(R.id.resetPrefsButton)
         val clearShapesButton = findViewById<Button>(R.id.clearShapesButton)
         val downloadsPageButton = findViewById<Button>(R.id.downloadsPageButton)
         val versionText = findViewById<TextView>(R.id.app_version_text)
@@ -41,6 +43,21 @@ class MainActivity : AppCompatActivity() {
         prefsButton.setOnClickListener {
             val intent = Intent(context, PreferencesActivity::class.java)
             startActivity(intent)
+        }
+        resetPrefsButton.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle(R.string.reset_prefs_confirm_dialog_title_text)
+                .setMessage(R.string.reset_prefs_confirm_dialog_body_text)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(R.string.reset_prefs_confirm_button_text
+                ) { dialog, whichButton ->
+                    // Reset the preferences
+                    val preferences = androidx.preference.PreferenceManager.getDefaultSharedPreferences(this)
+                    preferences.edit().clear().apply()
+                    Toast.makeText(this, R.string.reset_prefs_completed_toast_text, Toast.LENGTH_SHORT).show();
+                }
+                .setNegativeButton(R.string.reset_prefs_cancel_button_text, null)
+                .show()
         }
         clearShapesButton.setOnClickListener {
             // Send a broadcast to clear the shapes

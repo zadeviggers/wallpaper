@@ -19,10 +19,19 @@
         android:text="@string/change_prefs_button_text" />
 
     <Button
+        android:id="@+id/resetPrefsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/reset_prefs_button_text" />
+
+
+    <Button
         android:id="@+id/clearShapesButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/clear_shapes_button_text" />
+
+
 
     <Button
         android:id="@+id/downloadsPageButton"
