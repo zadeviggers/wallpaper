@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <bool name="randomShapeColoursEnabledDefault">false</bool>
-    <bool name="randomShapeTypesEnabledDefault">false</bool>
+    <bool name="randomShapeColoursEnabledDefault">true</bool>
+    <bool name="randomShapeTypesEnabledDefault">true</bool>
     <bool name="enableTouchInteractionDefault">true</bool>
-    <bool name="enableRandomShapeSizesDefault">false</bool>
+    <bool name="enableRandomShapeSizesDefault">true</bool>
     <bool name="pauseRandomShapesWhenDraggingDefault">true</bool>
-    <bool name="smoothDrawingEnabledDefault">false</bool>
     <bool name="enableRandomShapeSpawningDefault">true</bool>
     <bool name="enableRandomShapeRotationDefault">true</bool>
     <integer name="defaultShapeSize">40</integer>
-    <integer name="numberOfShapesDefault">40</integer>
+    <integer name="numberOfShapesDefault">30</integer>
     <integer name="randomShapeSpawnDelayDefault">500</integer>
     <string name="shapeTypeDefault">circle</string>
     <color name="backgroundColourDefault">#000000</color>
