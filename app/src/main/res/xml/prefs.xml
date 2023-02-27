@@ -38,7 +38,11 @@
             android:key="numberOfShapes"
             android:summary="@string/number_of_shapes_preference_summary"
             android:title="@string/number_of_shapes_preference_title" />
-
+        <EditTextPreference
+            android:defaultValue="@integer/randomShapeSpawnDelayDefault"
+            android:key="randomShapeSpawnDelay"
+            android:summary="@string/random_shape_spawn_delay_preference_summary"
+            android:title="@string/random_shape_spawn_delay_preference_title" />
         <SwitchPreferenceCompat
             android:defaultValue="@bool/enableRandomShapeSpawningDefault"
             android:key="enableRandomShapeSpawning"
@@ -49,12 +53,6 @@
             android:key="randomShapeTypeEnabled"
             android:summary="@string/enable_random_shape_types_preference_summary"
             android:title="@string/enable_random_shape_types_preference_title" />
-
-        <EditTextPreference
-            android:defaultValue="@integer/randomShapeSpawnDelayDefault"
-            android:key="randomShapeSpawnDelay"
-            android:summary="@string/random_shape_spawn_delay_preference_summary"
-            android:title="@string/random_shape_spawn_delay_preference_title" />
         <SwitchPreferenceCompat
             android:defaultValue="@bool/enableRandomShapeSizesDefault"
             android:key="randomShapeSizesEnabled"

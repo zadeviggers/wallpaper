@@ -6,10 +6,10 @@
     <string name="number_of_shapes_preference_title">Maximum number of shapes</string>
     <string name="install_wallpaper_button_text">Install wallpaper</string>
     <string name="enable_random_shapes_preference_title">Spawn shapes randomly</string>
-    <string name="random_shape_spawn_delay_preference_title">Random spawn delay (ms)</string>
+    <string name="random_shape_spawn_delay_preference_title">Spawn delay (ms)</string>
     <string name="shape_colour_preference_title">Shape colour</string>
     <string name="enable_random_shapes_preference_summary">Enables shapes to be spawned in random places on the screen.</string>
-    <string name="random_shape_spawn_delay_preference_summary">The delay between spawning new shapes randomly. Less than 500ms might drain your battery.</string>
+    <string name="random_shape_spawn_delay_preference_summary">The delay between spawning new shapes. Setting this to less than 500ms might drain your battery.</string>
     <string name="number_of_shapes_preference_summary">Once there are this many shapes on the screen, old shapes will be removed.</string>
     <string name="background_colour_preference_title">Background colour</string>
     <string name="change_prefs_button_text">Change preferences</string>
@@ -26,12 +26,12 @@
     <string name="shape_option_label_hexagon">Hexagon</string>
     <string name="pause_random_shapes_when_dragging_preference_title">Pause random shapes when dragging</string>
     <string name="pause_random_shapes_when_dragging_preference_summary">Stops random shapes from appearing for a little while after you touch the screen.</string>
-    <string name="enable_smooth_drawing_preference_title">Smooth drawing</string>
+    <string name="enable_smooth_drawing_preference_title">Smooth drawing (alpha)</string>
     <string name="enable_smooth_drawing_preference_summary">Spawn extra shapes when drawing to smooth out path. Might use more battery.</string>
     <string name="number_too_big_input_toast">Please enter a number that is less than one million</string>
     <string name="enable_random_shape_colours_preference_title">Random coloured shapes</string>
     <string name="enable_random_shape_colours_preference_summary">Use a random colour for each shape, rather than the colour set above.</string>
-    <string name="enable_random_shape_types_preference_title">Random types</string>
+    <string name="enable_random_shape_types_preference_title">Random shape types</string>
     <string name="enable_random_shape_types_preference_summary">Use a random type for each shape, rather than the type set above.</string>
     <string name="enable_touch_interaction_preference_title">Enable touch interaction</string>
     <string name="enable_touch_interaction_preference_summary">When enabled, shapes will be spawned where you touch the screen</string>
