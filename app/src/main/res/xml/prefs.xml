@@ -8,10 +8,10 @@
         app:title="@string/default_values_category_title">
         <EditTextPreference
             android:defaultValue="@integer/defaultShapeSize"
-            android:key="shapeSize1"
+            android:key="@string/shapeSize"
             android:title="@string/shape_size_preference_title" />
         <ListPreference
-            android:key="shapeType"
+            android:key="@string/shapeType"
             android:summary="@string/shape_type_preference_summary"
             android:title="@string/shape_type_preference_title"
             app:defaultValue="@string/shapeTypeDefault"
@@ -19,12 +19,12 @@
             app:entryValues="@array/shape_types" />
         <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
             android:defaultValue="@color/shapeColourDefault"
-            android:key="shapeColour"
+            android:key="@string/shapeColour"
             android:title="@string/shape_colour_preference_title"
             app:colorChoices="@array/pickerColours" />
         <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
             android:defaultValue="@color/backgroundColourDefault"
-            android:key="backgroundColour"
+            android:key="@string/backgroundColour"
             android:summary="@string/background_colour_preference_summary"
             android:title="@string/background_colour_preference_title"
             app:colorChoices="@array/pickerColours" />
@@ -35,53 +35,57 @@
         app:title="@string/shape_spawning_category_title">
         <EditTextPreference
             android:defaultValue="@integer/numberOfShapesDefault"
-            android:key="numberOfShapes"
+            android:key="@string/numberOfShapes"
             android:summary="@string/number_of_shapes_preference_summary"
             android:title="@string/number_of_shapes_preference_title" />
         <EditTextPreference
             android:defaultValue="@integer/randomShapeSpawnDelayDefault"
-            android:key="randomShapeSpawnDelay"
+            android:key="@string/randomShapeSpawnDelay"
             android:summary="@string/random_shape_spawn_delay_preference_summary"
             android:title="@string/random_shape_spawn_delay_preference_title" />
         <SwitchPreferenceCompat
             android:defaultValue="@bool/enableRandomShapeSpawningDefault"
-            android:key="enableRandomShapeSpawning"
+            android:key="@string/enableRandomShapeSpawning"
             android:summary="@string/enable_random_shapes_preference_summary"
             android:title="@string/enable_random_shapes_preference_title" />
         <SwitchPreferenceCompat
             android:defaultValue="@bool/randomShapeTypesEnabledDefault"
-            android:key="randomShapeTypeEnabled"
+            android:key="@string/randomShapeTypeEnabled"
             android:summary="@string/enable_random_shape_types_preference_summary"
             android:title="@string/enable_random_shape_types_preference_title" />
         <SwitchPreferenceCompat
             android:defaultValue="@bool/enableRandomShapeSizesDefault"
-            android:key="randomShapeSizesEnabled"
+            android:key="@string/randomShapeSizesEnabled"
             android:summary="@string/enable_random_shape_sizes_preference_summary"
             android:title="@string/enable_random_shape_sizes_preference_title" />
         <SwitchPreferenceCompat
             android:defaultValue="@bool/randomShapeColoursEnabledDefault"
-            android:key="randomShapeColoursEnabled"
+            android:key="@string/randomShapeColoursEnabled"
             android:summary="@string/enable_random_shape_colours_preference_summary"
             android:title="@string/enable_random_shape_colours_preference_title" />
+        <SwitchPreferenceCompat
+            android:defaultValue="@bool/enableRandomShapeRotationDefault"
+            android:key="@string/randomShapeRotationEnabled"
+            android:summary="@string/enable_random_shape_rotations_preference_summary"
+            android:title="@string/enable_random_shape_rotations_preference_title" />
     </PreferenceCategory>
     <PreferenceCategory
         app:key="touch_category"
         app:title="@string/touch_category_title">
         <SwitchPreferenceCompat
             android:defaultValue="@bool/enableTouchInteractionDefault"
-            android:key="enableTouchInteraction"
+            android:key="@string/enableTouchInteraction"
             android:summary="@string/enable_touch_interaction_preference_summary"
             android:title="@string/enable_touch_interaction_preference_title" />
         <SwitchPreferenceCompat
             android:defaultValue="@bool/pauseRandomShapesWhenDraggingDefault"
-            android:key="pauseRandomShapesWhenDragging"
+            android:key="@string/pauseRandomShapesWhenDragging"
             android:summary="@string/pause_random_shapes_when_dragging_preference_summary"
             android:title="@string/pause_random_shapes_when_dragging_preference_title" />
         <SwitchPreferenceCompat
             android:defaultValue="@bool/smoothDrawingEnabledDefault"
-            android:key="smoothDrawingEnabled"
+            android:key="@string/smoothDrawingEnabled"
             android:summary="@string/enable_smooth_drawing_preference_summary"
             android:title="@string/enable_smooth_drawing_preference_title" />
     </PreferenceCategory>
-
 </PreferenceScreen>

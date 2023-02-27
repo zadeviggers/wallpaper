@@ -53,6 +53,8 @@ class WallpaperService : WallpaperService() {
         private val defaultShapeSize: Float = R.integer.defaultShapeSize.toFloat()
         private val defaultRandomShapeSizesEnabled: Boolean =
             R.bool.enableRandomShapeSizesDefault == 1
+        private val defaultRandomShapeRotationEnabled: Boolean =
+            R.bool.enableRandomShapeRotationDefault == 1
 
         private var maxCount: Int = defaultMaxCount
         private var randomShapeSpawningEnabled: Boolean = defaultRandomShapeSpawningEnabled
@@ -67,6 +69,8 @@ class WallpaperService : WallpaperService() {
         private var enableTouchInteraction: Boolean = enableTouchInteractionDefault
         private var shapeSize: Float = defaultShapeSize
         private var randomShapeSizesEnabled: Boolean = defaultRandomShapeSizesEnabled
+        private var randomShapeRotationEnabled: Boolean = defaultRandomShapeRotationEnabled
+
 
         private var randomShapesDraggingCooldown: Int = 5
 
@@ -141,7 +145,11 @@ class WallpaperService : WallpaperService() {
         }
 
         override fun onComputeColors(): WallpaperColors? {
-            return WallpaperColors(Color.valueOf(backgroundColour), Color.valueOf(nextShapeColour), Color.valueOf(nextShapeColour))
+            return WallpaperColors(
+                Color.valueOf(backgroundColour),
+                Color.valueOf(nextShapeColour),
+                Color.valueOf(nextShapeColour)
+            )
         }
 
         fun clearAllShapes() {
@@ -151,8 +159,8 @@ class WallpaperService : WallpaperService() {
 
         private fun loadPreferences(prefs: SharedPreferences) {
             // Check if colours have changed. If they have, notify Android system.
-            val newShapeColour = prefs.getInt("shapeColour", defaultShapeColour)
-            val newBackgroundColour = prefs.getInt("backgroundColour", defaultBackgroundColour)
+            val newShapeColour = prefs.getInt(getString(R.string.shapeColour), defaultShapeColour)
+            val newBackgroundColour = prefs.getInt(getString(R.string.backgroundColour), defaultBackgroundColour)
             if ((newShapeColour != shapeColour) or (newBackgroundColour != backgroundColour)) {
                 notifyColorsChanged()
             }
@@ -161,36 +169,38 @@ class WallpaperService : WallpaperService() {
 
 
             randomShapeSpawningEnabled =
-                prefs.getBoolean("enableRandomShapeSpawning", defaultRandomShapeSpawningEnabled)
+                prefs.getBoolean(getString(R.string.enableRandomShapeSpawning), defaultRandomShapeSpawningEnabled)
             maxCount =
                 Integer.valueOf(
-                    prefs.getString("numberOfShapes", defaultMaxCount.toString()).toString()
+                    prefs.getString(getString(R.string.numberOfShapes), defaultMaxCount.toString()).toString()
                 )
             randomShapeSpawnDelay = Integer.valueOf(
                 prefs.getString(
-                    "randomShapeSpawnDelay",
+                    getString(R.string.randomShapeSpawnDelay),
                     defaultRandomShapeDelay.toString()
                 ).toString()
             )
-            shapeType = prefs.getString("shapeType", defaultShapeType).toString()
+            shapeType = prefs.getString(getString(R.string.shapeType), defaultShapeType).toString()
             pauseRandomShapesWhenDragging = prefs.getBoolean(
-                "pauseRandomShapesWhenDragging",
+                getString(R.string.pauseRandomShapesWhenDragging),
                 defaultPauseRandomShapesWhenDragging
             )
             smoothDrawingEnabled =
-                prefs.getBoolean("smoothDrawingEnabled", defaultSmoothDrawingEnabled)
+                prefs.getBoolean(getString(R.string.smoothDrawingEnabled), defaultSmoothDrawingEnabled)
             randomShapeColoursEnabled =
-                prefs.getBoolean("randomShapeColoursEnabled", defaultRandomShapeColoursEnabled)
+                prefs.getBoolean(getString(R.string.randomShapeColoursEnabled), defaultRandomShapeColoursEnabled)
             randomShapeTypesEnabled =
-                prefs.getBoolean("randomShapeTypeEnabled", defaultRandomShapeTypesEnabled)
+                prefs.getBoolean(getString(R.string.randomShapeTypeEnabled), defaultRandomShapeTypesEnabled)
             enableTouchInteraction =
-                prefs.getBoolean("enableTouchInteraction", enableTouchInteractionDefault)
+                prefs.getBoolean(getString(R.string.enableTouchInteraction), enableTouchInteractionDefault)
             shapeSize =
                 Integer.valueOf(
-                    prefs.getString("shapeSize1", defaultShapeSize.toString()).toString()
+                    prefs.getString(getString(R.string.shapeSize), defaultShapeSize.toString()).toString()
                 ).toFloat()
             randomShapeSizesEnabled =
-                prefs.getBoolean("randomShapeSizesEnabled", defaultRandomShapeSizesEnabled)
+                prefs.getBoolean(getString(R.string.randomShapeSizesEnabled), defaultRandomShapeSizesEnabled)
+            randomShapeRotationEnabled =
+                prefs.getBoolean(getString(R.string.randomShapeRotationEnabled), defaultRandomShapeRotationEnabled)
         }
 
         override fun onVisibilityChanged(isVisible: Boolean) {

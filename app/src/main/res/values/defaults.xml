@@ -7,6 +7,7 @@
     <bool name="pauseRandomShapesWhenDraggingDefault">true</bool>
     <bool name="smoothDrawingEnabledDefault">false</bool>
     <bool name="enableRandomShapeSpawningDefault">true</bool>
+    <bool name="enableRandomShapeRotationDefault">true</bool>
     <integer name="defaultShapeSize">40</integer>
     <integer name="numberOfShapesDefault">40</integer>
     <integer name="randomShapeSpawnDelayDefault">500</integer>

@@ -49,4 +49,6 @@
     <string name="reset_prefs_cancel_button_text">Cancel</string>
     <string name="reset_prefs_completed_toast_text">Preferences have been reset</string>
     <string name="version_number_display">Version %%version</string>
+    <string name="enable_random_shape_rotations_preference_title">Rotate shapes randomly</string>
+    <string name="enable_random_shape_rotations_preference_summary">Shapes will spawn with random rotation. You probably won\'t notice this with circles though.</string>
 </resources>
