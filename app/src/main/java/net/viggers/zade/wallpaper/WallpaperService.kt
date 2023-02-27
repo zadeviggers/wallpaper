@@ -160,7 +160,8 @@ class WallpaperService : WallpaperService() {
         private fun loadPreferences(prefs: SharedPreferences) {
             // Check if colours have changed. If they have, notify Android system.
             val newShapeColour = prefs.getInt(getString(R.string.shapeColour), defaultShapeColour)
-            val newBackgroundColour = prefs.getInt(getString(R.string.backgroundColour), defaultBackgroundColour)
+            val newBackgroundColour =
+                prefs.getInt(getString(R.string.backgroundColour), defaultBackgroundColour)
             if ((newShapeColour != shapeColour) or (newBackgroundColour != backgroundColour)) {
                 notifyColorsChanged()
             }
@@ -169,10 +170,14 @@ class WallpaperService : WallpaperService() {
 
 
             randomShapeSpawningEnabled =
-                prefs.getBoolean(getString(R.string.enableRandomShapeSpawning), defaultRandomShapeSpawningEnabled)
+                prefs.getBoolean(
+                    getString(R.string.enableRandomShapeSpawning),
+                    defaultRandomShapeSpawningEnabled
+                )
             maxCount =
                 Integer.valueOf(
-                    prefs.getString(getString(R.string.numberOfShapes), defaultMaxCount.toString()).toString()
+                    prefs.getString(getString(R.string.numberOfShapes), defaultMaxCount.toString())
+                        .toString()
                 )
             randomShapeSpawnDelay = Integer.valueOf(
                 prefs.getString(
@@ -186,21 +191,40 @@ class WallpaperService : WallpaperService() {
                 defaultPauseRandomShapesWhenDragging
             )
             smoothDrawingEnabled =
-                prefs.getBoolean(getString(R.string.smoothDrawingEnabled), defaultSmoothDrawingEnabled)
+                prefs.getBoolean(
+                    getString(R.string.smoothDrawingEnabled),
+                    defaultSmoothDrawingEnabled
+                )
             randomShapeColoursEnabled =
-                prefs.getBoolean(getString(R.string.randomShapeColoursEnabled), defaultRandomShapeColoursEnabled)
+                prefs.getBoolean(
+                    getString(R.string.randomShapeColoursEnabled),
+                    defaultRandomShapeColoursEnabled
+                )
             randomShapeTypesEnabled =
-                prefs.getBoolean(getString(R.string.randomShapeTypeEnabled), defaultRandomShapeTypesEnabled)
+                prefs.getBoolean(
+                    getString(R.string.randomShapeTypeEnabled),
+                    defaultRandomShapeTypesEnabled
+                )
             enableTouchInteraction =
-                prefs.getBoolean(getString(R.string.enableTouchInteraction), enableTouchInteractionDefault)
+                prefs.getBoolean(
+                    getString(R.string.enableTouchInteraction),
+                    enableTouchInteractionDefault
+                )
             shapeSize =
                 Integer.valueOf(
-                    prefs.getString(getString(R.string.shapeSize), defaultShapeSize.toString()).toString()
+                    prefs.getString(getString(R.string.shapeSize), defaultShapeSize.toString())
+                        .toString()
                 ).toFloat()
             randomShapeSizesEnabled =
-                prefs.getBoolean(getString(R.string.randomShapeSizesEnabled), defaultRandomShapeSizesEnabled)
+                prefs.getBoolean(
+                    getString(R.string.randomShapeSizesEnabled),
+                    defaultRandomShapeSizesEnabled
+                )
             randomShapeRotationEnabled =
-                prefs.getBoolean(getString(R.string.randomShapeRotationEnabled), defaultRandomShapeRotationEnabled)
+                prefs.getBoolean(
+                    getString(R.string.randomShapeRotationEnabled),
+                    defaultRandomShapeRotationEnabled
+                )
         }
 
         override fun onVisibilityChanged(isVisible: Boolean) {
@@ -372,13 +396,17 @@ class WallpaperService : WallpaperService() {
 
                         when (shape.type) {
                             "circle" -> canvas.drawCircle(x, y, size / 2, paint)
-                            "square" -> {
-                                // Android graphics rectangles are really weird - they take top, left, top+height, and left+width distances,
-                                // rather than being normal and having x, y, width, and height
-                                val rect =
-                                    RectF(x - size / 2, y - size / 2, x + size / 2, y + size / 2)
-                                canvas.drawRect(rect, paint)
-                            }
+                            "square" ->
+                                drawPolygon(
+                                    canvas,
+                                    paint,
+                                    x - size / 2,
+                                    y - size / 2,
+                                    size,
+                                    4f,
+                                    45f,
+                                    false
+                                )
                             "triangle" -> drawPolygon(
                                 canvas,
                                 paint,
