@@ -10,11 +10,11 @@
             android:defaultValue="@integer/defaultShapeSize"
             android:key="@string/shapeSize"
             android:title="@string/shape_size_preference_title" />
-        <ListPreference
+        <MultiSelectListPreference
             android:key="@string/shapeType"
             android:summary="@string/shape_type_preference_summary"
             android:title="@string/shape_type_preference_title"
-            app:defaultValue="@string/shapeTypeDefault"
+            app:defaultValue="@array/shape_types"
             app:entries="@array/shape_type_options_labels"
             app:entryValues="@array/shape_types" />
         <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
@@ -48,11 +48,6 @@
             android:key="@string/enableRandomShapeSpawning"
             android:summary="@string/enable_random_shapes_preference_summary"
             android:title="@string/enable_random_shapes_preference_title" />
-        <SwitchPreferenceCompat
-            android:defaultValue="@bool/randomShapeTypesEnabledDefault"
-            android:key="@string/randomShapeTypeEnabled"
-            android:summary="@string/enable_random_shape_types_preference_summary"
-            android:title="@string/enable_random_shape_types_preference_title" />
         <SwitchPreferenceCompat
             android:defaultValue="@bool/enableRandomShapeSizesDefault"
             android:key="@string/randomShapeSizesEnabled"

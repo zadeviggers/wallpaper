@@ -8,9 +8,8 @@
     <bool name="enableRandomShapeSpawningDefault">true</bool>
     <bool name="enableRandomShapeRotationDefault">true</bool>
     <integer name="defaultShapeSize">40</integer>
-    <integer name="numberOfShapesDefault">30</integer>
+    <integer name="numberOfShapesDefault">20</integer>
     <integer name="randomShapeSpawnDelayDefault">500</integer>
-    <string name="shapeTypeDefault">circle</string>
     <color name="backgroundColourDefault">#000000</color>
     <color name="shapeColourDefault">#cc0000</color>
 </resources>

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="shapeSize">shapeSize1</string>
-    <string name="shapeType">shapeType</string>
+    <string name="shapeType">shapeTypes</string>
     <string name="shapeColour">shapeColour</string>
     <string name="backgroundColour">backgroundColour</string>
     <string name="numberOfShapes">numberOfShapes</string>
     <string name="randomShapeSpawnDelay">randomShapeSpawnDelay</string>
     <string name="enableRandomShapeSpawning">enableRandomShapeSpawning</string>
-    <string name="randomShapeTypeEnabled">randomShapeTypeEnabled</string>
     <string name="randomShapeSizesEnabled">randomShapeSizesEnabled</string>
     <string name="randomShapeColoursEnabled">randomShapeColoursEnabled</string>
     <string name="randomShapeRotationEnabled">randomShapeRotationEnabled</string>

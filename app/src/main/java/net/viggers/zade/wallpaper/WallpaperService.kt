@@ -10,7 +10,6 @@ import android.service.wallpaper.WallpaperService
 import android.util.Log
 import android.view.MotionEvent
 import android.view.SurfaceHolder
-import android.widget.Toast
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -33,22 +32,21 @@ class WallpaperService : WallpaperService() {
         private val onSharedPreferenceChanged: OnSharedPreferenceChangeListener =
             OnSharedPreferenceChangeListener { newPrefs, _ ->
                 loadPreferences(newPrefs)
-                Log.v("ZV-Wallpaper", "Preferences changed")
+                Log.v("ZV-Wallpaper:Engine", "Preferences changed")
             }
 
+        // By default we just want all the shape types.
+        private val defaultShapeTypes: Set<String> = resources.getStringArray(R.array.shape_types).toSet()
         private val defaultMaxCount: Int = R.integer.numberOfShapesDefault
         private val defaultRandomShapeSpawningEnabled: Boolean =
             R.bool.enableRandomShapeSpawningDefault == 1
         private val defaultRandomShapeDelay: Int = R.integer.randomShapeSpawnDelayDefault
         private val defaultShapeColour: Int = getColor(R.color.shapeColourDefault)
         private val defaultBackgroundColour: Int = getColor(R.color.backgroundColourDefault)
-        private val defaultShapeType: String = getString(R.string.shapeTypeDefault)
         private val defaultPauseRandomShapesWhenDragging: Boolean =
             R.bool.pauseRandomShapesWhenDraggingDefault == 1
         private val defaultRandomShapeColoursEnabled: Boolean =
             R.bool.randomShapeColoursEnabledDefault == 1
-        private val defaultRandomShapeTypesEnabled: Boolean =
-            R.bool.randomShapeTypesEnabledDefault == 1
         private val enableTouchInteractionDefault: Boolean =
             R.bool.enableTouchInteractionDefault == 1
         private val defaultShapeSize: Float = R.integer.defaultShapeSize.toFloat()
@@ -62,17 +60,16 @@ class WallpaperService : WallpaperService() {
         private var randomShapeSpawnDelay: Int = defaultRandomShapeDelay
         private var shapeColour: Int = defaultShapeColour
         private var backgroundColour: Int = defaultBackgroundColour
-        private var shapeType: String = defaultShapeType
+        private var enabledShapeTypes: Set<String> = defaultShapeTypes
         private var pauseRandomShapesWhenDragging: Boolean = defaultPauseRandomShapesWhenDragging
         private var randomShapeColoursEnabled: Boolean = defaultRandomShapeColoursEnabled
-        private var randomShapeTypesEnabled: Boolean = defaultRandomShapeTypesEnabled
         private var enableTouchInteraction: Boolean = enableTouchInteractionDefault
         private var shapeSize: Float = defaultShapeSize
         private var randomShapeSizesEnabled: Boolean = defaultRandomShapeSizesEnabled
         private var randomShapeRotationEnabled: Boolean = defaultRandomShapeRotationEnabled
 
 
-        private var randomShapesDraggingCooldown: Int = 5
+        private var randomShapesDraggingCoolDown: Int = 5
 
 
         private val nextShapeId: Int
@@ -95,11 +92,8 @@ class WallpaperService : WallpaperService() {
 
         private val nextShapeType: String
             get() {
-                if (!randomShapeTypesEnabled) {
-                    return shapeType
-                }
-                val shapeTypes: Array<String> = resources.getStringArray(R.array.shape_types)
-                return shapeTypes.random()
+                if (enabledShapeTypes.isEmpty()) return defaultShapeTypes.random()
+                return enabledShapeTypes.random()
             }
 
         private val nextShapeSize: Float
@@ -118,7 +112,7 @@ class WallpaperService : WallpaperService() {
             prefs.registerOnSharedPreferenceChangeListener(onSharedPreferenceChanged)
             loadPreferences(prefs)
 
-            Log.v("ZV-Wallpaper", "Loaded wallpaper preferences")
+            Log.v("ZV-Wallpaper:Engine", "Loaded wallpaper preferences")
 
             // Setup variables
             paint.isAntiAlias = true
@@ -144,7 +138,7 @@ class WallpaperService : WallpaperService() {
             )
         }
 
-        override fun onComputeColors(): WallpaperColors? {
+        override fun onComputeColors(): WallpaperColors {
             return WallpaperColors(
                 Color.valueOf(backgroundColour),
                 Color.valueOf(nextShapeColour),
@@ -185,7 +179,7 @@ class WallpaperService : WallpaperService() {
                     defaultRandomShapeDelay.toString()
                 ).toString()
             )
-            shapeType = prefs.getString(getString(R.string.shapeType), defaultShapeType).toString()
+            enabledShapeTypes = prefs.getStringSet(getString(R.string.shapeType), defaultShapeTypes) as Set<String>
             pauseRandomShapesWhenDragging = prefs.getBoolean(
                 getString(R.string.pauseRandomShapesWhenDragging),
                 defaultPauseRandomShapesWhenDragging
@@ -194,11 +188,6 @@ class WallpaperService : WallpaperService() {
                 prefs.getBoolean(
                     getString(R.string.randomShapeColoursEnabled),
                     defaultRandomShapeColoursEnabled
-                )
-            randomShapeTypesEnabled =
-                prefs.getBoolean(
-                    getString(R.string.randomShapeTypeEnabled),
-                    defaultRandomShapeTypesEnabled
                 )
             enableTouchInteraction =
                 prefs.getBoolean(
@@ -267,7 +256,7 @@ class WallpaperService : WallpaperService() {
                 )
 
                 if (pauseRandomShapesWhenDragging) {
-                    randomShapesDraggingCooldown = 5
+                    randomShapesDraggingCoolDown = 5
                 }
             }
 
@@ -289,9 +278,9 @@ class WallpaperService : WallpaperService() {
             if (randomShapeSpawningEnabled) {
                 var shouldAddShape = true
 
-                if (pauseRandomShapesWhenDragging and (randomShapesDraggingCooldown > 0)) {
+                if (pauseRandomShapesWhenDragging and (randomShapesDraggingCoolDown > 0)) {
                     shouldAddShape = false
-                    randomShapesDraggingCooldown -= 1
+                    randomShapesDraggingCoolDown -= 1
                 }
 
                 if (shouldAddShape) {
@@ -427,5 +416,4 @@ class WallpaperService : WallpaperService() {
             mCanvas.restore()
         }
     }
-
 }
