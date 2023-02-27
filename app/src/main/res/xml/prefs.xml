@@ -3,30 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:theme="@style/Theme.Material3.DayNight">
 
-        <PreferenceCategory
-            app:key="default_values_category"
-            app:title="@string/default_values_category_title">
-            <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
-                android:key="shapeColour"
-                android:title="@string/shape_colour_preference_title"
-                app:colorChoices="@array/pickerColours" />
-            <EditTextPreference
-                android:defaultValue="@integer/defaultShapeSize"
-                android:key="shapeSize1"
-                android:title="@string/shape_size_preference_title" />
-            <ListPreference
-                android:key="shapeType"
-                android:title="@string/shape_type_preference_title"
-                android:summary="@string/shape_type_preference_summary"
-                app:defaultValue="@string/shapeTypeDefault"
-                app:entries="@array/shape_type_options_labels"
-                app:entryValues="@array/shape_types" />
-            <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
-                android:key="backgroundColour"
-                android:summary="@string/background_colour_preference_summary"
-                android:title="@string/background_colour_preference_title"
-                app:colorChoices="@array/pickerColours" />
-        </PreferenceCategory>
+    <PreferenceCategory
+        app:key="default_values_category"
+        app:title="@string/default_values_category_title">
+        <EditTextPreference
+            android:defaultValue="@integer/defaultShapeSize"
+            android:key="shapeSize1"
+            android:title="@string/shape_size_preference_title" />
+        <ListPreference
+            android:key="shapeType"
+            android:summary="@string/shape_type_preference_summary"
+            android:title="@string/shape_type_preference_title"
+            app:defaultValue="@string/shapeTypeDefault"
+            app:entries="@array/shape_type_options_labels"
+            app:entryValues="@array/shape_types" />
+        <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
+            android:defaultValue="@color/shapeColourDefault"
+            android:key="shapeColour"
+            android:title="@string/shape_colour_preference_title"
+            app:colorChoices="@array/pickerColours" />
+        <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
+            android:defaultValue="@color/backgroundColourDefault"
+            android:key="backgroundColour"
+            android:summary="@string/background_colour_preference_summary"
+            android:title="@string/background_colour_preference_title"
+            app:colorChoices="@array/pickerColours" />
+    </PreferenceCategory>
 
     <PreferenceCategory
         app:key="shape_spawning_category"

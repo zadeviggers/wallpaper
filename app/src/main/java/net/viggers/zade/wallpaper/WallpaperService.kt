@@ -37,8 +37,8 @@ class WallpaperService : WallpaperService() {
         private val defaultRandomShapeSpawningEnabled: Boolean =
             R.bool.enableRandomShapeSpawningDefault == 1
         private val defaultRandomShapeDelay: Int = R.integer.randomShapeSpawnDelayDefault
-        private val defaultShapeColour: Int = Color.RED
-        private val defaultBackgroundColour: Int = Color.BLACK
+        private val defaultShapeColour: Int = getColor(R.color.shapeColourDefault)
+        private val defaultBackgroundColour: Int = getColor(R.color.backgroundColourDefault)
         private val defaultShapeType: String = getString(R.string.shapeTypeDefault)
         private val defaultPauseRandomShapesWhenDragging: Boolean =
             R.bool.pauseRandomShapesWhenDraggingDefault == 1

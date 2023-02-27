@@ -1,10 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <bool name="randomShapeColoursEnabledDefault">false</bool>
-    <bool name="randomShapeTypesEnabledDefault">false</bool>
-    <bool name="enableTouchInteractionDefault">true</bool>
-    <bool name="enableRandomShapeSizesDefault">false</bool>
-    <bool name="pauseRandomShapesWhenDraggingDefault">true</bool>
-    <bool name="smoothDrawingEnabledDefault">false</bool>
-    <bool name="enableRandomShapeSpawningDefault">true</bool>
-</resources>
+<resources></resources>
