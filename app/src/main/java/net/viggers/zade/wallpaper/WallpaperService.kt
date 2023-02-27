@@ -11,6 +11,8 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.widget.Toast
+import kotlin.math.cos
+import kotlin.math.sin
 
 
 class WallpaperService : WallpaperService() {
@@ -400,46 +402,36 @@ class WallpaperService : WallpaperService() {
                                 drawPolygon(
                                     canvas,
                                     paint,
-                                    x - size / 2,
-                                    y - size / 2,
+                                    x,
+                                    y,
                                     size,
                                     4f,
-                                    45f,
-                                    false
+                                    45f, // Square needs 45deg angle to point up
                                 )
                             "triangle" -> drawPolygon(
                                 canvas,
                                 paint,
-                                x - size / 2,
-                                y + size / 2,
+                                x,
+                                y,
                                 size,
                                 3f,
-                                270f, // Point up
-                                false,
-
-                                )
+                            )
                             "pentagon" -> drawPolygon(
                                 canvas,
                                 paint,
-                                x - size / 2,
-                                y + size / 2,
+                                x,
+                                y,
                                 size,
                                 5f,
-                                270f, // Point up
-                                false,
-
-                                )
+                            )
                             "hexagon" -> drawPolygon(
                                 canvas,
                                 paint,
-                                x - size / 2,
-                                y + size / 2,
+                                x,
+                                y,
                                 size,
                                 6f,
-                                270f, // Point up
-                                false,
-
-                                )
+                            )
                             else -> canvas.drawCircle(x, y, size, paint)
                         }
                     }
@@ -456,14 +448,13 @@ class WallpaperService : WallpaperService() {
             y: Float,
             radius: Float,
             sides: Float,
-            startAngle: Float,
-            anticlockwise: Boolean,
+            startAngle: Float = 270f, // This makes most things point up by default
         ) {
             // From https://stackoverflow.com/a/36792553
             if (sides < 3) {
                 return
             }
-            val a = Math.PI.toFloat() * 2 / sides * if (anticlockwise) -1 else 1
+            val a = Math.PI.toFloat() * 2 / sides
             mCanvas.save()
             mCanvas.translate(x, y)
             mCanvas.rotate(startAngle)
@@ -472,8 +463,8 @@ class WallpaperService : WallpaperService() {
             var i = 1
             while (i < sides) {
                 path.lineTo(
-                    radius * Math.cos((a * i).toDouble()).toFloat(),
-                    radius * Math.sin((a * i).toDouble()).toFloat()
+                    radius * cos((a * i).toDouble()).toFloat(),
+                    radius * sin((a * i).toDouble()).toFloat()
                 )
                 i++
             }
