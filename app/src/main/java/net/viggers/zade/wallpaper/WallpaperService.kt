@@ -45,7 +45,6 @@ class WallpaperService : WallpaperService() {
         private val defaultShapeType: String = getString(R.string.shapeTypeDefault)
         private val defaultPauseRandomShapesWhenDragging: Boolean =
             R.bool.pauseRandomShapesWhenDraggingDefault == 1
-        private val defaultSmoothDrawingEnabled: Boolean = R.bool.smoothDrawingEnabledDefault == 1
         private val defaultRandomShapeColoursEnabled: Boolean =
             R.bool.randomShapeColoursEnabledDefault == 1
         private val defaultRandomShapeTypesEnabled: Boolean =
@@ -65,7 +64,6 @@ class WallpaperService : WallpaperService() {
         private var backgroundColour: Int = defaultBackgroundColour
         private var shapeType: String = defaultShapeType
         private var pauseRandomShapesWhenDragging: Boolean = defaultPauseRandomShapesWhenDragging
-        private var smoothDrawingEnabled: Boolean = defaultSmoothDrawingEnabled
         private var randomShapeColoursEnabled: Boolean = defaultRandomShapeColoursEnabled
         private var randomShapeTypesEnabled: Boolean = defaultRandomShapeTypesEnabled
         private var enableTouchInteraction: Boolean = enableTouchInteractionDefault
@@ -192,11 +190,6 @@ class WallpaperService : WallpaperService() {
                 getString(R.string.pauseRandomShapesWhenDragging),
                 defaultPauseRandomShapesWhenDragging
             )
-            smoothDrawingEnabled =
-                prefs.getBoolean(
-                    getString(R.string.smoothDrawingEnabled),
-                    defaultSmoothDrawingEnabled
-                )
             randomShapeColoursEnabled =
                 prefs.getBoolean(
                     getString(R.string.randomShapeColoursEnabled),

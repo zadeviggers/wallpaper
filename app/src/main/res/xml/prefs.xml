@@ -82,10 +82,5 @@
             android:key="@string/pauseRandomShapesWhenDragging"
             android:summary="@string/pause_random_shapes_when_dragging_preference_summary"
             android:title="@string/pause_random_shapes_when_dragging_preference_title" />
-        <SwitchPreferenceCompat
-            android:defaultValue="@bool/smoothDrawingEnabledDefault"
-            android:key="@string/smoothDrawingEnabled"
-            android:summary="@string/enable_smooth_drawing_preference_summary"
-            android:title="@string/enable_smooth_drawing_preference_title" />
     </PreferenceCategory>
 </PreferenceScreen>
