@@ -1,0 +1,6 @@
+Version 15.4 (#19)
+
+- Some string changes
+- New screenshots
+
+**Full Changelog**: https://github.com/zadeviggers/wallpaper/compare/Version15.3...Version15.4
