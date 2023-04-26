@@ -1,0 +1,6 @@
+- Now targets Android 13
+- Minimum SDK version is now 26
+- Supports dynamic theme colours within the app
+- Supports dynamic icon theming
+- New logo!
+- Improves some internal code to be more maintainable

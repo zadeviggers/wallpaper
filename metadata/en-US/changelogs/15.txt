@@ -1,0 +1,16 @@
+## Changes
+- New shapes!
+  - Pentagon
+  - Hexagon
+-  New option: Random rotation
+- Material You can now generate a colour pallet from the wallpaper
+- You can now reset your preferences to the default
+- Improved preferences page layout
+- Various UI improvements
+- Some internal cleanup & optimizations that might decrease the drain on battery life
+- Minimum SDK version is now `27`
+
+## Instructions
+Download the APK file below onto your Android device, and install it by opening the file and pressing _Install_. You may need to allow your browser or file manager app to install APKs in your settings. To apply the wallpaper, open the app and press the _Install Wallpaper_ button.
+
+**Full Changelog**: https://github.com/zadeviggers/wallpaper/compare/Version14...Version15

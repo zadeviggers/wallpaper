@@ -1,0 +1,4 @@
+- Fix some bugs
+- Switch to using a  multi-select list for choosing shape types
+- Finish removing smooth drawing
+- Change defaults to be nicer
