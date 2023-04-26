@@ -31,8 +31,10 @@ class WallpaperService : WallpaperService() {
         // Preferences
         private val onSharedPreferenceChanged: OnSharedPreferenceChangeListener =
             OnSharedPreferenceChangeListener { newPrefs, _ ->
-                loadPreferences(newPrefs)
                 Log.v("ZV-Wallpaper:Engine", "Preferences changed")
+                loadPreferences(newPrefs)
+                // Re-render wallpaper, in case thing such as background colour were changed.
+                drawWallpaper()
             }
 
         // By default we just want all the shape types.
@@ -148,7 +150,8 @@ class WallpaperService : WallpaperService() {
 
         fun clearAllShapes() {
             shapes.clear()
-            drawShapes()
+            // Re-draw the wallpaper with the shapes gone
+            drawWallpaper()
         }
 
         private fun loadPreferences(prefs: SharedPreferences) {
@@ -215,10 +218,13 @@ class WallpaperService : WallpaperService() {
             visible = isVisible
             if (isVisible) {
                 handler.post(drawRunner)
+                // Re-draw everything when it becomes visible
+                drawWallpaper()
             } else {
                 handler.removeCallbacks(drawRunner)
             }
         }
+
 
         override fun onSurfaceDestroyed(holder: SurfaceHolder) {
             super.onSurfaceDestroyed(holder)
@@ -226,6 +232,7 @@ class WallpaperService : WallpaperService() {
             handler.removeCallbacks(drawRunner)
         }
 
+        // Getting the surface to stick the canvas to draw on
         override fun onSurfaceChanged(
             holder: SurfaceHolder, format: Int,
             width: Int, height: Int
@@ -235,6 +242,7 @@ class WallpaperService : WallpaperService() {
             super.onSurfaceChanged(holder, format, width, height)
         }
 
+        // Shape drawing
         override fun onTouchEvent(event: MotionEvent) {
             if (enableTouchInteraction) {
                 val x = event.x
@@ -271,9 +279,11 @@ class WallpaperService : WallpaperService() {
             }
             shapes.add(shape)
 
-            drawShapes()
+            // Re-draw the wallpaper
+            drawWallpaper()
         }
 
+        // Ticks for random shape spawning
         private fun drawTick() {
             if (randomShapeSpawningEnabled) {
                 var shouldAddShape = true
@@ -319,7 +329,7 @@ class WallpaperService : WallpaperService() {
         }
 
         // Surface view requires that all elements are drawn completely
-        private fun drawShapes() {
+        private fun drawWallpaper() {
             var canvas: Canvas? = null
             val holder = surfaceHolder
             try {
