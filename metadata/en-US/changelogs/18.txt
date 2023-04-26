@@ -1,0 +1,5 @@
+Version 15.3 (#18)
+
+- Fixed a bug with the wallpaper not being re-drawn when preferences are changed
+
+**Full Changelog**: https://github.com/zadeviggers/wallpaper/compare/Version15.2...Version15.3
