@@ -14,7 +14,7 @@
         <service
             android:name="WallpaperService"
             android:enabled="true"
-            android:exported="true"
+            android:exported="false"
             android:label="@string/wallpaper_service_label"
             android:permission="android.permission.BIND_WALLPAPER">
             <intent-filter>
@@ -25,9 +25,7 @@
                 android:resource="@xml/wallpaper" />
         </service>
 
-        <activity
-            android:name=".PreferencesActivity"
-            android:exported="true" />
+        <activity android:name=".PreferencesActivity" android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
