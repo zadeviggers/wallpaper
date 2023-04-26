@@ -1,3 +1,7 @@
+Version 15.1 (#17)
+
 - Oversimplified the icon because android is bad at dealing with SVGs and I can't be bothered anymore
 - Minor bug fixes
 - Changes to defaults
+
+**Full Changelog**: https://github.com/zadeviggers/wallpaper/compare/Version15.1...Version15.2
