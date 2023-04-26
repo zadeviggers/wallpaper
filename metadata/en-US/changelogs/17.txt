@@ -1,0 +1,3 @@
+- Oversimplified the icon because android is bad at dealing with SVGs and I can't be bothered anymore
+- Minor bug fixes
+- Changes to defaults

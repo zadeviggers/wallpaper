@@ -3,7 +3,7 @@
     <bool name="randomShapeColoursEnabledDefault">true</bool>
     <bool name="randomShapeTypesEnabledDefault">true</bool>
     <bool name="enableTouchInteractionDefault">true</bool>
-    <bool name="enableRandomShapeSizesDefault">true</bool>
+    <bool name="enableRandomShapeSizesDefault">false</bool>
     <bool name="pauseRandomShapesWhenDraggingDefault">true</bool>
     <bool name="enableRandomShapeSpawningDefault">true</bool>
     <bool name="enableRandomShapeRotationDefault">true</bool>
