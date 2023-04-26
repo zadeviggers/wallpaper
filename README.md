@@ -1,6 +1,6 @@
 # Zade's Wallpaper
 
-> Draw coloured shapes on your wallpaper
+Draw art on your home screen with coloured shapes.
 
 ## About
 
@@ -8,6 +8,11 @@ My custom android live wallpaper.
 
 > Zade's wallpaper spawns lets you draw with shapes on your background and spawns random shapes when you're not drawing.
 > It's very customisable - every feature can be turned on or off, you can change the background colour, shape colour, shape type, and many other things.
+
+### Features
+- Very customisable
+- Supports Material 3 icon theming
+- Amoled black option
 
 ## Install
 
