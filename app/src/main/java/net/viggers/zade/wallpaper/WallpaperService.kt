@@ -337,7 +337,7 @@ class WallpaperService : WallpaperService() {
                         val size = shape.size
 
                         when (shape.type) {
-                            "circle" -> canvas.drawCircle(x, y, size / 2, paint)
+                            "circle" -> canvas.drawCircle(x, y, size, paint)
                             "triangle" -> drawPolygon(
                                 canvas,
                                 paint,
