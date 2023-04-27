@@ -1,0 +1,6 @@
+Version 15.5 (#20)
+
+- Updated lots of things internally
+- Vastly reduced APK size
+
+**Full Changelog**: https://github.com/zadeviggers/wallpaper/compare/Version15.4...Version15.5
