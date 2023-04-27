@@ -1,6 +1,6 @@
 Version 15.6 (#21)
 
 - Enabled resource shrinking (should improve download size)
--
+- Fix wide button
 
 **Full Changelog**: https://github.com/zadeviggers/wallpaper/compare/Version15.5...Version15.6
