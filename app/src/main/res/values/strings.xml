@@ -38,7 +38,7 @@
     <string name="action_remove_all_shapes">net.viggers.zade.wallpaper.remove-all-shapes</string>
     <string name="clear_shapes_button_text">Clear all shapes</string>
     <string name="shapes_cleared_toast">All shapes have been cleared</string>
-    <string name="downloads_page_button_text">Changelog and manual updates</string>
+    <string name="downloads_page_button_text">Updates via GitHub</string>
     <string name="reset_prefs_button_text">Reset preferences</string>
     <string name="reset_prefs_confirm_dialog_title_text">Reset all preferences?</string>
     <string name="reset_prefs_confirm_dialog_body_text">This will set all your preferences back to their original settings. You can\'t undo this.</string>
