@@ -8,41 +8,63 @@
 
     <Button
         android:id="@+id/installButton"
+        style="@style/Widget.Material3.Button.Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/install_wallpaper_button_text" />
+        android:text="@string/install_wallpaper_button_text"
+        app:icon="@drawable/ic_install" />
 
     <Button
         android:id="@+id/prefsButton"
+        style="@style/Widget.Material3.Button.TonalButton.Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/change_prefs_button_text" />
+        android:text="@string/change_prefs_button_text"
+        app:icon="@drawable/ic_settings_cog" />
+
+
+
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
 
     <Button
         android:id="@+id/resetPrefsButton"
+        style="@style/Widget.Material3.Button.TonalButton.Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/reset_prefs_button_text" />
+        android:text="@string/reset_prefs_button_text"
+        app:icon="@drawable/ic_reset" />
 
 
     <Button
         android:id="@+id/clearShapesButton"
+        style="@style/Widget.Material3.Button.TonalButton.Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/clear_shapes_button_text" />
+        android:text="@string/clear_shapes_button_text"
+        app:icon="@drawable/ic_clear" />
 
-
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
 
     <Button
         android:id="@+id/downloadsPageButton"
+        style="@style/Widget.Material3.Button.TonalButton.Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/downloads_page_button_text"
-        app:icon="@drawable/ic_baseline_open_in_new_24" />
+        app:icon="@drawable/ic_open_in_new" />
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/app_version_text"
         />
+
+
 </LinearLayout>
