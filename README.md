@@ -31,3 +31,4 @@ I followed [this tutorial](https://www.vogella.com/tutorials/AndroidLiveWallpape
 ## TODO
 - Filled shapes
 - Background image
+- Better colour picker
