@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
                         this,
                         R.string.reset_prefs_completed_toast_text,
                         Toast.LENGTH_SHORT
-                    ).show();
+                    ).show()
                 }
                 .setNegativeButton(R.string.reset_prefs_cancel_button_text, null)
                 .show()
