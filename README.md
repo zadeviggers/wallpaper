@@ -14,7 +14,7 @@ My custom android live wallpaper.
 - Supports Material 3 icon theming
 - Amoled black option
 
-Please open an issue suggesting a new feature!
+Please feel free to open an issue suggesting a new feature!
 
 ## Install
 
