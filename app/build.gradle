@@ -10,8 +10,8 @@ android {
         applicationId "net.viggers.zade.wallpaper"
         minSdk 27
         targetSdk 33
-        versionCode 21
-        versionName "15.6"
+        versionCode 22
+        versionName "15.7"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

@@ -1,0 +1,5 @@
+Version 15.7 (#22)
+
+- Fix critical bug causing installation of the wallpaper to fail
+
+**Full Changelog**: https://github.com/zadeviggers/wallpaper/compare/Version15.6...Version15.7
