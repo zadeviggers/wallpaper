@@ -14,6 +14,8 @@ My custom android live wallpaper.
 - Supports Material 3 icon theming
 - Amoled black option
 
+Please open an issue suggesting a new feature!
+
 ## Install
 
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
