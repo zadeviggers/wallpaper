@@ -70,9 +70,7 @@ class WallpaperService : WallpaperService() {
         private var randomShapeSizesEnabled: Boolean = defaultRandomShapeSizesEnabled
         private var randomShapeRotationEnabled: Boolean = defaultRandomShapeRotationEnabled
 
-
         private var randomShapesDraggingCoolDown: Int = 5
-
 
         private val nextShapeId: Int
             get() = if (shapes.size > 0) {
@@ -107,6 +105,8 @@ class WallpaperService : WallpaperService() {
             }
 
         init {
+            Log.v("ZV-Wallpaper:Engine", "Loading wallpaper preferences")
+
             // Load preferences
             val prefs =
                 androidx.preference.PreferenceManager.getDefaultSharedPreferences(this@WallpaperService)
@@ -123,8 +123,13 @@ class WallpaperService : WallpaperService() {
             paint.strokeCap = Paint.Cap.ROUND
             paint.strokeWidth = 10f
 
+
+
             // Start drawing loop
             handler.post(drawRunner)
+
+            Log.v("ZV-Wallpaper:Engine", "Started drawing loop")
+
 
             // Setup broadcast receivers
 
@@ -138,6 +143,9 @@ class WallpaperService : WallpaperService() {
                 clearShapesReceiver,
                 IntentFilter(getString(R.string.action_remove_all_shapes))
             )
+
+            Log.v("ZV-Wallpaper:Engine", "Setup intent handlers")
+
         }
 
         override fun onComputeColors(): WallpaperColors {
