@@ -16,7 +16,11 @@ My custom android live wallpaper.
 
 ## Install
 
-Download from [GitHub Releases](https://github.com/zadeviggers/wallpaper/releases).
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
+     alt="Get it on F-Droid"
+     height="80">](https://f-droid.org/packages/net.viggers.zade.wallpaper/)
+
+Or download the latest APK from the [Releases Section](https://github.com/zadeviggers/wallpaper/releases/latest).
 
 ## Credit
 
