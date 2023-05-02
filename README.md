@@ -14,9 +14,15 @@ My custom android live wallpaper.
 - Supports Material 3 icon theming
 - Amoled black option
 
+Please feel free to open an issue suggesting a new feature!
+
 ## Install
 
-Download from [GitHub Releases](https://github.com/zadeviggers/wallpaper/releases).
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
+     alt="Get it on F-Droid"
+     height="80">](https://f-droid.org/packages/net.viggers.zade.wallpaper/)
+
+Or download the latest APK from the [Releases Section](https://github.com/zadeviggers/wallpaper/releases/latest).
 
 ## Credit
 
