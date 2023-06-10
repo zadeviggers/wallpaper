@@ -1,0 +1,5 @@
+Version 15.8 (#23)
+
+- Fix issue affecting some users with crashes and install issues (should close #3)
+
+**Full Changelog**: https://github.com/zadeviggers/wallpaper/compare/Version15.7...Version15.8

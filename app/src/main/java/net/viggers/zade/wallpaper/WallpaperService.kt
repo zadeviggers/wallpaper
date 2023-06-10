@@ -38,7 +38,8 @@ class WallpaperService : WallpaperService() {
             }
 
         // By default we just want all the shape types.
-        private val defaultShapeTypes: Set<String> = resources.getStringArray(R.array.shape_types).toSet()
+        private val defaultShapeTypes: Set<String> =
+            resources.getStringArray(R.array.shape_types).toSet()
         private val defaultMaxCount: Int = R.integer.numberOfShapesDefault
         private val defaultRandomShapeSpawningEnabled: Boolean =
             R.bool.enableRandomShapeSpawningDefault == 1
@@ -51,7 +52,7 @@ class WallpaperService : WallpaperService() {
             R.bool.randomShapeColoursEnabledDefault == 1
         private val enableTouchInteractionDefault: Boolean =
             R.bool.enableTouchInteractionDefault == 1
-        private val defaultShapeSize: Float = R.integer.defaultShapeSize.toFloat()
+        private val defaultShapeSize: Int = R.integer.defaultShapeSize
         private val defaultRandomShapeSizesEnabled: Boolean =
             R.bool.enableRandomShapeSizesDefault == 1
         private val defaultRandomShapeRotationEnabled: Boolean =
@@ -66,7 +67,7 @@ class WallpaperService : WallpaperService() {
         private var pauseRandomShapesWhenDragging: Boolean = defaultPauseRandomShapesWhenDragging
         private var randomShapeColoursEnabled: Boolean = defaultRandomShapeColoursEnabled
         private var enableTouchInteraction: Boolean = enableTouchInteractionDefault
-        private var shapeSize: Float = defaultShapeSize
+        private var shapeSize: Int = defaultShapeSize
         private var randomShapeSizesEnabled: Boolean = defaultRandomShapeSizesEnabled
         private var randomShapeRotationEnabled: Boolean = defaultRandomShapeRotationEnabled
 
@@ -96,12 +97,12 @@ class WallpaperService : WallpaperService() {
                 return enabledShapeTypes.random()
             }
 
-        private val nextShapeSize: Float
+        private val nextShapeSize: Int
             get() {
                 if (!randomShapeSizesEnabled) {
                     return shapeSize
                 }
-                return (20..700).random().toFloat()
+                return (20..700).random()
             }
 
         init {
@@ -122,7 +123,6 @@ class WallpaperService : WallpaperService() {
             paint.strokeJoin = Paint.Join.ROUND
             paint.strokeCap = Paint.Cap.ROUND
             paint.strokeWidth = 10f
-
 
 
             // Start drawing loop
@@ -190,7 +190,8 @@ class WallpaperService : WallpaperService() {
                     defaultRandomShapeDelay.toString()
                 ).toString()
             )
-            enabledShapeTypes = prefs.getStringSet(getString(R.string.shapeType), defaultShapeTypes) as Set<String>
+            enabledShapeTypes =
+                prefs.getStringSet(getString(R.string.shapeType), defaultShapeTypes) as Set<String>
             pauseRandomShapesWhenDragging = prefs.getBoolean(
                 getString(R.string.pauseRandomShapesWhenDragging),
                 defaultPauseRandomShapesWhenDragging
@@ -205,14 +206,14 @@ class WallpaperService : WallpaperService() {
                     getString(R.string.enableTouchInteraction),
                     enableTouchInteractionDefault
                 )
-            var temp = prefs.getFloat(getString(R.string.shapeSize), defaultShapeSize)
-            Log.v("ZV-Wallpaper:Engine", temp.toString())
-
 
             shapeSize =
                 Integer.valueOf(
-                    temp.toString()
-                ).toFloat()
+                    prefs.getString(
+                        getString(R.string.shapeSize),
+                        defaultShapeSize.toString()
+                    )
+                )
             randomShapeSizesEnabled =
                 prefs.getBoolean(
                     getString(R.string.randomShapeSizesEnabled),
@@ -314,7 +315,7 @@ class WallpaperService : WallpaperService() {
                             x,
                             y,
                             getAngle(if (type == "square") 45f else null), // Square needs 45deg angle to point up
-                            nextShapeSize,
+                            nextShapeSize.toFloat(),
                             nextShapeColour,
                             type,
                             false,
@@ -368,6 +369,7 @@ class WallpaperService : WallpaperService() {
                                 3f,
                                 angle
                             )
+
                             "square" ->
                                 drawPolygon(
                                     canvas,
@@ -378,6 +380,7 @@ class WallpaperService : WallpaperService() {
                                     4f,
                                     angle
                                 )
+
                             "pentagon" -> drawPolygon(
                                 canvas,
                                 paint,
@@ -387,6 +390,7 @@ class WallpaperService : WallpaperService() {
                                 5f,
                                 angle
                             )
+
                             "hexagon" -> drawPolygon(
                                 canvas,
                                 paint,
@@ -396,6 +400,7 @@ class WallpaperService : WallpaperService() {
                                 6f,
                                 angle
                             )
+
                             else -> canvas.drawCircle(x, y, size, paint)
                         }
                     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="shapeSize">shapeSize1</string>
+    <string name="shapeSize">shapeSize2</string>
     <string name="shapeType">shapeTypes</string>
     <string name="shapeColour">shapeColour</string>
     <string name="backgroundColour">backgroundColour</string>
