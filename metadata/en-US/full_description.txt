@@ -6,3 +6,4 @@ Features:
 - Very customisable
 - Supports Material 3 icon theming
 - Amoled black option
+- Multi-touch support
