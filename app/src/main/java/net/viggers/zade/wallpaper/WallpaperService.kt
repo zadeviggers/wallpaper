@@ -205,10 +205,13 @@ class WallpaperService : WallpaperService() {
                     getString(R.string.enableTouchInteraction),
                     enableTouchInteractionDefault
                 )
+            var temp = prefs.getFloat(getString(R.string.shapeSize), defaultShapeSize)
+            Log.v("ZV-Wallpaper:Engine", temp.toString())
+
+
             shapeSize =
                 Integer.valueOf(
-                    prefs.getString(getString(R.string.shapeSize), defaultShapeSize.toString())
-                        .toString()
+                    temp.toString()
                 ).toFloat()
             randomShapeSizesEnabled =
                 prefs.getBoolean(
