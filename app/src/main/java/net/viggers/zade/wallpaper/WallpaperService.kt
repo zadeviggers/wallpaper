@@ -257,23 +257,28 @@ class WallpaperService : WallpaperService() {
         // Shape drawing
         override fun onTouchEvent(event: MotionEvent) {
             if (enableTouchInteraction) {
-                val x = event.x
-                val y = event.y
 
-                val type = nextShapeType
+                for (i in 0 until event.pointerCount) {
+                    val x = event.getX(i)
+                    val y = event.getY(i)
 
-                addShape(
-                    Shape(
-                        nextShapeId,
-                        x,
-                        y,
-                        getAngle(if (type == "square") 45f else null),
-                        nextShapeSize,
-                        nextShapeColour,
-                        type,
-                        true
+                    val type = nextShapeType
+
+                    addShape(
+                        Shape(
+                            nextShapeId,
+                            x,
+                            y,
+                            getAngle(if (type == "square") 45f else null),
+                            nextShapeSize.toFloat(),
+                            nextShapeColour,
+                            type,
+                            true
+                        )
                     )
-                )
+                }
+
+
 
                 if (pauseRandomShapesWhenDragging) {
                     randomShapesDraggingCoolDown = 5
