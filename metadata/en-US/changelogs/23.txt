@@ -1,6 +1,6 @@
 Version 15.8 (#23)
 
-- Fix issue affecting some users with crashes and install issues (should close #3)
-- Add multi-touch support - you can now draw with multiple fingers at once!
+- Fix issues affecting some users with crashes and install issues (tho\is should close #3. Thanks for the report, @shuvashish76)
+- Add multi-touch support - you can now draw with multiple fingers simultaneously. (thanks for the suggestion, @allmightyasian!)
 
 **Full Changelog**: https://github.com/zadeviggers/wallpaper/compare/Version15.7...Version15.8
