@@ -21,6 +21,7 @@ My custom android live wallpaper.
 - Very customisable
 - Supports Material 3 icon theming
 - Amoled black option
+- Multi-touch support
 
 Please feel free to open an issue suggesting a new feature!
 
