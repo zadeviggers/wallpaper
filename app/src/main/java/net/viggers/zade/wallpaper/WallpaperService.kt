@@ -406,6 +406,17 @@ class WallpaperService : WallpaperService() {
                                 angle
                             )
 
+                            "star" -> drawPolygon(
+                                canvas,
+                                paint,
+                                x,
+                                y,
+                                size,
+                                10f,
+                                angle,
+                                true
+                            )
+
                             else -> canvas.drawCircle(x, y, size, paint)
                         }
                     }
@@ -423,11 +434,13 @@ class WallpaperService : WallpaperService() {
             radius: Float,
             sides: Float,
             startAngle: Float,
+            starMode: Boolean = false
         ) {
             // From https://stackoverflow.com/a/36792553
             if (sides < 3) {
                 return
             }
+            val innerRadius = radius * 0.4f
             val a = Math.PI.toFloat() * 2 / sides
             mCanvas.save()
             mCanvas.translate(x, y)
@@ -436,10 +449,13 @@ class WallpaperService : WallpaperService() {
             path.moveTo(radius, 0f)
             var i = 1
             while (i < sides) {
+                val pointRadius = if (starMode && i % 2 != 0) innerRadius else radius;
+
                 path.lineTo(
-                    radius * cos((a * i).toDouble()).toFloat(),
-                    radius * sin((a * i).toDouble()).toFloat()
+                    pointRadius * cos((a * i).toDouble()).toFloat(),
+                    pointRadius * sin((a * i).toDouble()).toFloat()
                 )
+
                 i++
             }
             path.close()

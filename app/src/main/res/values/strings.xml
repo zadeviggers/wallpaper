@@ -49,4 +49,5 @@
     <string name="enable_random_shape_rotations_preference_title">Rotate shapes randomly</string>
     <string name="enable_random_shape_rotations_preference_summary">Shapes will spawn with random rotation. You probably won\'t notice this with circles though.</string>
     <string name="none_selected_multiselect_input_toast">Select at least one option</string>
+    <string name="shape_option_label_star">Star</string>
 </resources>

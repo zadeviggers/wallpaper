@@ -6,6 +6,7 @@
         <item>@string/shape_option_label_triangle</item>
         <item>@string/shape_option_label_pentagon</item>
         <item>@string/shape_option_label_hexagon</item>
+        <item>@string/shape_option_label_star</item>
     </array>
 
     <array name="shape_types">
@@ -14,6 +15,7 @@
         <item>triangle</item>
         <item>pentagon</item>
         <item>hexagon</item>
+        <item>star</item>
     </array>
 
     <string-array name="colourPalette" translatable="false">
