@@ -3,26 +3,33 @@ package net.viggers.zade.wallpaper
 import android.app.WallpaperManager
 import android.content.ComponentName
 import android.content.Intent
-import android.content.pm.PackageInfo
+import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
-// From https://stackoverflow.com/a/74741495
-// Uses old method on old android and new method on new android (api >= 33)
-fun PackageManager.getPackageInfoCompat(packageName: String, flags: Int = 0): PackageInfo =
+// Compat stuff
+fun PackageManager.getInstallingPackageNameCompat(packageName: String): String? =
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-        getPackageInfo(packageName, PackageManager.PackageInfoFlags.of(flags.toLong()))
+        getInstallSourceInfo(packageName).installingPackageName
     } else {
-        @Suppress("DEPRECATION") getPackageInfo(packageName, flags)
+       @Suppress("DEPRECATION") getInstallerPackageName(packageName)
     }
 
+fun PackageManager.getApplicationInfoCompat(packageName: String): ApplicationInfo {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        getApplicationInfo(packageName, PackageManager.ApplicationInfoFlags.of(0));
+    }else{
+        @Suppress("DEPRECATION") getApplicationInfo(packageName, PackageManager.GET_META_DATA);
+    }
+}
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,12 +42,7 @@ class MainActivity : AppCompatActivity() {
         val resetPrefsButton = findViewById<Button>(R.id.resetPrefsButton)
         val clearShapesButton = findViewById<Button>(R.id.clearShapesButton)
         val downloadsPageButton = findViewById<Button>(R.id.downloadsPageButton)
-        val versionText = findViewById<TextView>(R.id.app_version_text)
-
-        val pInfo =
-            this.packageManager.getPackageInfoCompat(this.packageName, PackageManager.GET_ACTIVITIES)
-        val version = pInfo.versionName
-        versionText.text = getString(R.string.version_number_display).replace("%%version", version)
+        val githubPageButton = findViewById<Button>(R.id.githubPageButton)
 
         val context = this
         installButton.setOnClickListener {
@@ -83,8 +85,27 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, R.string.shapes_cleared_toast, Toast.LENGTH_SHORT)
                 .show()
         }
-        downloadsPageButton.setOnClickListener {
-            goToUrl("https://github.com/zadeviggers/wallpaper/releases")
+
+        githubPageButton.setOnClickListener {
+            goToUrl("https://github.com/zadeviggers/wallpaper")
+        }
+
+        val installerName = packageManager.getInstallingPackageNameCompat(packageName);
+        Log.v("ZV-Wallpaper:AppHome", installerName.toString())
+
+        if (installerName != null) {
+            val installerInfo = packageManager.getApplicationInfoCompat(installerName);
+            val installerLabel = packageManager.getApplicationLabel(installerInfo)
+            downloadsPageButton.setOnClickListener {
+                val launchIntent = packageManager.getLaunchIntentForPackage(installerName)
+                startActivity(launchIntent)
+            }
+            downloadsPageButton.text = getString(R.string.downloads_page_button_text_template, installerLabel)
+            downloadsPageButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.store_icon, 0,0,0)
+        } else {
+            downloadsPageButton.setOnClickListener {
+                goToUrl("https://github.com/zadeviggers/wallpaper/releases")
+            }
         }
     }
 
