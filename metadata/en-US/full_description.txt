@@ -1,9 +1,10 @@
-Zade's wallpaper lets you draw with shapes on your background, and spawns random shapes when you're not drawing.
+Zade's wallpaper lets you draw with shapes on your background, and adds random shapes when you're not drawing.
 
-It's very customisable - every feature can be turned on or off, and you can change the background colour and shape colour, select shape types, and much more.
+Every feature can be turned on or off, you can change the background colour and shape colour, select shape types, and much more.
 
 Features:
 - Very customisable
+- Lots of different shape types
 - Supports Material 3 icon theming
 - Amoled black option
 - Multi-touch support

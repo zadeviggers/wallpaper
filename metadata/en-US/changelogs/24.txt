@@ -1,0 +1,7 @@
+Version 15.9 (#24)
+
+- Added star shape
+- Added link to GitHub page
+The link to GitHub releases now goes to the store you installed the app from, falling back to GitHub releases if none was found.
+
+**Full Changelog**: https://github.com/zadeviggers/wallpaper/compare/Version15.8...Version15.9
