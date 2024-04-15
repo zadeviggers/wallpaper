@@ -41,13 +41,15 @@
     <string name="github_page_button_text">Github page</string>
     <string name="downloads_page_button_text">Download manual updates</string>
     <string name="downloads_page_button_text_template">Updates from %1$s</string>
+    <string name="installed_text_with_app">Installed with %1$s (%2$s)</string>
+    <string name="installed_text_manually">Installed manually</string>
+    <string name="version_text">Version %1$s (%2$d)</string>
     <string name="reset_prefs_button_text">Reset preferences</string>
     <string name="reset_prefs_confirm_dialog_title_text">Reset all preferences?</string>
     <string name="reset_prefs_confirm_dialog_body_text">This will set all your preferences back to their original settings. You can\'t undo this.</string>
     <string name="reset_prefs_confirm_button_text">Reset</string>
     <string name="reset_prefs_cancel_button_text">Cancel</string>
     <string name="reset_prefs_completed_toast_text">Preferences have been reset</string>
-    <string name="version_number_display">Version %%version</string>
     <string name="enable_random_shape_rotations_preference_title">Rotate shapes randomly</string>
     <string name="enable_random_shape_rotations_preference_summary">Shapes will spawn with random rotation. You probably won\'t notice this with circles though.</string>
     <string name="none_selected_multiselect_input_toast">Select at least one option</string>

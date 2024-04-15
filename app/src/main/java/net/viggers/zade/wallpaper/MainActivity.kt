@@ -9,8 +9,8 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -43,6 +43,11 @@ class MainActivity : AppCompatActivity() {
         val clearShapesButton = findViewById<Button>(R.id.clearShapesButton)
         val downloadsPageButton = findViewById<Button>(R.id.downloadsPageButton)
         val githubPageButton = findViewById<Button>(R.id.githubPageButton)
+
+        val versionText = findViewById<TextView>(R.id.app_version_text)
+        val installLocationText = findViewById<TextView>(R.id.app_install_location_text)
+
+        versionText.text = getString(R.string.version_text, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE)
 
         val context = this
         installButton.setOnClickListener {
@@ -96,6 +101,7 @@ class MainActivity : AppCompatActivity() {
         if (installerName != null) {
             val installerInfo = packageManager.getApplicationInfoCompat(installerName);
             val installerLabel = packageManager.getApplicationLabel(installerInfo)
+            installLocationText.text = getString(R.string.installed_text_with_app, installerLabel, installerName)
             downloadsPageButton.setOnClickListener {
                 val launchIntent = packageManager.getLaunchIntentForPackage(installerName)
                 startActivity(launchIntent)
@@ -103,6 +109,7 @@ class MainActivity : AppCompatActivity() {
             downloadsPageButton.text = getString(R.string.downloads_page_button_text_template, installerLabel)
             downloadsPageButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.store_icon, 0,0,0)
         } else {
+            installLocationText.text = getString(R.string.installed_text_manually)
             downloadsPageButton.setOnClickListener {
                 goToUrl("https://github.com/zadeviggers/wallpaper/releases")
             }

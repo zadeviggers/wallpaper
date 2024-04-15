@@ -66,12 +66,21 @@
         android:text="@string/github_page_button_text"
         app:icon="@drawable/ic_open_in_new" />
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/app_version_text"
         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/app_install_location_text"
+        />
+
 
 
 </LinearLayout>
