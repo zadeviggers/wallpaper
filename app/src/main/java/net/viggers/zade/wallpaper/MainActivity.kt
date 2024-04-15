@@ -95,7 +95,8 @@ class MainActivity : AppCompatActivity() {
             goToUrl("https://github.com/zadeviggers/wallpaper")
         }
 
-        val installerName = packageManager.getInstallingPackageNameCompat(packageName);
+        var installerName = packageManager.getInstallingPackageNameCompat(packageName);
+        if (installerName == "com.google.android.packageinstaller") installerName = null
         Log.v("ZV-Wallpaper:AppHome", installerName.toString())
 
         if (installerName != null) {
